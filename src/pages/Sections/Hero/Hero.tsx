@@ -1,7 +1,8 @@
-import { styled, Typography, Button, Container, Grid } from "@mui/material";
+import { styled, Typography, Button, Container} from "@mui/material";
 import DownloadIcon from '@mui/icons-material/Download';
 import EmailIcon from '@mui/icons-material/Email';
 import Avatar from "../../../assets/images/avatar.png.jpg";
+import Grid from '@mui/material/Grid';
 
 const Hero = () => {
     
@@ -44,7 +45,7 @@ const Hero = () => {
                         </Typography>
 
                         <Button 
-                            variant="contained" 
+                            variant="outlined" 
                             color="primary" 
                             startIcon={<DownloadIcon />} 
                             sx={{ mr: 2, mt: 3 }}
