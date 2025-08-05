@@ -16,12 +16,10 @@ const Hero = () => {
     }));
 
     const StyledAvatar = styled("img")(({ theme }) => ({
-        width: "100%",
+        width: "80%",
         maxWidth: "300px", 
         borderRadius: "50%",
-        [theme.breakpoints.down('md')]: {
-            marginBottom: theme.spacing(4), 
-        },
+        border:  `1px solid ${theme.palette.primary.contrastText}`
     }));
 
     return (
