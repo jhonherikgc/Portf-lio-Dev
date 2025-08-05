@@ -8,7 +8,7 @@ import LinkedInIcon from '@mui/icons-material/LinkedIn';
 const Hero = () => {
     
     const StyledHero = styled("section")(() => ({
-        backgroundColor: "black",
+        backgroundColor: "#2c2b26",
         height: "100vh",
         display: "flex",
         alignItems: "center",
