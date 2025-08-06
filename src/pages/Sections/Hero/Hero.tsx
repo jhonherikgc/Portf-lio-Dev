@@ -1,90 +1,110 @@
-import { styled, Typography, Button, Container, Stack, Grid } from "@mui/material";
-import DownloadIcon from '@mui/icons-material/Download';
-import EmailIcon from '@mui/icons-material/Email';
-import GitHubIcon from '@mui/icons-material/GitHub';
+import { Box, Container, Grid, Typography, styled } from "@mui/material";
 import Avatar from "../../../assets/images/avatar.png.jpg";
-import LinkedInIcon from '@mui/icons-material/LinkedIn';
-import theme from "../../../theme";
+import DownloadIcon from "@mui/icons-material/Download";
+import MailOutlineIcon from "@mui/icons-material/MailOutline";
+import LinkedInIcon from "@mui/icons-material/LinkedIn";
+import GitHubIcon from "@mui/icons-material/GitHub";
+import StyledButton from "../../../components/StyledButton/StyledButton";
+import { AnimatedBackground } from "../../../components/AnimatedBackground/AnimatedBackground";
 
+
+// Styled Components
+const StyledHero = styled("div")(({ theme }) => ({
+  backgroundColor: theme.palette.primary.main,
+  height: "100vh",
+  display: "flex",
+  alignItems: "center",
+  [theme.breakpoints.up("xs")]: {
+    paddingTop: "100px",
+  },
+  [theme.breakpoints.up("md")]: {
+    paddingTop: "0",
+  },
+}));
+
+const StyledImg = styled("img")(({ theme }) => ({
+  width: "75%",
+  borderRadius: "50%",
+  border: `1px solid ${theme.palette.primary.contrastText}`,
+}));
+
+// Main Component
 const Hero = () => {
-    
-    const StyledHero = styled("section")(() => ({
-        backgroundColor: "#2c2b26",
-        height: "100vh",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        [theme.breakpoints.up ('xs')]: {
-            paddingTop: "100px"
-        },
-        [theme.breakpoints.up ('md')]: {
-            paddingTop: "0px"
-        }
-    }));
+  return (
+    <StyledHero>
+      <Container maxWidth="lg">
+        <Grid container spacing={2}>
+          {/* Foto e background*/}
+          <Grid>
+            <Box position="relative">
+              <Box position="absolute" width={"150%"} top={-100} right={0}>
+                <AnimatedBackground />
+              </Box>
+              <Box position="relative" textAlign="center">
+                <StyledImg src={Avatar} alt="Avatar" />
+              </Box>
+            </Box>
+          </Grid>
 
-    const StyledAvatar = styled("img")(({ theme }) => ({
-        width: "75%",
-        maxWidth: "300px", 
-        borderRadius: "50%",
-        border:  `1px solid ${theme.palette.primary.contrastText}`
-    }));
+          {}
+          <Grid>
+            <Typography
+              color="primary.contrastText"
+              variant="h1"
+              textAlign="center"
+              pb={2}
+            >
+              Jhon Herik Gomes de Castro
+            </Typography>
+            <Typography
+              color="primary.contrastText"
+              variant="h2"
+              textAlign="center"
+            >
+              I'm a Software Engineer
+            </Typography>
 
-    return (
-        <StyledHero>
-            <Container maxWidth="lg">
-                <Grid 
-                    container 
-                    spacing={4} 
-                    alignItems="center"
-                    justifyContent="center"
-                >
-                    <Grid>
-                        <StyledAvatar src={Avatar} alt="Jhon Herik's Avatar" />
-                    </Grid>
+            {/* Botões */}
+            <Grid
+              container
+              display="flex"
+              justifyContent="center"
+              spacing={3}
+              pt={3}
+            >
+              <Grid>
+                <StyledButton onClick={() => {}}>
+                  <DownloadIcon />
+                  <Typography>Download CV</Typography>
+                </StyledButton>
+              </Grid>
 
-                    <Grid>
-                        <Typography color="primary" variant="h3" component="h1" gutterBottom pb={2}>
-                            Jhon Herik Gomes de Castro
-                        </Typography>
-                        <Typography color="primary" variant="h5" component="p" gutterBottom>
-                            I'm a future Software Engineer
-                        </Typography>
-                        
-                        <Stack direction={{ xs: 'column', sm: 'row' }} spacing={2} sx={{ mt: 3 }}>
-                            <Button 
-                                variant="outlined" 
-                                color="primary" 
-                                startIcon={<DownloadIcon />} 
-                            >
-                                Download CV
-                            </Button>
-                            <Button 
-                                variant="outlined" 
-                                color="primary" 
-                                startIcon={<EmailIcon />}
-                            >
-                                Contact Me
-                            </Button>
-                            <Button
-                                variant="outlined" 
-                                color="primary" 
-                                startIcon={<GitHubIcon />} 
-                            >
-                                GitHub
-                            </Button>
-                            <Button
-                                variant="outlined" 
-                                color="primary" 
-                                startIcon={<LinkedInIcon/>} 
-                            >
-                                Linkedin
-                            </Button>
-                        </Stack>
-                    </Grid>
-                </Grid>
-            </Container>
-        </StyledHero>
-    );
+              <Grid>
+                <StyledButton onClick={() => {}}>
+                  <MailOutlineIcon />
+                  <Typography>Contact me</Typography>
+                </StyledButton>
+              </Grid>
+
+                <Grid>
+                <StyledButton onClick={() => {}}>
+                  <LinkedInIcon />
+                  <Typography>Linkedin</Typography>
+                </StyledButton>
+              </Grid>
+
+                <Grid>
+                <StyledButton onClick={() => {}}>
+                  <GitHubIcon />
+                  <Typography>Github</Typography>
+                </StyledButton>
+              </Grid>
+            </Grid>
+          </Grid>
+        </Grid>
+      </Container>
+    </StyledHero>
+  );
 };
 
 export default Hero;
