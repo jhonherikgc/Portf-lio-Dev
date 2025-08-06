@@ -61,7 +61,7 @@ const Hero = () => {
               variant="h2"
               textAlign="center"
             >
-              I'm a Software Engineer
+              I'm a Future Software Engineer
             </Typography>
 
             {/* Botões */}
