@@ -4,6 +4,7 @@ import EmailIcon from '@mui/icons-material/Email';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import Avatar from "../../../assets/images/avatar.png.jpg";
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
+import theme from "../../../theme";
 
 const Hero = () => {
     
@@ -13,10 +14,16 @@ const Hero = () => {
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
+        [theme.breakpoints.up ('xs')]: {
+            paddingTop: "100px"
+        },
+        [theme.breakpoints.up ('md')]: {
+            paddingTop: "0px"
+        }
     }));
 
     const StyledAvatar = styled("img")(({ theme }) => ({
-        width: "80%",
+        width: "75%",
         maxWidth: "300px", 
         borderRadius: "50%",
         border:  `1px solid ${theme.palette.primary.contrastText}`
