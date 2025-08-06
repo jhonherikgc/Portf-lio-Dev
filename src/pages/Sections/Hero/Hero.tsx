@@ -36,7 +36,7 @@ const Hero = () => {
                     </Grid>
 
                     <Grid>
-                        <Typography color="primary" variant="h3" component="h1" gutterBottom>
+                        <Typography color="primary" variant="h3" component="h1" gutterBottom pb={2}>
                             Jhon Herik Gomes de Castro
                         </Typography>
                         <Typography color="primary" variant="h5" component="p" gutterBottom>
