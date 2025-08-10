@@ -63,7 +63,7 @@ const Hero = () => {
               pb={2}
               sx={{
                 position: {md:"absolute"},
-                marginTop: {md:"5%"},
+                marginTop: {md:"-0,01%"},
                 paddingTop: {md:"10px"},
                 marginLeft: {md:"-1%"}
               }}
@@ -76,7 +76,8 @@ const Hero = () => {
               textAlign="center"
               sx={{
                 position: {md:"absolute"},
-                marginTop: {md:"11%"},
+                marginTop: {md:"5%"},
+                paddingTop: {md:"10px"},
                 marginLeft: {md:"-1%"}
               }}
             >
@@ -92,8 +93,8 @@ const Hero = () => {
               pt={3}
               sx={{
                 position: {md:"absolute"},
-                marginTop: {md:"15%"},
-                marginLeft: {md:""}
+                marginTop: {md:"10%"},
+                marginLeft: {md:"0"},
               }}
             >
               <Grid>
