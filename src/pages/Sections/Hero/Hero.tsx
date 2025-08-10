@@ -24,8 +24,16 @@ const StyledHero = styled("div")(({ theme }) => ({
 
 const StyledImg = styled("img")(({ theme }) => ({
   width: "75%",
+  maxWidth: "400px", // Limita o tamanho da imagem em telas muito grandes
   borderRadius: "50%",
   border: `1px solid ${theme.palette.primary.contrastText}`,
+  // ✅ Adicionando um estilo para telas de PC para mover a imagem para a esquerda
+  [theme.breakpoints.up("md")]: {
+    paddingLeft: "-100px",
+    marginLeft: "-100px",
+    width:"100%",
+    marginTop:"-15px"
+  },
 }));
 
 // Main Component
@@ -53,6 +61,12 @@ const Hero = () => {
               variant="h1"
               textAlign="center"
               pb={2}
+              sx={{
+                position: {md:"absolute"},
+                marginTop: {md:"5%"},
+                paddingTop: {md:"10px"},
+                marginLeft: {md:"-1%"}
+              }}
             >
               Jhon Herik Gomes de Castro
             </Typography>
@@ -60,6 +74,11 @@ const Hero = () => {
               color="primary.contrastText"
               variant="h2"
               textAlign="center"
+              sx={{
+                position: {md:"absolute"},
+                marginTop: {md:"11%"},
+                marginLeft: {md:"-1%"}
+              }}
             >
               I'm a Future Software Engineer
             </Typography>
@@ -71,6 +90,11 @@ const Hero = () => {
               justifyContent="center"
               spacing={3}
               pt={3}
+              sx={{
+                position: {md:"absolute"},
+                marginTop: {md:"15%"},
+                marginLeft: {md:""}
+              }}
             >
               <Grid>
                 <StyledButton onClick={() => {}}>
