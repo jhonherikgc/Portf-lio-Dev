@@ -1,8 +1,8 @@
 import { styled, Typography } from "@mui/material";
 import Avatar from "../../../assets/images/avatar.png.jpg";
+import { Fade, Slide } from "react-awesome-reveal";
 
 // --- Styled Components --- //
-
 
 const StyledAbout = styled("section")(({ theme }) => ({
   backgroundColor: theme.palette.primary.main,
@@ -43,8 +43,8 @@ const StyledContentWrapper = styled("div")(({ theme }) => ({
 const StyledContainer = styled("div")(({ theme }) => ({
   display: "flex",
   flexDirection: "column",
-  marginBottom:"30px",
-  gap: theme.spacing(8),
+  marginBottom:"30px",
+  gap: theme.spacing(2), // Reduzi o gap para telas pequenas
   marginTop: theme.spacing(4),
   padding: theme.spacing(2),
   borderRadius: theme.shape.borderRadius,
@@ -54,7 +54,7 @@ const StyledContainer = styled("div")(({ theme }) => ({
     maxWidth: "900px",
     width: "100%", 
     marginLeft: "50px",
-    height:"350px",
+    // Removido o height fixo para que o container se ajuste ao conteúdo
   },
   [theme.breakpoints.down("md")]: {
     padding: theme.spacing(1),
@@ -68,41 +68,46 @@ const About = () => {
   return (
     <StyledAbout>
       <section>
-        <Typography
+        <Fade> {/* Anima o título */}
+          <Typography
               color="primary.contrastText"
               variant="h3"
               textAlign="center"
               pb={2}
-              sx={{
-                textAlign: { xs: "center", md: "center" },
-                marginLeft: {xs:"0",md:"30%"},
-                marginTop: {xs:"10vh", md:"15%"},
-              }}
+              sx={{
+                textAlign: { xs: "center", md: "center" },
+                marginLeft: {xs:"0",md:"30%"},
+                marginTop: {xs:"10vh", md:"15%"},
+              }}
             >
-         About me
-        </Typography>
+              About me
+          </Typography>
+        </Fade>
         <StyledContentWrapper>
-          <StyledImg src={Avatar} alt="Avatar" />
-          <StyledContainer>
-            Olá, me chamo Jhon Herik tenho 19 anos. Minha jornada na programação teve início aos 13 anos, quando a beleza e o mistério do código de um 'hack' de Minecraft 
-            despertaram minha curiosidade. A vontade de aprender sempre esteve presente, mas foi somente 3 anos depois, 
-            aos 16 anos que dei o primeiro passo para transformar essa curiosidade em habilidade.
-            <br>
-            </br>
-            <br>
-            </br>
-            Hoje estou trabalhando para ser um desenvolvedor Web Full-Stack,
-            aplico essa mesma dedicação para criar projetos robustos e funcionais, do front ao back-end.
-            Hoje, busco sempre aplicar essa mesma dedicação e curiosidade para criar soluções digitais completas. No lado do front-end, 
-            meu foco é construir experiências de usuário intuitivas e elegantes. No back-end, me dedico a desenvolver a lógica robusta e segura que sustenta a aplicação, 
-            sempre buscando a melhor performance. Meu objetivo é continuar evoluindo e contribuir para o mundo digital com projetos inovadores e de alta qualidade."
-            <br>
-            </br>
-            <br>
-            </br>
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Debitis repudiandae omnis aliquam dignissimos ullam atque, 
-            velit at dolorum fuga quod sed doloribus repellat commodi consequatur praesentium labore, ad quibusdam sequi!
+          <Slide direction="left"> {/* Anima a imagem */}
+            <StyledImg src={Avatar} alt="Avatar" />
+          </Slide>
+<Slide direction="right">
+<Fade delay={500}>
+            <StyledContainer>
+
+              Olá, me chamo Jhon Herik tenho 19 anos. Minha jornada na programação teve início aos 13 anos, quando a beleza e o mistério do código de um 'hack' de Minecraft 
+              despertaram minha curiosidade. A vontade de aprender sempre esteve presente, mas foi somente 3 anos depois, 
+              aos 16 anos que dei o primeiro passo para transformar essa curiosidade em habilidade.
+              <br />
+              <br />
+              Hoje estou trabalhando para ser um desenvolvedor Web Full-Stack,
+              aplico essa mesma dedicação para criar projetos robustos e funcionais, do front ao back-end.
+              Hoje, busco sempre aplicar essa mesma dedicação e curiosidade para criar soluções digitais completas. No lado do front-end, 
+              meu foco é construir experiências de usuário intuitivas e elegantes. No back-end, me dedico a desenvolver a lógica robusta e segura que sustenta a aplicação, 
+              sempre buscando a melhor performance. Meu objetivo é continuar evoluindo e contribuir para o mundo digital com projetos inovadores e de alta qualidade."
+              <br />
+              <br />
+              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Debitis repudiandae omnis aliquam dignissimos ullam atque, 
+              velit at dolorum fuga quod sed doloribus repellat commodi consequatur praesentium labore, ad quibusdam sequi!
             </StyledContainer>
+</Fade>
+</Slide>
         </StyledContentWrapper>
       </section>
     </StyledAbout>
