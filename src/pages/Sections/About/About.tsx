@@ -1,7 +1,6 @@
 import { styled, Typography } from "@mui/material";
 import Avatar from "../../../assets/images/avatar.png.jpg";
 import { Fade, Slide } from "react-awesome-reveal";
-
 // --- Styled Components --- //
 
 const StyledAbout = styled("section")(({ theme }) => ({
@@ -89,8 +88,8 @@ const About = () => {
           </Slide>
 <Slide direction="right">
 <Fade delay={500}>
-            <StyledContainer>
-
+        <StyledContainer>
+            <Typography>
               Olá, me chamo Jhon Herik tenho 19 anos. Minha jornada na programação teve início aos 13 anos, quando a curiosidade de saber o que vi em código de um "Hack / Script" de Minecraft 
               despertaram em mim interesse de saber o que aquilo significava e fazia. A vontade de aprender sempre esteve presente, mas foi somente 3 anos depois, 
               aos 16 anos que foi onde eu dei o meu primeiro passo para transformar essa curiosidade em habilidade.
@@ -103,8 +102,9 @@ const About = () => {
               sempre buscando a melhor performance. Meu objetivo é continuar evoluindo e contribuir para o mundo digital com projetos inovadores e de alta qualidade."
               <br />
               <br />
-              ⁠"Sou só um vírus, querendo escapar, dos programadores da vida." <i>Wesley D'Amico</i>
-            </StyledContainer>
+              ⁠<i>"Sou só um vírus, querendo escapar, dos programadores da vida." Wesley D'Amico</i>
+            </Typography>
+        </StyledContainer>
 </Fade>
 </Slide>
         </StyledContentWrapper>
