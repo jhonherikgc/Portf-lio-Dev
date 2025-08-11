@@ -91,20 +91,19 @@ const About = () => {
 <Fade delay={500}>
             <StyledContainer>
 
-              Olá, me chamo Jhon Herik tenho 19 anos. Minha jornada na programação teve início aos 13 anos, quando a beleza e o mistério do código de um 'hack' de Minecraft 
-              despertaram minha curiosidade. A vontade de aprender sempre esteve presente, mas foi somente 3 anos depois, 
-              aos 16 anos que dei o primeiro passo para transformar essa curiosidade em habilidade.
+              Olá, me chamo Jhon Herik tenho 19 anos. Minha jornada na programação teve início aos 13 anos, quando a curiosidade de saber o que vi em código de um "Hack / Script" de Minecraft 
+              despertaram em mim interesse de saber o que aquilo significava e fazia. A vontade de aprender sempre esteve presente, mas foi somente 3 anos depois, 
+              aos 16 anos que foi onde eu dei o meu primeiro passo para transformar essa curiosidade em habilidade.
               <br />
               <br />
-              Hoje estou trabalhando para ser um desenvolvedor Web Full-Stack,
+              Hoje estou trabalhando para ser um desenvolvedor Full-Stack,
               aplico essa mesma dedicação para criar projetos robustos e funcionais, do front ao back-end.
-              Hoje, busco sempre aplicar essa mesma dedicação e curiosidade para criar soluções digitais completas. No lado do front-end, 
+              Busco sempre aplicar essa mesma dedicação e curiosidade para criar soluções digitais completas. No lado do front-end, 
               meu foco é construir experiências de usuário intuitivas e elegantes. No back-end, me dedico a desenvolver a lógica robusta e segura que sustenta a aplicação, 
               sempre buscando a melhor performance. Meu objetivo é continuar evoluindo e contribuir para o mundo digital com projetos inovadores e de alta qualidade."
               <br />
               <br />
-              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Debitis repudiandae omnis aliquam dignissimos ullam atque, 
-              velit at dolorum fuga quod sed doloribus repellat commodi consequatur praesentium labore, ad quibusdam sequi!
+              ⁠"Sou só um vírus, querendo escapar, dos programadores da vida." <i>Wesley D'Amico</i>
             </StyledContainer>
 </Fade>
 </Slide>
