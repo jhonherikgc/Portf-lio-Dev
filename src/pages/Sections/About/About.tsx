@@ -104,7 +104,7 @@ const About = () => {
               <br />
               ⁠<i>"Sou só um vírus, querendo escapar, dos programadores da vida." Wesley D'Amico</i>
             </Typography>
-        </StyledContainer>
+            </StyledContainer>
 </Fade>
 </Slide>
         </StyledContentWrapper>
