@@ -118,13 +118,17 @@ const Hero = () => {
                 <Grid>
                   <StyledButton onClick={() => {}}>
                     <LinkedInIcon />
+                    <a href="https://www.linkedin.com/in/jhonherikgc/" target="_blank" rel="noopener noreferrer" style={{textDecoration: 'none', color: 'white'}}>
                     <Typography>Linkedin</Typography>
+                    </a>
                   </StyledButton>
                 </Grid>
                 <Grid>
                   <StyledButton onClick={() => {}}>
                     <GitHubIcon />
+                    <a href="https://github.com/jhonherikgc" target="_blank" rel="noopener noreferrer" style={{textDecoration: 'none', color: 'white'}}>
                     <Typography>Github</Typography>
+                    </a>
                   </StyledButton>
                 </Grid>
               </Grid>
