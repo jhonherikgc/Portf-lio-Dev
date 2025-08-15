@@ -47,7 +47,7 @@ const StyledContainer = styled("div")(({ theme }) => ({
   marginTop: theme.spacing(4),
   padding: theme.spacing(2),
   borderRadius: theme.shape.borderRadius,
-  backgroundColor: theme.palette.grey[900],
+  backgroundColor: '#212529',
   color: theme.palette.common.white,
   [theme.breakpoints.up("md")]: {
     maxWidth: "900px",
