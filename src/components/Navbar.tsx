@@ -13,7 +13,7 @@ const NavBar = () => {
             <AppBar position="absolute">
                 <StyledToobar>
                     <MenuItem><a href="#about-me" style={{textDecoration:"none", color:"white", scrollBehavior:"smooth"}}>Sobre mim</a></MenuItem>
-                    <MenuItem>Habilidades</MenuItem>
+                    <MenuItem><a href="#skills" style={{textDecoration:"none", color:"white", scrollBehavior:"smooth"}}>Habilidades</a></MenuItem>
                     <MenuItem>Projetos</MenuItem>
                 </StyledToobar>
             </AppBar>
