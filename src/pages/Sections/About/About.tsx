@@ -43,7 +43,7 @@ const StyledContainer = styled("div")(({ theme }) => ({
   display: "flex",
   flexDirection: "column",
   marginBottom:"30px",
-  gap: theme.spacing(2), // Reduzi o gap para telas pequenas
+  gap: theme.spacing(2),
   marginTop: theme.spacing(4),
   padding: theme.spacing(2),
   borderRadius: theme.shape.borderRadius,
@@ -53,7 +53,6 @@ const StyledContainer = styled("div")(({ theme }) => ({
     maxWidth: "900px",
     width: "100%", 
     marginLeft: "50px",
-    // Removido o height fixo para que o container se ajuste ao conteúdo
   },
   [theme.breakpoints.down("md")]: {
     padding: theme.spacing(1),
@@ -78,12 +77,12 @@ const About = () => {
                 marginLeft: {xs:"0",md:"30%"},
                 marginTop: {xs:"10vh", md:"15%"},
               }}
-            >
+            id="about-me">
               About me
           </Typography>
         </Fade>
         <StyledContentWrapper>
-          <Slide direction="left"> {/* Anima a imagem */}
+          <Slide direction="left"> {}
             <StyledImg src={Avatar} alt="Avatar" />
           </Slide>
 <Slide direction="right">

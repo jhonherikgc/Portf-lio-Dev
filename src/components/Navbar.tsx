@@ -7,11 +7,12 @@ const NavBar = () => {
         justifyContent: "space-evenly"
     }))
 
+
     return (
         <>
             <AppBar position="absolute">
                 <StyledToobar>
-                    <MenuItem>Sobre mim</MenuItem>
+                    <MenuItem><a href="#about-me" style={{textDecoration:"none", color:"white", scrollBehavior:"smooth"}}>Sobre mim</a></MenuItem>
                     <MenuItem>Habilidades</MenuItem>
                     <MenuItem>Projetos</MenuItem>
                 </StyledToobar>
