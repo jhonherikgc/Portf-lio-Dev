@@ -205,6 +205,7 @@ const SkillsSection: React.FC = () => {
             Linguagens & Ferramentas
           </StyledH1>
           </Slide>
+          
           <SkillsContainer>
             <VerticalCarouselContainer ref={carouselRef}>
               {loopSkillsData.map((skill, index) => (
