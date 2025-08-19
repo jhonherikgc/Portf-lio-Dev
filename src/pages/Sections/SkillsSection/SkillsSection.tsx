@@ -24,7 +24,7 @@ interface Skill {
 }
 
 const skillsData: Skill[] = [
-  { id: 'Html', image: htmlIcon, hoverText: 'HTML: Estrutura base de todas as páginas web.', clickText: 'HTML é a linguagem de marcação padrão para a criação de páginas web e suas aplicações. Foi a minha primeira ferramenta excenssial para entender mais sobre o desenvolvimento front-end, apredi os principios básicos, tags excenciais e busquei aprender mais sobre os protócolos de rede.' },
+  { id : 'Html', image: htmlIcon, hoverText: 'HTML: Estrutura base de todas as páginas web.', clickText: 'HTML é a linguagem de marcação padrão para a criação de páginas web e suas aplicações. Foi a minha primeira ferramenta excenssial para entender mais sobre o desenvolvimento front-end, apredi os principios básicos, tags excenciais atraves do mesmo busquei aprender mais sobre os protócolos de rede, cookies, e tudo que um site / host de um precisa para poder colocar no ar..' },
   { id: 'Css', image: cssIcon, hoverText: 'CSS: Estilização de componentes web.', clickText: 'CSS é uma linguagem de folhas de estilo utilizada para descrever a apresentação de um documento escrito em HTML. Aprendi em cursos promovidos pelo youtuber Gustavo Guanabara, aprendi os principais tipos de fontes, cores, flexbox e responsavidade. Acho o CSS uma ferramenta bem interessante, é uma maneir de poder admirar o seu site/ projeto funcionando de acordo com suas cores que você mesmo montou!' },
   { id: 'Bootstrap', image: bootsIcon, hoverText: 'Bootstrap: Framework de CSS para desenvolvimento rápido.', clickText: 'Bootstrap é um framework de código aberto para desenvolver projetos responsivos, web e mobile-first no front-end. Meu primeiro contato com o Bootstrap foi atraves de um projeto que precisava de organizações e estilos personalizaveis de maneira fácil, rápida e eficiente.' },
   { id: 'JavaScript', image: jsIcon, hoverText: 'JavaScript: Adiciona interatividade e dinamismo.', clickText: 'JavaScript é uma linguagem de programação usada para criar interações dinâmicas em sites e aplicações web. Aprendi mais sobre vendo também os cursos do Youtuber e Professor Gustavo Guanabara, lá aprendi mais sobre sua lógica e com um tempo descobri que é minha linguagem de programação favorita, gosto de mexer com suas funcionalidades, criar interações e resoluções de  problemas reais dentro da linguagem, Atraves do JavaScript aprendi mais como funciona as outras linguagens e até mesmo a mudança de sintaxe de umas para as outras.' },
@@ -40,6 +40,7 @@ const skillsData: Skill[] = [
 ];
 
 const loopSkillsData = [...skillsData, ...skillsData];
+
 
 const StyledH1 = styled.h1`
   color: white;
@@ -117,6 +118,7 @@ const TextContainer = styled.div`
   width: 860px;
   height: 400px;
   padding: 20px;
+  font-size: 30px;
   background-color: #212529;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
