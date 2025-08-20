@@ -121,7 +121,6 @@ const VerticalCarouselContainer = styled.div`
 `;
 
 const ImageWrapper = styled.div`
-
   flex-shrink: 0;
   margin-bottom: 20px;
   transition: transform 0.3s ease;
