@@ -83,7 +83,17 @@ const SkillsContainer = styled.div`
 
 const ExperienceContainer = styled.div`
   color: white;
+  text-align: left;
+  margin-left: -24rem;
+  margin-bottom: -30px;
+  font-family: Helvetica Neue;
+  font-size: 20px;
 
+  @media (max-width: 768px) {
+    text-align: left;
+    margin: 20px 0; 
+    font-size: 16px;
+    margin-bottom: -90px;
   }
 `;
 
@@ -100,11 +110,18 @@ const VerticalCarouselContainer = styled.div`
   }
   -ms-overflow-style: none;
   scrollbar-width: none;
+
+    @media (max-width: 768px) {
+  flex-direction: row;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    margin-left: 0px;
+    width: 30%;
+  }
 `;
 
 const ImageWrapper = styled.div`
-  width: 100px;
-  height: 100px;
+
   flex-shrink: 0;
   margin-bottom: 20px;
   transition: transform 0.3s ease;
@@ -138,8 +155,9 @@ const TextContainer = styled.div`
   
   @media (max-width: 768px) {
   margin-top:30px;
-    width: 350px;
+    width: 305px;
     height: 100%;
+    font-size: 16px;
   }
 `;
 
