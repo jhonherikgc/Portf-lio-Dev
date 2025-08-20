@@ -90,10 +90,13 @@ const ExperienceContainer = styled.div`
   font-size: 20px;
 
   @media (max-width: 768px) {
-    text-align: left;
-    margin: 20px 0; 
-    font-size: 16px;
-    margin-bottom: -90px;
+  text-align: center;
+  margin: 50px;
+  margin-left: 50px;
+  font-family: Helvetica Neue;
+  font-size: 20px;
+  margin-bottom: -80px;
+  width: 100%;
   }
 `;
 
@@ -154,7 +157,7 @@ const TextContainer = styled.div`
   
   @media (max-width: 768px) {
   margin-top:30px;
-    width: 305px;
+    width: 330px;
     height: 100%;
     font-size: 16px;
   }
