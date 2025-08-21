@@ -154,9 +154,7 @@ const TextContainer = styled.div`
   text-align: left;
   white-space: pre-wrap;
   color: white;
-  margin-bottom: 350px;
-
-
+  
   @media (max-width: 768px) {
   margin-top:30px;
     width: 330px;
