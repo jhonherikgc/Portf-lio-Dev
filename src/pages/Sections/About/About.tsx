@@ -21,6 +21,7 @@ const StyledImg = styled("img")(({ theme }) => ({
   borderRadius: "50%",
   position: "relative",
   margin: "50px 50px",
+  marginBottom: "300px",
   [theme.breakpoints.down("md")]: {
     margin: "30px auto",
     width: "200px",
@@ -42,7 +43,7 @@ const StyledContentWrapper = styled("div")(({ theme }) => ({
 const StyledContainer = styled("div")(({ theme }) => ({
   display: "flex",
   flexDirection: "column",
-  marginBottom:"30px",
+  marginBottom:"300px",
   gap: theme.spacing(2),
   marginTop: theme.spacing(4),
   padding: theme.spacing(2),
