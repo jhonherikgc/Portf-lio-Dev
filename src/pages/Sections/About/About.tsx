@@ -67,7 +67,7 @@ const About = () => {
   return (
     <StyledAbout>
       <section>
-        <Fade> {/* Anima o título */}
+        <Fade> {}
           <Typography
               color="primary.contrastText"
               variant="h3"
