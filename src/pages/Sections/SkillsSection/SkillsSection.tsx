@@ -232,7 +232,7 @@ const SkillsSection: React.FC = () => {
 
     return (
         <SkillsSectionWrapper>
-          <Fade>
+          <Fade delay={400}>
             <Slide direction="up">
           <StyledH1 id="skills">
             Linguagens & Ferramentas
