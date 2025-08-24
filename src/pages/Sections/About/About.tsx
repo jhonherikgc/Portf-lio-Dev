@@ -67,7 +67,8 @@ const About = () => {
   return (
     <StyledAbout>
       <section>
-        <Fade> {}
+    <Fade delay={400}>
+        <Slide direction="up"> {}
           <Typography
               color="primary.contrastText"
               variant="h3"
@@ -81,7 +82,8 @@ const About = () => {
             id="about-me">
               About me
           </Typography>
-        </Fade>
+        </Slide>
+    </Fade>
         <StyledContentWrapper>
           <Slide direction="left"> {}
             <StyledImg src={Avatar} alt="Avatar" />
