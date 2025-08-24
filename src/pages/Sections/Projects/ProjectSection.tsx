@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Fade, Slide } from "react-awesome-reveal";
 import LinkIcon from '@mui/icons-material/Link';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import siteCorinthians from '../../../assets/images/Proj_Corinthians_photo.png'
@@ -202,8 +203,12 @@ export default function ProjetosExemplo() {
 
   return (
     <main style={pageStyle}>
+      <Fade delay={400}>
       <div style={titleStyle} id="projects">Projetos</div>
+      </Fade>
+      
 
+    <Slide direction="right" delay={400}>
       <ProjectRow
         imageFirst
         imageSrc= {siteCorinthians}
@@ -212,7 +217,8 @@ export default function ProjetosExemplo() {
         githubUrl="https://github.com/jhonherikgc"
         liveUrl="https://github.com/jhonherikgc/site-corinthians"
       />
-
+      </Slide>
+      <Slide direction="left" delay={400}>
       <ProjectRow
         imageFirst={false}
         imageSrc= {aluraChat}
@@ -221,7 +227,9 @@ export default function ProjetosExemplo() {
         githubUrl="https://github.com/jhonherikgc"
         liveUrl="https://github.com/jhonherikgc/Chat-bot-alura"
       />
+    </Slide>
 
+    <Slide direction="right" delay={400}>
       <ProjectRow
         imageFirst
         imageSrc= {toDoList}
@@ -230,6 +238,7 @@ export default function ProjetosExemplo() {
         githubUrl="https://github.com/jhonherikgc"
         liveUrl="https://github.com/jhonherikgc/TO-DO-LIST"
       />
+    </Slide>
     </main>
     
   );
