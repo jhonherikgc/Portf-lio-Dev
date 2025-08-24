@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from "react";
 import LinkIcon from '@mui/icons-material/Link';
 import GitHubIcon from '@mui/icons-material/GitHub';
+import siteCorinthians from '../../../assets/images/Proj_Corinthians_photo.png'
+import aluraChat from '../../../assets/images/alura-chat_project.png'
+import toDoList from '../../../assets/images/ToDo_list_project.png'
 
 /** Tipagem das props de cada “linha” (card cinza) */
 type ProjectRowProps = {
@@ -203,18 +206,29 @@ export default function ProjetosExemplo() {
 
       <ProjectRow
         imageFirst
-        imageSrc="https://picsum.photos/800/600"
-        description="Texto explicativo"
-        githubUrl="https://github.com/seu-usuario/seu-repo"
-        liveUrl="https://seu-projeto.com"
+        imageSrc= {siteCorinthians}
+        description="Projeto de 'Cópia' do Site do Corinthians. Desenvolvido atráves de estudos e prática após termino de um curso do Youtube! O projeto consiste em recriar
+        o site do zero porém com suas ideias de forma simples."
+        githubUrl="https://github.com/jhonherikgc"
+        liveUrl="https://github.com/jhonherikgc/site-corinthians"
       />
 
       <ProjectRow
         imageFirst={false}
-        imageSrc="https://picsum.photos/700/500"
-        description="Outro projeto"
-        githubUrl="https://github.com/seu-usuario/outro-repo"
-        liveUrl="https://outro-projeto.com"
+        imageSrc= {aluraChat}
+        description="Chat-Bot Imersão Alura 2025 - Esse projeto eu desenvolvi em tecnologias de python em uma imersão competitiva de um curso gratuito promovido pela insituição de cursos
+        Alura."
+        githubUrl="https://github.com/jhonherikgc"
+        liveUrl="https://github.com/jhonherikgc/Chat-bot-alura"
+      />
+
+      <ProjectRow
+        imageFirst
+        imageSrc= {toDoList}
+        description="TO-DO List - Projeto realizado em tempo de estágio pela Câmara Municipal. Tem como objetivo também a prática e 
+        exploração pelos design / estudos à lógica de programação em Linguagens de Script"
+        githubUrl="https://github.com/jhonherikgc"
+        liveUrl="https://github.com/jhonherikgc/TO-DO-LIST"
       />
     </main>
     
