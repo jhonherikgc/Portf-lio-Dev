@@ -14,7 +14,7 @@ const NavBar = () => {
                 <StyledToobar>
                     <MenuItem><a href="#about-me" style={{textDecoration:"none", color:"white", scrollBehavior:"smooth"}}>Sobre mim</a></MenuItem>
                     <MenuItem><a href="#skills" style={{textDecoration:"none", color:"white", scrollBehavior:"smooth"}}>Habilidades</a></MenuItem>
-                    <MenuItem>Projetos</MenuItem>
+                    <MenuItem><a href="#projects" style={{textDecoration: "none", color:"white", scrollBehavior:"smooth"}}>Projetos</a></MenuItem>
                 </StyledToobar>
             </AppBar>
         </>
