@@ -202,7 +202,7 @@ export default function ProjetosExemplo() {
 
   return (
     <main style={pageStyle}>
-      <div style={titleStyle}>Projetos</div>
+      <div style={titleStyle} id="projects">Projetos</div>
 
       <ProjectRow
         imageFirst
