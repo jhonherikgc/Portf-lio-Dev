@@ -22,7 +22,7 @@ let theme = createTheme({
       
     },
     secondary: {
-      main: '#0277bd',
+      main: '#aa7fc2ff',
     },
     background: {
       default: '#2c2b26',
