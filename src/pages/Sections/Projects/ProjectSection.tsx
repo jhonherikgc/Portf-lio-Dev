@@ -6,7 +6,6 @@ import siteCorinthians from '../../../assets/images/Proj_Corinthians_photo.png'
 import aluraChat from '../../../assets/images/alura-chat_project.png'
 import toDoList from '../../../assets/images/ToDo_list_project.png'
 
-/** Tipagem das props de cada “linha” (card cinza) */
 type ProjectRowProps = {
   imageSrc?: string;
   imageAlt?: string;
@@ -16,7 +15,7 @@ type ProjectRowProps = {
   imageFirst?: boolean; // true = foto à esquerda (1º card). false = foto à direita (2º card)
 };
 
-/** Uma fila de projeto (o card cinza com 2 blocos pretos dentro) */
+/** Cards) */
 const ProjectRow: React.FC<ProjectRowProps> = ({
   imageSrc,
   imageAlt = "Foto do projeto",
@@ -47,8 +46,7 @@ const ProjectRow: React.FC<ProjectRowProps> = ({
     background: "#212529",
     borderRadius: 18,
     padding: 20,
-    boxShadow: "0 0 0 4px #2a2a2a inset",
-    width: isMobile ? "100%" : "70rem", // ocupa tela no celular
+    width: isMobile ? "100%" : "70rem", // 100 % celular
     height: isMobile ? "auto" : "300px",
     margin: "0 auto",
     marginTop: "60px",
