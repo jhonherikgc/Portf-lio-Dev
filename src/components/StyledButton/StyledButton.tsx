@@ -20,7 +20,7 @@ const Button = styled("button")(({ theme }) => ({
   gap: "10px",
   cursor: "pointer",
   '&:hover': {
-    backgroundColor: theme.palette.secondary.light,
+    backgroundColor: "#2F0743",
   },
 }));
 
@@ -33,3 +33,4 @@ const StyledButton: React.FC<StyledButtonProps> = ({ children, onClick }) => {
 };
 
 export default StyledButton;
+
