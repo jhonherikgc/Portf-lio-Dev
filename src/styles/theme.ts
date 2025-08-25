@@ -1,6 +1,4 @@
 import { createTheme, responsiveFontSizes } from "@mui/material";
-
-
 import "@mui/material/styles";
 
 declare module "@mui/material/styles" {
