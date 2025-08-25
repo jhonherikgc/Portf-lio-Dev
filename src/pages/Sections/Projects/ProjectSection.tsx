@@ -179,11 +179,10 @@ const ProjectRow: React.FC<ProjectRowProps> = ({
 };
 
 /** Componente com DOIS cards */
-export default function ProjetosExemplo() {
+export default function Projects() {
   const pageStyle: React.CSSProperties = {
-    marginTop: "400px",
     minHeight: "100vh",
-    background: "#2c2b26",
+    background: "linear-gradient(to right, #000000, #2F0743);",
     padding: 24,
     display: "flex",
     flexDirection: "column",

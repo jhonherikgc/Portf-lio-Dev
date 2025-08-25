@@ -61,7 +61,7 @@ const SkillsSectionWrapper = styled.div`
   align-items: center;
   justify-content: center;
   width: 100%;
-  background-color: #2c2b26;
+  background: linear-gradient(to right, #000000, #2F0743);
 `;
 
 const SkillsContainer = styled.div`
@@ -146,6 +146,7 @@ const TextContainer = styled.div`
   padding: 20px;
   font-size: 30px;
   background-color: #212529;
+  margin-bottom: 400px;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   display: flex;

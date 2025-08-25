@@ -10,17 +10,18 @@ import { Fade, Slide } from "react-awesome-reveal";
 
 // Styled Components
 const StyledHero = styled("div")(({ theme }) => ({
-  backgroundColor: theme.palette.primary.main,
-  height: "100vh",
-  display: "flex",
-  alignItems: "center",
-  [theme.breakpoints.up("xs")]: {
-    paddingTop: "100px",
-  },
-  [theme.breakpoints.up("md")]: {
-    paddingTop: "0",
-  },
+  background: theme.palette.gradient.dark,
+  height: "100vh",
+  display: "flex",
+  alignItems: "center",
+  [theme.breakpoints.up("xs")]: {
+    paddingTop: "100px",
+  },
+  [theme.breakpoints.up("md")]: {
+    paddingTop: "0",
+  },
 }));
+
 
 const StyledImg = styled("img")(({ theme }) => ({
   width: "75%",

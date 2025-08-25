@@ -4,7 +4,7 @@ import { Fade, Slide } from "react-awesome-reveal";
 // --- Styled Components --- //
 
 const StyledAbout = styled("section")(({ theme }) => ({
-  backgroundColor: theme.palette.primary.main,
+  background: theme.palette.gradient.dark,
   height: "100%",
   marginTop: "-10vh",
   display: "flex",
