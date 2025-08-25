@@ -182,7 +182,7 @@ const ProjectRow: React.FC<ProjectRowProps> = ({
 export default function Projects() {
   const pageStyle: React.CSSProperties = {
     minHeight: "100vh",
-    background: "linear-gradient(to right, #000000, #2F0743);",
+    background: "linear-gradient(to right, #000000, #2F0743)",
     padding: 24,
     display: "flex",
     flexDirection: "column",
