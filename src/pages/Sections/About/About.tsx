@@ -16,14 +16,14 @@ const StyledAbout = styled("section")(({ theme }) => ({
 
 const StyledImg = styled("img")(({ theme }) => ({
   borderRadius: "50%",
-  width: "220px",
+  width: "75%",
   height: "220px",
   objectFit: "cover",
   marginBottom: theme.spacing(4),
-  [theme.breakpoints.up("md")]: {
+  [theme.breakpoints.up("xs")]: {
     width: "280px",
     height: "280px",
-    marginRight: theme.spacing(6),
+    marginRight: theme.spacing(0),
     marginBottom: 0,
   },
 }));
@@ -42,6 +42,7 @@ const StyledContentWrapper = styled("div")(({ theme }) => ({
 
 const StyledContainer = styled("div")(({ theme }) => ({
   backgroundColor: "#212529",
+  marginTop: "4",
   padding: theme.spacing(3),
   borderRadius: theme.shape.borderRadius,
   boxShadow: theme.shadows[4],
@@ -61,6 +62,7 @@ const About = () => {
             textAlign="center"
             gutterBottom
             color="primary.contrastText"
+            marginBottom="4"
           >
             About me
           </Typography>
