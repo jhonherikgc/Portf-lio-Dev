@@ -1,4 +1,5 @@
 import { Box, Container, Grid, Typography, styled } from "@mui/material";
+import ScrollDown from "../../../components/KeyboardArrowDown/ArrowDown";
 import Avatar from "../../../assets/images/avatar.png.jpg";
 import DownloadIcon from "@mui/icons-material/Download";
 import MailOutlineIcon from "@mui/icons-material/MailOutline";
@@ -137,6 +138,7 @@ const Hero = () => {
           </Grid>
         </Grid>
       </Container>
+      <ScrollDown targetId="#about-me" />
     </StyledHero>
   );
 };
