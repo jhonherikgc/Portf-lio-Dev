@@ -2,9 +2,10 @@ import React, { useState, useEffect } from "react";
 import { Fade, Slide } from "react-awesome-reveal";
 import LinkIcon from '@mui/icons-material/Link';
 import GitHubIcon from '@mui/icons-material/GitHub';
-import siteCorinthians from '../../../assets/images/Proj_Corinthians_photo.png'
-import aluraChat from '../../../assets/images/alura-chat_project.png'
-import toDoList from '../../../assets/images/ToDo_list_project.png'
+import siteCorinthians from '../../../assets/images/Proj_Corinthians_photo.png';
+import aluraChat from '../../../assets/images/alura-chat_project.png';
+import toDoList from '../../../assets/images/ToDo_list_project.png';
+import TiltedCard from '../../../components/TiltedCard/TiltedCard';
 
 type ProjectRowProps = {
   imageSrc?: string;
@@ -12,10 +13,10 @@ type ProjectRowProps = {
   description: string;
   githubUrl?: string;
   liveUrl?: string;
-  imageFirst?: boolean; // true = foto à esquerda (1º card). false = foto à direita (2º card)
+  imageFirst?: boolean;
 };
 
-/** Cards) */
+/** Componente ProjectRow */
 const ProjectRow: React.FC<ProjectRowProps> = ({
   imageSrc,
   imageAlt = "Foto do projeto",
@@ -26,7 +27,6 @@ const ProjectRow: React.FC<ProjectRowProps> = ({
 }) => {
   const fonts = "helvetica neue";
 
-  // Estado para detectar largura da tela
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
 
   useEffect(() => {
@@ -38,15 +38,15 @@ const ProjectRow: React.FC<ProjectRowProps> = ({
   const rowStyle: React.CSSProperties = {
     position: "relative",
     display: "flex",
-    flexDirection: isMobile ? "column" : "row", // queries celular
+    flexDirection: isMobile ? "column" : "row",
     gap: isMobile ? 12 : 24,
     flexWrap: "wrap",
     alignItems: "stretch",
     justifyContent: "space-between",
-    background: "#212529",
+    borderColor: "white",
     borderRadius: 18,
     padding: 20,
-    width: isMobile ? "100%" : "70rem", // 100 % celular
+    width: isMobile ? "100%" : "70rem",
     height: isMobile ? "auto" : "300px",
     margin: "0 auto",
     marginTop: "60px",
@@ -55,7 +55,7 @@ const ProjectRow: React.FC<ProjectRowProps> = ({
   const panelBase: React.CSSProperties = {
     flex: 1,
     minWidth: isMobile ? "100%" : 280,
-    background: "#121212",
+    background: "#212529",
     borderRadius: 24,
     color: "#ffffff",
     padding: 24,
@@ -65,11 +65,7 @@ const ProjectRow: React.FC<ProjectRowProps> = ({
     fontFamily: fonts,
   };
 
-  const imagePanel: React.CSSProperties = {
-    ...panelBase,
-    overflow: "hidden",
-  };
-
+  const imagePanel: React.CSSProperties = { ...panelBase, overflow: "hidden" };
   const textPanel: React.CSSProperties = {
     ...panelBase,
     fontSize: isMobile ? 20 : 28,
@@ -87,37 +83,34 @@ const ProjectRow: React.FC<ProjectRowProps> = ({
   const iconsBox: React.CSSProperties = {
     position: "absolute",
     bottom: 12,
-    ...(imageFirst ? { right: 20 } : { left: 20 }),
+    ...(imageFirst ? { right: 30 } : { left: 30 }),
+    transition: "transform 0,3s ease",
     display: "flex",
     gap: 16,
     color: "#ffffff",
     opacity: 0.95,
   };
 
-  // ordem dos painéis
   const left = imageFirst ? "image" : "text";
   const right = imageFirst ? "text" : "image";
 
   const Panel = ({ kind }: { kind: "image" | "text" }) => {
-    const [hover, setHover] = useState(false);
-
     if (kind === "image") {
       return (
         <div style={imagePanel}>
           {imageSrc ? (
-            <img
-              src={imageSrc}
-              alt={imageAlt}
-              style={{
-                width: isMobile ? "100%" : "830px",
-                height: isMobile ? "180px" : "200px",
-                objectFit: "cover",
-                borderRadius: 18,
-                transition: "transform 0.3s ease",
-                transform: hover ? "scale(1.05)" : "scale(1)",
-              }}
-              onMouseEnter={() => setHover(true)}
-              onMouseLeave={() => setHover(false)}
+            <TiltedCard
+              imageSrc={imageSrc}
+              altText={imageAlt}
+              containerHeight={isMobile ? "180px" : "200px"}
+              containerWidth={isMobile ? "100%" : "400px"}
+              imageHeight={isMobile ? "180px" : "200px"}
+              imageWidth="100%"
+              rotateAmplitude={12}
+              scaleOnHover={1.05}
+              showMobileWarning={false}
+              showTooltip={true}
+              displayOverlayContent={false}
             />
           ) : (
             <span style={placeholderText}>FOTO PROJETO</span>
@@ -143,9 +136,9 @@ const ProjectRow: React.FC<ProjectRowProps> = ({
         style={{
           boxShadow: "none",
           color: "white",
-          textDecoration:'none',
-          background: hover ? "#333333" : "transparent",
-          transform: hover ? "scale(1.2)" : "scale(1)",
+          textDecoration: 'none',
+          background: hover ? "none" : "none",
+          transform: hover ? "scale(1.5)" : "scale(1)",
         }}
         onMouseEnter={() => setHover(true)}
         onMouseLeave={() => setHover(false)}
@@ -163,7 +156,7 @@ const ProjectRow: React.FC<ProjectRowProps> = ({
       <div style={iconsBox}>
         {githubUrl && (
           <HoverIcon href={githubUrl}>
-            <GitHubIcon/>
+            <GitHubIcon />
           </HoverIcon>
         )}
         {liveUrl && (
@@ -176,7 +169,7 @@ const ProjectRow: React.FC<ProjectRowProps> = ({
   );
 };
 
-/** Componente com DOIS cards */
+/** Componente Projects */
 export default function Projects() {
   const pageStyle: React.CSSProperties = {
     minHeight: "100vh",
@@ -201,42 +194,39 @@ export default function Projects() {
   return (
     <main style={pageStyle}>
       <Fade delay={400}>
-      <div style={titleStyle} id="projects">Projetos</div>
+        <div style={titleStyle} id="projects">Projetos</div>
       </Fade>
-      
 
-    <Slide direction="right" delay={400}>
-      <ProjectRow
-        imageFirst
-        imageSrc= {siteCorinthians}
-        description="Projeto de 'Cópia' do Site do Corinthians. Desenvolvido atráves de estudos e prática após termino de um curso do Youtube! O projeto consiste em recriar
-        o site do zero porém com suas ideias de forma simples."
-        githubUrl="https://github.com/jhonherikgc"
-        liveUrl="https://github.com/jhonherikgc/site-corinthians"
-      />
+      <Slide direction="right" delay={400}>
+        <ProjectRow
+          imageFirst
+          imageSrc={siteCorinthians}
+          description="Projeto de 'Cópia' do Site do Corinthians. Desenvolvido atráves de estudos e prática após termino de um curso do Youtube! O projeto consiste em recriar
+          o site do zero porém com suas ideias de forma simples."
+          githubUrl="https://github.com/jhonherikgc"
+          liveUrl="https://github.com/jhonherikgc/site-corinthians"
+        />
       </Slide>
-      <Slide direction="left" delay={400}>
-      <ProjectRow
-        imageFirst={false}
-        imageSrc= {aluraChat}
-        description="Chat-Bot Imersão Alura 2025 - Esse projeto eu desenvolvi em tecnologias de python em uma imersão competitiva de um curso gratuito promovido pela insituição de cursos
-        Alura."
-        githubUrl="https://github.com/jhonherikgc"
-        liveUrl="https://github.com/jhonherikgc/Chat-bot-alura"
-      />
-    </Slide>
 
-    <Slide direction="right" delay={400}>
-      <ProjectRow
-        imageFirst
-        imageSrc= {toDoList}
-        description="TO-DO List - Projeto realizado em tempo de estágio pela Câmara Municipal. Tem como objetivo também a prática e 
-        exploração pelos design / estudos à lógica de programação em Linguagens de Script"
-        githubUrl="https://github.com/jhonherikgc"
-        liveUrl="https://github.com/jhonherikgc/TO-DO-LIST"
-      />
-    </Slide>
+      <Slide direction="left" delay={400}>
+        <ProjectRow
+          imageFirst={false}
+          imageSrc={aluraChat}
+          description="Chat-Bot Imersão Alura 2025 - Desenvolvido em Python durante imersão gratuita da Alura."
+          githubUrl="https://github.com/jhonherikgc"
+          liveUrl="https://github.com/jhonherikgc/Chat-bot-alura"
+        />
+      </Slide>
+
+      <Slide direction="right" delay={400}>
+        <ProjectRow
+          imageFirst
+          imageSrc={toDoList}
+          description="TO-DO List - Projeto realizado durante estágio na Câmara Municipal, focando em design e lógica de programação."
+          githubUrl="https://github.com/jhonherikgc"
+          liveUrl="https://github.com/jhonherikgc/TO-DO-LIST"
+        />
+      </Slide>
     </main>
-    
   );
 }
