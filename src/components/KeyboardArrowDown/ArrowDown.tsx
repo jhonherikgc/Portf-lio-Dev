@@ -27,6 +27,7 @@ const ScrollDown = ({ targetId }: ScrollDownProps) => {
         transform: "translateX(-50%)",
         cursor: "pointer",
         color: "white",
+        display: {xs: "none", md: "block"},
         animation: `${bounce} 2s infinite`,
       }}
     >
