@@ -1,7 +1,6 @@
 import { Box, keyframes } from "@mui/material";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 
-// animação bounce
 const bounce = keyframes`
   0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
   40% { transform: translateY(-10px); }
@@ -16,7 +15,7 @@ const ScrollDown = ({ targetId }: ScrollDownProps) => {
   const handleClick = () => {
     document.querySelector(targetId)?.scrollIntoView({ behavior: "smooth" });
   };
-
+// Click button descer pagina
   return (
     <Box
       onClick={handleClick}

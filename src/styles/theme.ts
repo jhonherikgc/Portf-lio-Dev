@@ -14,7 +14,7 @@ declare module "@mui/material/styles" {
   }
 }
 
-
+// paleta de cores 
 let theme = createTheme({
   palette: {
     primary: {

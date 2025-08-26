@@ -23,7 +23,7 @@ interface Skill {
   clickText: string;
   expText: string;
 }
-
+// Skills icons
 const skillsData: Skill[] = [
   { id : 'Html', image: htmlIcon, hoverText: 'HTML: Estrutura base de todas as páginas web.', clickText: 'O HTML foi a minha porta de entrada para o desenvolvimento front-end. Através dele, não só aprendi a estruturar páginas web, mas também a compreender conceitos essenciais como tags, protocolos de rede e a importância de uma base sólida para qualquer projeto.', expText: '2 anos e 5 meses.' },
   { id: 'Css', image: cssIcon, hoverText: 'CSS: Estilização de componentes web.', clickText: 'Com CSS, aprendi a transformar o visual de um projeto. Sem ele seu site simplesmente não ganha vida nem tampouco cor, estilo, interações básicas de imagens e outras coisas visuais. Aprendi técnicas avançadas como FlexBox e responsavidade com o MediaQueries, essa linguagem me permite criar designs que são não apenas bonitos, mas também funcionais e adaptáveis a qualquer tela!', expText: '2 anos e 5 meses.'},
@@ -42,7 +42,7 @@ const skillsData: Skill[] = [
 
 const loopSkillsData = [...skillsData, ...skillsData];
 
-
+// Styled H1
 const StyledH1 = styled.h1`
   color: white;
   margin-top: 300px;
@@ -55,6 +55,7 @@ const StyledH1 = styled.h1`
   }
 `;
 
+// Section container 
 const SkillsSectionWrapper = styled.div`
   display: flex;
   flex-direction: column;
@@ -63,6 +64,8 @@ const SkillsSectionWrapper = styled.div`
   width: 100%;
   background: linear-gradient(to right, #000000, #2F0743);
 `;
+
+// Skills container
 
 const SkillsContainer = styled.div`
   display: flex;
@@ -81,6 +84,7 @@ const SkillsContainer = styled.div`
   }
 `;
 
+// Experience text container
 const ExperienceContainer = styled.div`
   color: white;
   text-align: left;
@@ -99,6 +103,8 @@ const ExperienceContainer = styled.div`
   width: 100%;
   }
 `;
+
+//Carroussel Icons
 
 const VerticalCarouselContainer = styled.div`
   position: relative;
@@ -123,6 +129,8 @@ const VerticalCarouselContainer = styled.div`
   }
 `;
 
+//Animated icons
+
 const ImageWrapper = styled.div`
   flex-shrink: 0;
   margin-bottom: 20px;
@@ -139,6 +147,7 @@ const ImageWrapper = styled.div`
     object-fit: cover;
   }
 `;
+//Text habilidades container
 
 const TextContainer = styled.div`
   width: 860px;
@@ -163,6 +172,8 @@ const TextContainer = styled.div`
     font-size: 16px;
   }
 `;
+
+// Logicas
 
 const SkillsSection: React.FC = () => {
     const [displayText, setDisplayText] = useState<string>("Passe o mouse ou clique em uma das habilidades para saber mais!");
@@ -230,7 +241,7 @@ const SkillsSection: React.FC = () => {
         setDisplayExp(exp || 'Tempo não informado.')
         setIsClicked(true);
     };
-
+// <main>
     return (
         <SkillsSectionWrapper>
           <Fade delay={400}>
