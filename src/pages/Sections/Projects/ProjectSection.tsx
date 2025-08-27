@@ -16,7 +16,6 @@ type ProjectRowProps = {
   imageFirst?: boolean;
 };
 
-/** Componente ProjectRow */
 const ProjectRow: React.FC<ProjectRowProps> = ({
   imageSrc,
   imageAlt = "Foto do projeto",
@@ -26,7 +25,6 @@ const ProjectRow: React.FC<ProjectRowProps> = ({
   imageFirst = true,
 }) => {
   const fonts = "helvetica neue";
-
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
 
   useEffect(() => {
@@ -39,27 +37,27 @@ const ProjectRow: React.FC<ProjectRowProps> = ({
     position: "relative",
     display: "flex",
     flexDirection: isMobile ? "column" : "row",
-    gap: isMobile ? 12 : 24,
+    gap: isMobile ? 16 : 24,
     flexWrap: "wrap",
     alignItems: "stretch",
-    justifyContent: "space-between",
-    borderColor: "white",
+    justifyContent: "center",
     borderRadius: 18,
-    padding: 20,
-    width: isMobile ? "100%" : "70rem",
-    height: isMobile ? "auto" : "300px",
+    padding: isMobile ? 16 : 20,
+    width: "100%",
+    maxWidth: 1120,
+    height: "auto",
     margin: "0 auto",
-    marginTop: "60px",
+    marginTop: 60,
   };
 
   const panelBase: React.CSSProperties = {
-    flex: 1,
-    minWidth: isMobile ? "100%" : 280,
+    flex: isMobile ? "1 1 100%" : "1 1 45%",
+    minWidth: 280,
     background: "#0f172a",
     borderBottom: "3px solid white",
     borderRadius: 24,
     color: "#ffffff",
-    padding: 24,
+    padding: isMobile ? 16 : 24,
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
@@ -69,27 +67,28 @@ const ProjectRow: React.FC<ProjectRowProps> = ({
   const imagePanel: React.CSSProperties = { ...panelBase, overflow: "hidden" };
   const textPanel: React.CSSProperties = {
     ...panelBase,
-    fontSize: isMobile ? 20 : 28,
-    fontWeight: 800,
-    lineHeight: 1.2,
+    fontSize: isMobile ? 16 : 20,
+    fontWeight: 700,
+    lineHeight: 1.4,
     textAlign: "center",
   };
 
   const placeholderText: React.CSSProperties = {
-    fontSize: isMobile ? 22 : 32,
+    fontSize: isMobile ? 18 : 28,
     fontWeight: 800,
     letterSpacing: 0.5,
   };
 
   const iconsBox: React.CSSProperties = {
-    position: "absolute",
-    bottom: 12,
-    ...(imageFirst ? { right: 30 } : { left: 30 }),
-    transition: "transform 0,3s ease",
     display: "flex",
-    gap: 16,
+    gap: 12,
     color: "#ffffff",
-    opacity: 0.95,
+    opacity: 0.9,
+    ...(isMobile
+      ? { position: "relative", justifyContent: "center", bottom: "auto", marginTop: 12 }
+      : imageFirst
+      ? { position: "absolute", bottom: 20, right: 30 }
+      : { position: "absolute", bottom: 20, left: 30 }),
   };
 
   const left = imageFirst ? "image" : "text";
@@ -138,8 +137,8 @@ const ProjectRow: React.FC<ProjectRowProps> = ({
           boxShadow: "none",
           color: "white",
           textDecoration: 'none',
-          background: hover ? "none" : "none",
           transform: hover ? "scale(1.5)" : "scale(1)",
+          transition: "transform 0.3s ease",
         }}
         onMouseEnter={() => setHover(true)}
         onMouseLeave={() => setHover(false)}
@@ -153,24 +152,14 @@ const ProjectRow: React.FC<ProjectRowProps> = ({
     <div style={rowStyle}>
       <Panel kind={left as any} />
       <Panel kind={right as any} />
-
       <div style={iconsBox}>
-        {githubUrl && (
-          <HoverIcon href={githubUrl}>
-            <GitHubIcon />
-          </HoverIcon>
-        )}
-        {liveUrl && (
-          <HoverIcon href={liveUrl}>
-            <LinkIcon />
-          </HoverIcon>
-        )}
+        {githubUrl && <HoverIcon href={githubUrl}><GitHubIcon /></HoverIcon>}
+        {liveUrl && <HoverIcon href={liveUrl}><LinkIcon /></HoverIcon>}
       </div>
     </div>
   );
 };
 
-/** Componente Projects */
 export default function Projects() {
   const pageStyle: React.CSSProperties = {
     minHeight: "100vh",
@@ -202,8 +191,7 @@ export default function Projects() {
         <ProjectRow
           imageFirst
           imageSrc={siteCorinthians}
-          description="Projeto de 'Cópia' do Site do Corinthians. Desenvolvido atráves de estudos e prática após termino de um curso do Youtube! O projeto consiste em recriar
-          o site do zero porém com suas ideias de forma simples."
+          description="Projeto de 'Cópia' do Site do Corinthians. Desenvolvido atráves de estudos e prática após termino de um curso do Youtube! O projeto consiste em recriar o site do zero porém com suas ideias de forma simples."
           githubUrl="https://github.com/jhonherikgc"
           liveUrl="https://github.com/jhonherikgc/site-corinthians"
         />
