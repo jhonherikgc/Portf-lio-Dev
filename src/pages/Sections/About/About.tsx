@@ -41,7 +41,7 @@ const StyledContentWrapper = styled("div")(({ theme }) => ({
 }));
 
 const StyledContainer = styled("div")(({ theme }) => ({
-  backgroundColor: "#212529",
+  backgroundColor: "#0f172a",
   marginTop: "4",
   padding: theme.spacing(3),
   borderRadius: theme.shape.borderRadius,
