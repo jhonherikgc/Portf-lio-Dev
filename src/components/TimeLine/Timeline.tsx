@@ -13,6 +13,7 @@ const StyledBody = styled("div")(({ theme }) => ({
   height: "175vh",
   [theme.breakpoints.up("xs")]: {
     paddingTop: "100px",
+    height:"250vh",
   },
   [theme.breakpoints.up("md")]: {
     paddingTop: "0",
