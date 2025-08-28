@@ -169,6 +169,8 @@ export default function Projects() {
     flexDirection: "column",
     gap: 24,
     fontFamily: "helvetica neue",
+    maxWidth: "100%",
+    overflow: "hidden",
   };
 
   const titleStyle: React.CSSProperties = {
