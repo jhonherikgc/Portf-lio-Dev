@@ -5,6 +5,7 @@ import GitHubIcon from '@mui/icons-material/GitHub';
 import siteCorinthians from '../../../assets/images/Proj_Corinthians_photo.png';
 import aluraChat from '../../../assets/images/alura-chat_project.png';
 import toDoList from '../../../assets/images/ToDo_list_project.png';
+import Jafetech from '../../../assets/images/jafetech_proj.png'
 import TiltedCard from '../../../components/TiltedCard/TiltedCard';
 
 type ProjectRowProps = {
@@ -216,6 +217,16 @@ export default function Projects() {
           description="TO-DO List - Projeto realizado durante estágio na Câmara Municipal, focando em design e lógica de programação."
           githubUrl="https://github.com/jhonherikgc"
           liveUrl="https://github.com/jhonherikgc/TO-DO-LIST"
+        />
+      </Slide>
+
+      <Slide direction="left" delay={400}>
+        <ProjectRow
+          imageFirst={false}
+          imageSrc={Jafetech}
+          description="Jafetech - Sistema de Licitação - Plataforma de Gestão de Licitações"
+          githubUrl="https://github.com/jhonherikgc"
+          liveUrl="https://github.com/jhonherikgc/JAFETECH"
         />
       </Slide>
     </main>
