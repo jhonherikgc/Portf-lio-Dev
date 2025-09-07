@@ -224,7 +224,7 @@ export default function Projects() {
         <ProjectRow
           imageFirst={false}
           imageSrc={Jafetech}
-          description="Jafetech - Sistema de Licitação - Plataforma de Gestão de Licitações"
+          description="Jafetech - Sistema de Licitação - Plataforma de Gestão de Licitações."
           githubUrl="https://github.com/jhonherikgc"
           liveUrl="https://github.com/jhonherikgc/JAFETECH"
         />
