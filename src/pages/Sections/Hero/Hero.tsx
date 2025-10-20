@@ -1,4 +1,6 @@
+import { useCallback } from "react";
 import { Box, Container, Grid, Typography, styled } from "@mui/material";
+
 import ScrollDown from "../../../components/KeyboardArrowDown/ArrowDown";
 import Avatar from "../../../assets/images/avatar.png.jpg";
 import DownloadIcon from "@mui/icons-material/Download";
@@ -9,7 +11,7 @@ import StyledButton from "../../../components/StyledButton/StyledButton";
 import { AnimatedBackground } from "../../../components/AnimatedBackground/AnimatedBackground";
 import { Fade, Slide } from "react-awesome-reveal";
 
-// Styled Components
+// Styled Components (Mantidos como estavam)
 const StyledHero = styled("div")(({ theme }) => ({
   background: theme.palette.gradient.dark,
   height: "100vh",
@@ -22,7 +24,6 @@ const StyledHero = styled("div")(({ theme }) => ({
     paddingTop: "0",
   },
 }));
-
 
 const StyledImg = styled("img")(({ theme }) => ({
   width: "75%",
@@ -39,11 +40,31 @@ const StyledImg = styled("img")(({ theme }) => ({
 
 // Main Component
 const Hero = () => {
+  // LÓGICA DE EMAIL
+  const RECIPIENT_EMAIL = 'jhonherik006@gmail.com';
+  const EMAIL_SUBJECT = 'Contato via Curriculo - Dúvidas';
+  const EMAIL_BODY = 'Olá, gostaria de entrar em contato sobre';
+
+  const MAILTO_URL = `mailto:${RECIPIENT_EMAIL}?subject=${encodeURIComponent(EMAIL_SUBJECT)}&body=${encodeURIComponent(EMAIL_BODY)}`;
+
+  // LÓGICA DE DOWNLOAD CV (Mantida)
+  const CV_FILE_URL = '/assets/curriculum-jhon.pdf'; // Mantenha o seu caminho real
+  const CV_FILE_NAME = 'Curriculum_Jhon_Herik.pdf';
+
+  const handleDownloadCv = useCallback(() => {
+    const link = document.createElement('a');
+    link.href = CV_FILE_URL;
+    link.download = CV_FILE_NAME;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  }, []);
+
   return (
     <StyledHero>
       <Container maxWidth="lg">
         <Grid container spacing={2}>
-          {/* Foto e background*/}
+          {/* ... Foto e Texto ... */}
           <Grid>
             <Slide direction="left">
               <Box position="relative">
@@ -57,7 +78,6 @@ const Hero = () => {
             </Slide>
           </Grid>
 
-          {/* Texto e Botões */}
           <Grid>
             <Fade>
               <Typography
@@ -91,7 +111,7 @@ const Hero = () => {
               </Typography>
             </Fade>
 
-            {/* Botões */}
+            {/* Botões CORRIGIDOS (Estilo preservado) */}
             <Fade delay={1000}>
               <Grid
                 container
@@ -105,31 +125,72 @@ const Hero = () => {
                   marginLeft: {md:"0"},
                 }}
               >
+                {/* 1. Botão Download CV (Mantido o onClick, pois é função JS) */}
                 <Grid>
-                  <StyledButton onClick={() => {}}>
+                  <StyledButton onClick={handleDownloadCv}>
                     <DownloadIcon />
                     <Typography>Download CV</Typography>
                   </StyledButton>
                 </Grid>
+                
+                {/* 2. Botão Contact me (Solução <a> para garantir o clique) */}
                 <Grid>
-                  <StyledButton onClick={() => {}}>
-                    <MailOutlineIcon />
-                    <Typography>Contact me</Typography>
+                  <StyledButton component="div">
+                        <a 
+                            href={MAILTO_URL} // Usa o link mailto:
+                            style={{
+                                textDecoration: 'none', 
+                                color: 'inherit', 
+                                display: 'flex', 
+                                alignItems: 'center', 
+                                gap: '8px', 
+                                // O restante do padding/tamanho é controlado pelo StyledButton
+                            }}
+                        >
+                            <MailOutlineIcon />
+                            <Typography>Contact me</Typography>
+                        </a>
                   </StyledButton>
                 </Grid>
+
+                {/* 3. Botão Linkedin (Solução <a> para garantir o clique) */}
                 <Grid>
-                  <StyledButton onClick={() => {}}>
-                    <LinkedInIcon />
-                    <a href="https://www.linkedin.com/in/jhonherikgc/" target="_blank" rel="noopener noreferrer" style={{textDecoration: 'none', color: 'white'}}>
-                    <Typography>Linkedin</Typography>
+                  <StyledButton component="div">
+                    <a 
+                        href="https://www.linkedin.com/in/jhonherikgc/" 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        style={{
+                            textDecoration: 'none', 
+                            color: 'inherit', 
+                            display: 'flex', 
+                            alignItems: 'center', 
+                            gap: '8px',
+                        }}
+                    >
+                        <LinkedInIcon />
+                        <Typography>Linkedin</Typography>
                     </a>
                   </StyledButton>
                 </Grid>
+
+                {/* 4. Botão Github (Solução <a> para garantir o clique) */}
                 <Grid>
-                  <StyledButton onClick={() => {}}>
-                    <GitHubIcon />
-                    <a href="https://github.com/jhonherikgc" target="_blank" rel="noopener noreferrer" style={{textDecoration: 'none', color: 'white'}}>
-                    <Typography>Github</Typography>
+                  <StyledButton component="div">
+                    <a 
+                        href="https://github.com/jhonherikgc" 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        style={{
+                            textDecoration: 'none', 
+                            color: 'inherit', 
+                            display: 'flex', 
+                            alignItems: 'center', 
+                            gap: '8px',
+                        }}
+                    >
+                        <GitHubIcon />
+                        <Typography>Github</Typography>
                     </a>
                   </StyledButton>
                 </Grid>
