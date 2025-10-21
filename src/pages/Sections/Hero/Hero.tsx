@@ -1,4 +1,5 @@
 import { useCallback } from "react";
+import cvFile from "../../../assets/images/jhon_castro.pdf"
 import { Box, Container, Grid, Typography, styled } from "@mui/material";
 
 import ScrollDown from "../../../components/KeyboardArrowDown/ArrowDown";
@@ -47,14 +48,12 @@ const Hero = () => {
 
   const MAILTO_URL = `mailto:${RECIPIENT_EMAIL}?subject=${encodeURIComponent(EMAIL_SUBJECT)}&body=${encodeURIComponent(EMAIL_BODY)}`;
 
-  // LÓGICA DE DOWNLOAD CV (Mantida)
-  const CV_FILE_URL = '/assets/curriculum-jhon.pdf'; // Mantenha o seu caminho real
-  const CV_FILE_NAME = 'Curriculum_Jhon_Herik.pdf';
+
 
   const handleDownloadCv = useCallback(() => {
     const link = document.createElement('a');
-    link.href = CV_FILE_URL;
-    link.download = CV_FILE_NAME;
+    link.href = cvFile;
+    link.download = 'jhon_castro.pdf';
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
@@ -111,7 +110,7 @@ const Hero = () => {
               </Typography>
             </Fade>
 
-            {/* Botões CORRIGIDOS (Estilo preservado) */}
+            {/* Botões(Estilo preservado) */}
             <Fade delay={1000}>
               <Grid
                 container
@@ -125,7 +124,7 @@ const Hero = () => {
                   marginLeft: {md:"0"},
                 }}
               >
-                {/* 1. Botão Download CV (Mantido o onClick, pois é função JS) */}
+                {/* Botão Download CV */}
                 <Grid>
                   <StyledButton onClick={handleDownloadCv}>
                     <DownloadIcon />
@@ -133,18 +132,17 @@ const Hero = () => {
                   </StyledButton>
                 </Grid>
                 
-                {/* 2. Botão Contact me (Solução <a> para garantir o clique) */}
+                {/*Botão Contact me */}
                 <Grid>
                   <StyledButton component="div">
                         <a 
-                            href={MAILTO_URL} // Usa o link mailto:
+                            href={MAILTO_URL}
                             style={{
                                 textDecoration: 'none', 
                                 color: 'inherit', 
                                 display: 'flex', 
                                 alignItems: 'center', 
                                 gap: '8px', 
-                                // O restante do padding/tamanho é controlado pelo StyledButton
                             }}
                         >
                             <MailOutlineIcon />
@@ -153,7 +151,7 @@ const Hero = () => {
                   </StyledButton>
                 </Grid>
 
-                {/* 3. Botão Linkedin (Solução <a> para garantir o clique) */}
+                {/* Botão Linkedin*/}
                 <Grid>
                   <StyledButton component="div">
                     <a 
@@ -174,7 +172,7 @@ const Hero = () => {
                   </StyledButton>
                 </Grid>
 
-                {/* 4. Botão Github (Solução <a> para garantir o clique) */}
+                {/* Botão Github */}
                 <Grid>
                   <StyledButton component="div">
                     <a 
