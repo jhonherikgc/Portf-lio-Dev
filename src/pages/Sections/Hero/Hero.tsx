@@ -12,7 +12,7 @@ import StyledButton from "../../../components/StyledButton/StyledButton";
 import { AnimatedBackground } from "../../../components/AnimatedBackground/AnimatedBackground";
 import { Fade, Slide } from "react-awesome-reveal";
 
-// Styled Components (Mantidos como estavam)
+// Styled Components
 const StyledHero = styled("div")(({ theme }) => ({
   background: theme.palette.gradient.dark,
   height: "100vh",
@@ -27,16 +27,16 @@ const StyledHero = styled("div")(({ theme }) => ({
 }));
 
 const StyledImg = styled("img")(({ theme }) => ({
-  width: "75%",
-  maxWidth: "400px",
-  borderRadius: "50%",
-  border: `1px solid ${theme.palette.primary.contrastText}`,
-  [theme.breakpoints.up("md")]: {
-    paddingLeft: "-100px",
-    marginLeft: "-100px",
-    width:"100%",
-    marginTop:"-15px"
-  },
+  width: "75%",
+  maxWidth: "400px",
+  borderRadius: "50%",
+  border: `1px solid ${theme.palette.primary.contrastText}`,
+  [theme.breakpoints.up("md")]: {
+    paddingLeft: "-100px",
+    marginLeft: "-100px",
+    width:"100%",
+    marginTop:"-15px"
+  },
 }));
 
 // Main Component
@@ -59,82 +59,83 @@ const Hero = () => {
     document.body.removeChild(link);
   }, []);
 
-  return (
-    <StyledHero>
-      <Container maxWidth="lg">
-        <Grid container spacing={2}>
-          {/* ... Foto e Texto ... */}
-          <Grid>
-            <Slide direction="left">
-              <Box position="relative">
-                <Box position="absolute" width={"150%"} top={-100} right={0}>
-                  <AnimatedBackground />
-                </Box>
-                <Box position="relative" textAlign="center">
-                  <StyledImg src={Avatar} alt="Avatar" />
-                </Box>
-              </Box>
-            </Slide>
-          </Grid>
+  return (
+    <StyledHero>
+      <Container maxWidth="lg">
+        <Grid container spacing={2}>
+          {/* ... Foto e Texto ... */}
+          <Grid>
+            <Slide direction="left">
+              <Box position="relative">
+                <Box position="absolute" width={"150%"} top={-100} right={0}>
+                  <AnimatedBackground />
+                </Box>
+                <Box position="relative" textAlign="center">
+                  <StyledImg src={Avatar} alt="Avatar" />
+                </Box>
+              </Box>
+            </Slide>
+          </Grid>
 
-          <Grid>
-            <Fade>
-              <Typography
-                color="primary.contrastText"
-                variant="h1"
-                textAlign="center"
-                pb={2}
-                sx={{
-                  position: {md:"absolute"},
-                  marginTop: {md:"-0,01%"},
-                  paddingTop: {md:"10px"},
-                  marginLeft: {md:"-1%"}
-                }}
-              >
-                Jhon Herik Gomes de Castro
-              </Typography>
-            </Fade>
-            <Fade delay={500}>
-              <Typography
-                color="primary.contrastText"
-                variant="h2"
-                textAlign="center"
-                sx={{
-                  position: {md:"absolute"},
-                  marginTop: {md:"5%"},
-                  paddingTop: {md:"10px"},
-                  marginLeft: {md:"-1%"}
-                }}
-              >
-                I'm a Future Software Engineer
-              </Typography>
-            </Fade>
+          <Grid>
+            <Fade>
+              <Typography
+                color="primary.contrastText"
+                variant="h1"
+                textAlign="center"
+                pb={2}
+                sx={{
+                  position: {md:"absolute"},
+                  marginTop: {md:"-0,01%"},
+                  paddingTop: {md:"10px"},
+                  marginLeft: {md:"-1%"}
+                }}
+              >
+                Jhon Herik Gomes de Castro
+              </Typography>
+            </Fade>
+            <Fade delay={500}>
+              <Typography
+                color="primary.contrastText"
+                variant="h2"
+                textAlign="center"
+                sx={{
+                  position: {md:"absolute"},
+                  marginTop: {md:"5%"},
+                  paddingTop: {md:"10px"},
+                  marginLeft: {md:"-1%"}
+                }}
+              >
+                I'm a Future Software Engineer
+              </Typography>
+            </Fade>
 
-            {/* Botões(Estilo preservado) */}
-            <Fade delay={1000}>
-              <Grid
-                container
-                display="flex"
-                justifyContent="center"
-                spacing={3}
-                pt={3}
-                sx={{
-                  position: {md:"absolute"},
-                  marginTop: {md:"10%"},
-                  marginLeft: {md:"0"},
-                }}
-              >
-                {/* Botão Download CV */}
-                <Grid>
-                  <StyledButton onClick={handleDownloadCv}>
-                    <DownloadIcon />
-                    <Typography>Download CV</Typography>
-                  </StyledButton>
-                </Grid>
+            {/* Botões*/}
+            <Fade delay={1000}>
+              <Grid
+                container
+                display="flex"
+                justifyContent="center"
+                spacing={3}
+                pt={3}
+                sx={{
+                  position: {md:"absolute"},
+                  marginTop: {md:"10%"},
+                  marginLeft: {md:"0"},
+                }}
+              >
+                {/* Botão Download CV */}
+                <Grid>
+                  <StyledButton onClick={handleDownloadCv}>
+                    <DownloadIcon />
+                    <Typography>Download CV</Typography>
+                  </StyledButton>
+                </Grid>
                 
-                {/*Botão Contact me */}
-                <Grid>
-                  <StyledButton component="div">
+                {/* Botão Contact me */}
+                <Grid>
+                  {/* @ts-expect-error Prop 'component' não tipada. */}
+                  <StyledButton component="div">
                         <a 
                             href={MAILTO_URL}
                             style={{
@@ -148,13 +149,14 @@ const Hero = () => {
                             <MailOutlineIcon />
                             <Typography>Contact me</Typography>
                         </a>
-                  </StyledButton>
-                </Grid>
+                  </StyledButton>
+                </Grid>
 
-                {/* Botão Linkedin*/}
-                <Grid>
-                  <StyledButton component="div">
-                    <a 
+                {/* Botão Linkedin*/}
+                <Grid>
+                  {/* @ts-expect-error Prop 'component' não tipada.*/}
+                  <StyledButton component="div">
+                    <a 
                         href="https://www.linkedin.com/in/jhonherikgc/" 
                         target="_blank" 
                         rel="noopener noreferrer"
@@ -167,15 +169,16 @@ const Hero = () => {
                         }}
                     >
                         <LinkedInIcon />
-                        <Typography>Linkedin</Typography>
+                        <Typography>Linkedin</Typography>
                     </a>
-                  </StyledButton>
-                </Grid>
+                  </StyledButton>
+                </Grid>
 
-                {/* Botão Github */}
-                <Grid>
-                  <StyledButton component="div">
-                    <a 
+                {/* Botão Github*/}
+                <Grid>
+                  {/* @ts-expect-error Prop 'component' não tipada. */}
+                  <StyledButton component="div">
+                    <a 
                         href="https://github.com/jhonherikgc" 
                         target="_blank" 
                         rel="noopener noreferrer"
@@ -188,18 +191,18 @@ const Hero = () => {
                         }}
                     >
                         <GitHubIcon />
-                        <Typography>Github</Typography>
+                        <Typography>Github</Typography>
                     </a>
-                  </StyledButton>
-                </Grid>
-              </Grid>
-            </Fade>
-          </Grid>
-        </Grid>
-      </Container>
+                  </StyledButton>
+                </Grid>
+              </Grid>
+            </Fade>
+          </Grid>
+        </Grid>
+      </Container>
       <ScrollDown targetId="#about-me" />
-    </StyledHero>
-  );
+    </StyledHero>
+  );
 };
 
 export default Hero;
