@@ -107,12 +107,14 @@ const Timeline: React.FC = () => {
           }}
           icon={<FaLaptopCode />}
         >
+          <Slide direction="right">
           <h3 className="text-lg font-bold">2 Ano na Escola</h3>
           <h4>Inicio à estudos de forma autônoma</h4>
           <p>
             Investi em cursos de programação me aprofundando mais sobre conteudos da área de programação.{" "}
             Comecei meus primeiros projetos.
           </p>
+          </Slide>
         </VerticalTimelineElement>
 
           <VerticalTimelineElement
@@ -159,11 +161,13 @@ const Timeline: React.FC = () => {
           }}
           icon={<FaGraduationCap />}
         >
+          <Slide direction="left">
           <h3 className="text-lg font-bold">Formação do Curso</h3>
           <h4>
             Agrup. de Escolas Afonso de Albuquerque (LICEU)
           </h4>
           <p>Ensino médio completo, hoje sigo focado na área tech buscando sempre aprender com meus próprios erros como desenvolvedor.</p>
+        </Slide>
         </VerticalTimelineElement>
       </VerticalTimeline>
       </Fade>
