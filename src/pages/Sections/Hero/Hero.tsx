@@ -24,6 +24,9 @@ const StyledHero = styled("div")(({ theme }) => ({
   [theme.breakpoints.up("md")]: {
     paddingTop: "0",
   },
+  [theme.breakpoints.up("lg")]: {
+    paddingTop: "",
+  },
 }));
 
 const StyledImg = styled("img")(({ theme }) => ({
@@ -88,7 +91,12 @@ const Hero = () => {
                   position: {md:"absolute"},
                   marginTop: {md:"-0,01%"},
                   paddingTop: {md:"10px"},
-                  marginLeft: {md:"-1%"}
+                  marginLeft: {md:"-1%"},
+                  fontSize: {
+                    xs: '2.5rem', // Telas extra pequenas
+                    md: '3rem', // Telas de medio porte
+                    lg: '4rem'    // Telas grandes
+                  },
                 }}
               >
                 Jhon Herik Gomes de Castro
