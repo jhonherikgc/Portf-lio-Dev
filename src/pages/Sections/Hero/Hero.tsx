@@ -92,11 +92,14 @@ const Hero = () => {
                   marginTop: {md:"-0,01%"},
                   paddingTop: {md:"10px"},
                   marginLeft: {md:"-1%"},
+                  marginBottom: {md: "10px"},
+                  whiteSpace: { xs: 'normal', md: 'nowrap' }, // Evita quebra de linha em telas maiores
                   fontSize: {
                     xs: '2.5rem', // Telas extra pequenas
-                    md: '3rem', // Telas de medio porte
-                    lg: '4rem'    // Telas grandes
-                  },
+                    sm: '3rem',   // Telas pequenas
+                    md: '3.5rem', // Telas médias
+                    lg: '5rem'    // Telas grandes
+                  }
                 }}
               >
                 Jhon Herik Gomes de Castro
