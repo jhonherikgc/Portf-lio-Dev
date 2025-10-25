@@ -12,7 +12,6 @@ const StyledBody = styled("div")(({ theme }) => ({
   background: theme.palette.gradient.dark,
   [theme.breakpoints.up("xs")]: {
     paddingTop: "0px",
-    marginBottom:"30px",
     height:"260vh",
   },
   [theme.breakpoints.up("md")]: {
