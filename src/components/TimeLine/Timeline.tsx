@@ -11,12 +11,13 @@ import { Fade, Slide } from "react-awesome-reveal";
 const StyledBody = styled("div")(({ theme }) => ({
   background: theme.palette.gradient.dark,
   [theme.breakpoints.up("xs")]: {
-    paddingTop: "100px",
-    height:"250vh",
+    paddingTop: "0px",
+    marginBottom:"30px",
+    height:"260vh",
   },
   [theme.breakpoints.up("md")]: {
-    paddingTop: "0",
-    height: "300vh",
+    paddingTop: "10px",
+    height: "230vh",
   },
 }));
 
