@@ -22,10 +22,10 @@ const StyledHero = styled("div")(({ theme }) => ({
     paddingTop: "100px",
   },
   [theme.breakpoints.up("md")]: {
-    paddingTop: "0",
+    paddingTop: "60px",
   },
   [theme.breakpoints.up("lg")]: {
-    paddingTop: "0",
+    paddingTop: "25px",
   },
 }));
 
