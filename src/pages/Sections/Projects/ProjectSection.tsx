@@ -179,6 +179,7 @@ export default function Projects() {
     fontWeight: 800,
     fontSize: "32px",
     marginBottom: -50,
+    marginTop:"20%",
     opacity: 0.9,
     textAlign: "center",
     fontFamily: "helvetica neue",

@@ -8,16 +8,11 @@ import FlightLandIcon from '@mui/icons-material/FlightLand';
 import { Fade, Slide } from "react-awesome-reveal";
 
 
-const StyledBody = styled("div")(({ theme }) => ({
+const StyledBody = styled("section")(({ theme }) => ({
   background: theme.palette.gradient.dark,
-  [theme.breakpoints.up("xs")]: {
-    paddingTop: "0px",
-    height:"260vh",
-  },
-  [theme.breakpoints.up("md")]: {
-    paddingTop: "10px",
-    height: "230vh",
-  },
+  minHeight: "100vh",
+  padding: theme.spacing(8, 2),
+  color: theme.palette.common.white,
 }));
 
 const Timeline: React.FC = () => {
