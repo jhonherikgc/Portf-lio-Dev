@@ -25,7 +25,7 @@ const StyledHero = styled("div")(({ theme }) => ({
     paddingTop: "0",
   },
   [theme.breakpoints.up("lg")]: {
-    paddingTop: "",
+    paddingTop: "0",
   },
 }));
 
@@ -49,7 +49,8 @@ const Hero = () => {
   const EMAIL_SUBJECT = 'Contato via Curriculo - Dúvidas';
   const EMAIL_BODY = 'Olá, gostaria de entrar em contato sobre';
 
-  const MAILTO_URL = `mailto:${RECIPIENT_EMAIL}?subject=${encodeURIComponent(EMAIL_SUBJECT)}&body=${encodeURIComponent(EMAIL_BODY)}`;
+  // URL para abrir diretamente a caixa de composição do Gmail no navegador
+  const GMAIL_COMPOSE_URL = `https://mail.google.com/mail/?view=cm&fs=1&to=${RECIPIENT_EMAIL}&su=${encodeURIComponent(EMAIL_SUBJECT)}&body=${encodeURIComponent(EMAIL_BODY)}`;
 
 
 
@@ -93,12 +94,12 @@ const Hero = () => {
                   paddingTop: {md:"10px"},
                   marginLeft: {md:"-1%"},
                   marginBottom: {md: "10px"},
-                  whiteSpace: { xs: 'normal', md: 'nowrap' }, // Evita quebra de linha em telas maiores
+                  whiteSpace: { xs: 'normal', md: 'nowrap' },
                   fontSize: {
-                    xs: '2.5rem', // Telas extra pequenas
-                    sm: '3rem',   // Telas pequenas
-                    md: '3.5rem', // Telas médias
-                    lg: '5rem'    // Telas grandes
+                    xs: '2.5rem', 
+                    sm: '3rem',   
+                    md: '3.5rem',
+                    lg: '5rem'    
                   }
                 }}
               >
@@ -148,7 +149,9 @@ const Hero = () => {
                   {/* @ts-expect-error Prop 'component' não tipada. */}
                   <StyledButton component="div">
                         <a 
-                            href={MAILTO_URL}
+                            href={GMAIL_COMPOSE_URL}
+                            target="_blank" 
+                            rel="noopener noreferrer"
                             style={{
                                 textDecoration: 'none', 
                                 color: 'inherit', 
