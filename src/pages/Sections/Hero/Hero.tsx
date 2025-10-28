@@ -46,8 +46,8 @@ const StyledImg = styled("img")(({ theme }) => ({
 const Hero = () => {
   // LÓGICA DE EMAIL
   const RECIPIENT_EMAIL = 'jhonherik006@gmail.com';
-  const EMAIL_SUBJECT = 'Contato via Curriculo - Dúvidas';
-  const EMAIL_BODY = 'Olá, gostaria de entrar em contato sobre';
+  const EMAIL_SUBJECT = 'Contato via Curriculo - Dúvidas - Projetos';
+  const EMAIL_BODY = 'Olá, como podemos criar juntos?';
 
   // URL para abrir diretamente a caixa de composição do Gmail no navegador
   const GMAIL_COMPOSE_URL = `https://mail.google.com/mail/?view=cm&fs=1&to=${RECIPIENT_EMAIL}&su=${encodeURIComponent(EMAIL_SUBJECT)}&body=${encodeURIComponent(EMAIL_BODY)}`;
