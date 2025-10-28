@@ -5,6 +5,7 @@ import SkillsSection from "../Sections/SkillsSection/SkillsSection"
 import ProjectSection from "../Sections/Projects/ProjectSection"
 import BackToTop from "../../components/BacktoTop/BackToTop"
 import Timeline from "../../components/TimeLine/Timeline"
+import { Footer } from "../../components/Footer/Footer"
 
 const Home = () => {
 
@@ -17,6 +18,7 @@ const Home = () => {
     <Timeline/>
     <ProjectSection/>
     <BackToTop/>
+    <Footer/>
     </>
   )
 }
