@@ -11,6 +11,7 @@ import GitHubIcon from "@mui/icons-material/GitHub";
 import StyledButton from "../../../components/StyledButton/StyledButton";
 import { AnimatedBackground } from "../../../components/AnimatedBackground/AnimatedBackground";
 import { Fade, Slide } from "react-awesome-reveal";
+import TextType from "../../../components/Typing/TextType";
 
 // Styled Components
 const StyledHero = styled("div")(({ theme }) => ({
@@ -82,45 +83,53 @@ const Hero = () => {
           </Grid>
 
           <Grid>
-            <Fade>
-              <Typography
-                color="primary.contrastText"
-                variant="h1"
-                textAlign="center"
-                pb={2}
-                sx={{
-                  position: {md:"absolute"},
-                  marginTop: {md:"-0,01%"},
-                  paddingTop: {md:"10px"},
-                  marginLeft: {md:"-1%"},
-                  marginBottom: {md: "10px"},
-                  whiteSpace: { xs: 'normal', md: 'nowrap' },
-                  fontSize: {
-                    xs: '2.5rem', 
-                    sm: '3rem',   
-                    md: '3.5rem',
-                    lg: '5rem'    
-                  }
-                }}
-              >
-                Jhon Herik Gomes de Castro
-              </Typography>
-            </Fade>
-            <Fade delay={500}>
-              <Typography
-                color="primary.contrastText"
-                variant="h2"
-                textAlign="center"
-                sx={{
-                  position: {md:"absolute"},
-                  marginTop: {md:"5%"},
-                  paddingTop: {md:"10px"},
-                  marginLeft: {md:"-1%"}
-                }}
-              >
-                I'm a Future Software Engineer
-              </Typography>
-            </Fade>
+            <Box sx={{ 
+              position: { md: "absolute" }, 
+              top: { md: '50%' }, 
+              left: { md: '60%' },
+              transform: { md: 'translate(-50%, -50%)' },
+              width: '100%',
+              textAlign: 'center'
+            }}>
+              <Fade>
+                <Typography
+                  color="primary.contrastText"
+                  variant="h1"
+                  textAlign="center"
+                  pb={2}
+                  sx={{
+                    whiteSpace: { xs: 'normal', md: 'nowrap' },
+                    fontSize: {
+                      xs: '2.5rem', 
+                      sm: '3rem',   
+                      md: '3.5rem',
+                      lg: '5rem'    
+                    }
+                  }}
+                >
+                  Jhon Herik Gomes de Castro
+                </Typography>
+              </Fade>
+              <Fade delay={500}>
+                  <Typography
+                    color="primary.contrastText"
+                    variant="h2"
+                  >
+                    <Box component="span">I'm a&nbsp;</Box>
+                    <Box component="span" sx={{ 
+                      display: 'inline-block', 
+                      minWidth: { xs: '300px', sm: '600px' }, 
+                      textAlign: 'left',
+                    }}>
+                      <TextType
+                        textColors={["#aa7fc2ff"]}
+                        as="span" 
+                        text={["Future Software Engineer", "Full-Stack Developer", "Enthusiast of Technology"]} 
+                        typingSpeed={40} deletingSpeed={30} />
+                    </Box>
+                  </Typography>
+              </Fade>
+            </Box>
 
             {/* Botões*/}
             <Fade delay={1000}>
@@ -132,8 +141,9 @@ const Hero = () => {
                 pt={3}
                 sx={{
                   position: {md:"absolute"},
-                  marginTop: {md:"10%"},
-                  marginLeft: {md:"0"},
+                  bottom: { md: '35%' },
+                  left: { md: '50%' },
+                  transform: { md: 'translateX(-50%)' },
                 }}
               >
                 {/* Botão Download CV */}
