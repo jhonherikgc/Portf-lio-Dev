@@ -27,6 +27,9 @@ export function Footer() {
         >
           <Stack direction="row" alignItems="center" spacing={1}>
             <img src={Icon} alt="Icon" style={{ height: '50px', width: '50px', borderRadius: '50%'}} />
+            <Typography variant="h6" color="white">
+              Portfolio Dev
+            </Typography>
           </Stack>
           <Stack direction="row" spacing={2}>
             <Link href="https://www.instagram.com/jhonherikgc" target="_blank" rel="noopener noreferrer" color="inherit">
@@ -43,7 +46,7 @@ export function Footer() {
         <Divider sx={{ my: 2 }} />
         <Typography variant="body2" color="white" align="center">
           {'Copyright © '}
-          <Link color="inherit" href="https://github.com/jhonherikgc">Jhon Herik Gomes de Castro</Link>{' '}
+        Jhon Herik Gomes de Castro {' '}
           {currentYear}.
         </Typography>
       </Container>
