@@ -118,7 +118,7 @@ const Hero = () => {
                     <Box component="span">I'm a&nbsp;</Box>
                     <Box component="span" sx={{ 
                       display: 'inline-block', 
-                      minWidth: { xs: '300px', sm: '600px' }, 
+                      minWidth: { xs: '300px', sm: '800px' }, 
                       textAlign: 'left',
                     }}>
                       <TextType
@@ -141,8 +141,8 @@ const Hero = () => {
                 pt={3}
                 sx={{
                   position: {md:"absolute"},
-                  bottom: { md: '35%' },
-                  left: { md: '50%' },
+                  bottom: { md: '33%' },
+                  left: { md: '51%' },
                   transform: { md: 'translateX(-50%)' },
                 }}
               >
