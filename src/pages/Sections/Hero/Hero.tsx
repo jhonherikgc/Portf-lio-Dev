@@ -17,6 +17,7 @@ import TextType from "../../../components/Typing/TextType";
 const StyledHero = styled("div")(({ theme }) => ({
   background: theme.palette.gradient.dark,
   height: "100vh",
+  overflow: "hidden", // Garante que nenhum conteúdo transborde
   display: "flex",
   alignItems: "center",
   [theme.breakpoints.up("xs")]: {
@@ -34,12 +35,10 @@ const StyledImg = styled("img")(({ theme }) => ({
   width: "75%",
   maxWidth: "400px",
   borderRadius: "50%",
-  border: `1px solid ${theme.palette.primary.contrastText}`,
+  border: `2px solid ${theme.palette.primary.contrastText}`,
   [theme.breakpoints.up("md")]: {
-    paddingLeft: "-100px",
-    marginLeft: "-100px",
-    width:"100%",
-    marginTop:"-15px"
+    width: "100%",
+    maxWidth: "350px",
   },
 }));
 
@@ -67,12 +66,13 @@ const Hero = () => {
   return (
     <StyledHero>
       <Container maxWidth="lg">
-        <Grid container spacing={2}>
-          {/* ... Foto e Texto ... */}
-          <Grid>
+        <Grid container spacing={2} alignItems="center" justifyContent="center">
+          {/* Grid Item: Foto */}
+          {/* @ts-expect-error Prop 'grid' não tipada.*/}
+          <Grid item xs={12} md={5} sx={{ textAlign: 'center' }}>
             <Slide direction="left">
               <Box position="relative">
-                <Box position="absolute" width={"150%"} top={-100} right={0}>
+                <Box position="absolute" width={"150%"} top={-100} right={-50}>
                   <AnimatedBackground />
                 </Box>
                 <Box position="relative" textAlign="center">
@@ -82,15 +82,15 @@ const Hero = () => {
             </Slide>
           </Grid>
 
-          <Grid>
-            <Box sx={{ 
-              position: { md: "absolute" }, 
-              top: { md: '50%' }, 
-              left: { md: '60%' },
-              transform: { md: 'translate(-50%, -50%)' },
-              width: '100%',
-              textAlign: 'center'
-            }}>
+          {/* Grid Item: Texto e Botões */}
+          {/* @ts-expect-error Prop 'grid' não tipada.*/}
+          <Grid item xs={12} md={7}>
+            <Box 
+              display="flex" 
+              flexDirection="column" 
+              alignItems="center" 
+              justifyContent="center"
+            >
               <Fade>
                 <Typography
                   color="primary.contrastText"
@@ -118,7 +118,6 @@ const Hero = () => {
                     <Box component="span">I'm a&nbsp;</Box>
                     <Box component="span" sx={{ 
                       display: 'inline-block', 
-                      minWidth: { xs: '300px', sm: '800px' }, 
                       textAlign: 'left',
                     }}>
                       <TextType
@@ -129,98 +128,97 @@ const Hero = () => {
                     </Box>
                   </Typography>
               </Fade>
+
+              {/* Botões*/}
+              <Fade delay={1000}>
+                <Grid
+                  container
+                  display="flex"
+                  justifyContent="center"
+                  spacing={{ xs: 1, sm: 2, md: 2 }}
+                  pt={3}
+                  flexWrap="wrap"
+                >
+                  {/* Botão Download CV */}
+                  {/* @ts-expect-error Prop 'grid' não tipada.*/}
+                  <Grid item>
+                    <StyledButton onClick={handleDownloadCv}>
+                      <DownloadIcon />
+                      <Typography>Download CV</Typography>
+                    </StyledButton>
+                  </Grid>
+                  
+                  {/* Botão Contact me */}
+                  {/* @ts-expect-error Prop 'grid' não tipada.*/}
+                  <Grid item>
+                    {/* @ts-expect-error Prop 'component' não tipada. */}
+                    <StyledButton component="div">
+                          <a 
+                              href={GMAIL_COMPOSE_URL}
+                              target="_blank" 
+                              rel="noopener noreferrer"
+                              style={{
+                                  textDecoration: 'none', 
+                                  color: 'inherit', 
+                                  display: 'flex', 
+                                  alignItems: 'center', 
+                                  gap: '8px', 
+                              }}
+                          >
+                              <MailOutlineIcon />
+                              <Typography>Contact me</Typography>
+                          </a>
+                    </StyledButton>
+                  </Grid>
+
+                  {/* Botão Linkedin*/}
+                  {/* @ts-expect-error Prop 'grid' não tipada.*/}
+                  <Grid item>
+                    {/* @ts-expect-error Prop 'component' não tipada.*/}
+                    <StyledButton component="div">
+                      <a 
+                          href="https://www.linkedin.com/in/jhonherikgc/" 
+                          target="_blank" 
+                          rel="noopener noreferrer"
+                          style={{
+                              textDecoration: 'none', 
+                              color: 'inherit', 
+                              display: 'flex', 
+                              alignItems: 'center', 
+                              gap: '8px',
+                          }}
+                      >
+                          <LinkedInIcon />
+                          <Typography>Linkedin</Typography>
+                      </a>
+                    </StyledButton>
+                  </Grid>
+
+                  {/* Botão Github*/}
+                  {/* @ts-expect-error Prop 'grid' não tipada.*/}
+                  <Grid item>
+                    {/* @ts-expect-error Prop 'component' não tipada. */}
+                    <StyledButton component="div">
+                      <a 
+                          href="https://github.com/jhonherikgc" 
+                          target="_blank" 
+                          rel="noopener noreferrer"
+                          style={{
+                              textDecoration: 'none', 
+                              color: 'inherit', 
+                              display: 'flex', 
+                              alignItems: 'center', 
+                              gap: '8px',
+                          }}
+                      >
+                          <GitHubIcon />
+                          <Typography>Github</Typography>
+                      </a>
+                    </StyledButton>
+                  </Grid>
+                </Grid>
+              </Fade>
             </Box>
-
-            {/* Botões*/}
-            <Fade delay={1000}>
-              <Grid
-                container
-                display="flex"
-                justifyContent="center"
-                spacing={3}
-                pt={3}
-                sx={{
-                  position: {md:"absolute"},
-                  bottom: { md: '33%' },
-                  left: { md: '51%' },
-                  transform: { md: 'translateX(-50%)' },
-                }}
-              >
-                {/* Botão Download CV */}
-                <Grid>
-                  <StyledButton onClick={handleDownloadCv}>
-                    <DownloadIcon />
-                    <Typography>Download CV</Typography>
-                  </StyledButton>
-                </Grid>
-                
-                {/* Botão Contact me */}
-                <Grid>
-                  {/* @ts-expect-error Prop 'component' não tipada. */}
-                  <StyledButton component="div">
-                        <a 
-                            href={GMAIL_COMPOSE_URL}
-                            target="_blank" 
-                            rel="noopener noreferrer"
-                            style={{
-                                textDecoration: 'none', 
-                                color: 'inherit', 
-                                display: 'flex', 
-                                alignItems: 'center', 
-                                gap: '8px', 
-                            }}
-                        >
-                            <MailOutlineIcon />
-                            <Typography>Contact me</Typography>
-                        </a>
-                  </StyledButton>
-                </Grid>
-
-                {/* Botão Linkedin*/}
-                <Grid>
-                  {/* @ts-expect-error Prop 'component' não tipada.*/}
-                  <StyledButton component="div">
-                    <a 
-                        href="https://www.linkedin.com/in/jhonherikgc/" 
-                        target="_blank" 
-                        rel="noopener noreferrer"
-                        style={{
-                            textDecoration: 'none', 
-                            color: 'inherit', 
-                            display: 'flex', 
-                            alignItems: 'center', 
-                            gap: '8px',
-                        }}
-                    >
-                        <LinkedInIcon />
-                        <Typography>Linkedin</Typography>
-                    </a>
-                  </StyledButton>
-                </Grid>
-
-                {/* Botão Github*/}
-                <Grid>
-                  {/* @ts-expect-error Prop 'component' não tipada. */}
-                  <StyledButton component="div">
-                    <a 
-                        href="https://github.com/jhonherikgc" 
-                        target="_blank" 
-                        rel="noopener noreferrer"
-                        style={{
-                            textDecoration: 'none', 
-                            color: 'inherit', 
-                            display: 'flex', 
-                            alignItems: 'center', 
-                            gap: '8px',
-                        }}
-                    >
-                        <GitHubIcon />
-                        <Typography>Github</Typography>
-                    </a>
-                  </StyledButton>
-                </Grid>
-              </Grid>
-            </Fade>
           </Grid>
         </Grid>
       </Container>
