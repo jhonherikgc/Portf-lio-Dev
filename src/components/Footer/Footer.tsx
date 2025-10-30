@@ -17,7 +17,12 @@ export function Footer() {
   return (
     // @ts-ignore
     <StyledFooter component="footer">
-      <Container maxWidth="lg">
+      <Container maxWidth="lg"
+      sx={{
+        display: 'flex',
+        flexDirection: 'column',
+        paddingTop: {xs: "0", sm: "20px"},
+        alignItems: 'center',}}>
         <Stack
           paddingTop="20px"
           direction={{ xs: 'column', sm: 'row' }}
@@ -25,7 +30,7 @@ export function Footer() {
           alignItems="center"
           spacing={2}
         >
-          <Stack direction="row" alignItems="center" spacing={1}>
+          <Stack direction="row" alignItems="center" spacing={2}>
             <img src={Icon} alt="Icon" style={{ height: '50px', width: '50px', borderRadius: '50%'}} />
             <Typography variant="h6" color="white">
               Portfolio Dev
@@ -44,11 +49,17 @@ export function Footer() {
           </Stack>
         </Stack>
         <Divider sx={{ my: 2 }} />
-        <Typography variant="body2" color="white" align="center">
-          {'Copyright © '}
-        Jhon Herik Gomes de Castro {' '}
-          {currentYear}.
-        </Typography>
+        <Typography 
+          variant="body2" 
+          color="white" 
+          align="center"
+          sx={{
+            marginTop: { xs: '-25px', sm: '0px' },
+          }}>
+          {'Copyright © '}
+        Jhon Herik Gomes de Castro {' '}
+          {currentYear}.
+        </Typography>
       </Container>
     </StyledFooter>
   );
