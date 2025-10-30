@@ -117,7 +117,8 @@ const Hero = () => {
                   >
                     <Box component="span">I'm a&nbsp;</Box>
                     <Box component="span" sx={{ 
-                      display: 'inline-block', 
+                      display: 'inline-block',
+                      minWidth: {xs: '100%', sm: '450px', md: '550px' },
                       textAlign: 'left',
                     }}>
                       <TextType
