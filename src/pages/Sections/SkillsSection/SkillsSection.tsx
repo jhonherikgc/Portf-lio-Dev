@@ -194,15 +194,15 @@ const SkillsSection: React.FC = () => {
 
         const startAutoScroll = () => {
             scrollInterval = setInterval(() => {
-                const listHeight = skillsData.length * 120;
+                const listHeight = carousel.scrollHeight / 2;
                 
                 // Se a rolagem chegar ao fim da primeira lista, volta pro topo
                 if (carousel.scrollTop >= listHeight) {
-                    carousel.scrollTop = 0;
+                    carousel.scrollTop -= listHeight;
                 } else {
                     carousel.scrollTop += 1;
                 }
-            }, 30);
+            },30);
         };
 
         const stopAutoScroll = () => {
@@ -242,6 +242,9 @@ const SkillsSection: React.FC = () => {
         setDisplayText(text);
         setDisplayExp(exp || 'Tempo não informado.')
         setIsClicked(true);
+        setTimeout(() => {
+          setIsClicked(false);
+        }, 0);
     };
 // <main>
     return (
