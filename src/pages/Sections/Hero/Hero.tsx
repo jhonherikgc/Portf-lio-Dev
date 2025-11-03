@@ -27,6 +27,9 @@ const StyledHero = styled("div")(({ theme }) => ({
   },
   [theme.breakpoints.up("lg")]: {
     paddingTop: "25px",
+    // Para telas muito grandes (como 1920px), você pode querer limitar a largura do conteúdo
+    // Sem refatorar, isso é mais difícil de controlar no Container,
+    // mas o Container "lg" já tem um max-width fixo no tema, o que ajuda.
   },
 }));
 
@@ -36,6 +39,8 @@ const StyledImg = styled("img")(({ theme }) => ({
   borderRadius: "50%",
   border: `1px solid ${theme.palette.primary.contrastText}`,
   [theme.breakpoints.up("md")]: {
+    // Mantendo suas propriedades existentes, o que pode estar contribuindo para o posicionamento
+    // mas não as alteraremos diretamente aqui.
     paddingLeft: "-100px",
     marginLeft: "-100px",
     width:"100%",
@@ -50,10 +55,7 @@ const Hero = () => {
   const EMAIL_SUBJECT = 'Contato via Curriculo - Dúvidas - Projetos';
   const EMAIL_BODY = 'Olá, como podemos criar juntos?';
 
-  // URL para abrir diretamente a caixa de composição do Gmail no navegador
   const GMAIL_COMPOSE_URL = `https://mail.google.com/mail/?view=cm&fs=1&to=${RECIPIENT_EMAIL}&su=${encodeURIComponent(EMAIL_SUBJECT)}&body=${encodeURIComponent(EMAIL_BODY)}`;
-
-
 
   const handleDownloadCv = useCallback(() => {
     const link = document.createElement('a');
@@ -68,7 +70,7 @@ const Hero = () => {
     <StyledHero>
       <Container maxWidth="lg">
         <Grid container spacing={2}>
-          {/* ... Foto e Texto ... */}
+          {/* ... Foto ... */}
           <Grid>
             <Slide direction="left">
               <Box position="relative">
@@ -81,31 +83,40 @@ const Hero = () => {
               </Box>
             </Slide>
           </Grid>
+
+          {/* Grid do Texto e Botões */}
           {/*@ts-ignore*/}
           <Grid item xs={12} md={6}>
-            <Box sx={{ 
-              position: { md: "absolute" }, 
-              top: { md: '50%' }, 
-              left: { md: '60%' },
-              transform: { md: 'translate(-50%, -50%)' },
-              maxWidth: {xs: '100%', md: '100%'},
-              textAlign: 'center'
+            <Box sx={{
+              position: { md: "absolute" },
+              top: { md: '50%' },
+              maxWidth: { xs: '100%', md: '100%' }, // Mantendo como está
+              textAlign: 'center',
+
+              // 🎯 CORREÇÃO PARA O TEXTO EM TELAS GRANDES (1920px)
+              // Ajusta o 'left' e 'transform' especificamente para telas 'xl' (>= 1536px)
+              // Você pode ajustar estes valores percentuais (ex: 55%, 58%, etc.)
+              // e a porcentagem do translateX(-X%) para encontrar o ponto ideal em 1920px.
+              // O valor ideal dependerá do tamanho da fonte e da largura do texto.
+              left: { md: '60%', xl: '55%' }, // Ajusta para a esquerda em telas XL
+              transform: { md: 'translate(-50%, -50%)', xl: 'translate(-40%, -50%)' }, // Ajusta o deslocamento
             }}>
               <Fade>
                 <Typography
                   color="primary.contrastText"
                   variant="h1"
                   textAlign="center"
-                  pb={2}
+                  pb={{xs: 2, md: 0}}
                   sx={{
                     whiteSpace: { xs: 'normal', md: 'nowrap' },
                     fontSize: {
-                      xs: '1.9rem', 
-                      sm: '3rem',   
+                      xs: '1.9rem',
+                      sm: '3rem',
                       md: '3.5rem',
-                      lg: '5rem'    
+                      lg: '5rem'
                     }
                   }}
+                  mb={{md: -2}}
                 >
                   Jhon Herik Gomes de Castro
                 </Typography>
@@ -126,9 +137,9 @@ const Hero = () => {
                       lg: '4rem'
                     }
                     }}>I'm a&nbsp;</Box>
-                    <Box component="span" sx={{ 
-                      display: 'inline-block', 
-                      minWidth: { xs: '300px', sm: '800px' }, 
+                    <Box component="span" sx={{
+                      display: 'inline-block',
+                      minWidth: { xs: '300px', sm: '700px' },
                       textAlign: 'left',
                       fontSize: {
                       xs: '1.9rem',
@@ -139,15 +150,15 @@ const Hero = () => {
                     }}>
                       <TextType
                         textColors={["#aa7fc2ff"]}
-                        as="span" 
-                        text={["Future Software Engineer", "Full-Stack Developer", "Enthusiast of Technology"]} 
+                        as="span"
+                        text={["Future Software Engineer", "Full-Stack Developer", "Enthusiast of Technology"]}
                         typingSpeed={40} deletingSpeed={30} />
                     </Box>
                   </Typography>
               </Fade>
             </Box>
 
-            {/* Botões*/}
+            {/* Botões */}
             <Fade delay={1000}>
               <Grid
                 container
@@ -157,9 +168,10 @@ const Hero = () => {
                 pt={3}
                 sx={{
                   position: {md:"absolute"},
-                  bottom: { md: '33%' },
-                  left: { md: '51%' },
-                  transform: { md: 'translateX(-50%)' },
+                  bottom: { md: '30%', lg: '33%' },
+                  maxWidth: '100%', // Adicionado para garantir que os botões não se espalhem mais do que o necessário
+                  left: { md: '51%', xl: '46%' }, // Move mais para a esquerda
+                  transform: { md: 'translate(-40%, 50%)', xl: 'translate(-15%, -45%)' }, // Ajusta o deslocamento
                 }}
               >
                 {/* Botão Download CV */}
@@ -169,21 +181,21 @@ const Hero = () => {
                     <Typography>Download CV</Typography>
                   </StyledButton>
                 </Grid>
-                
+
                 {/* Botão Contact me */}
                 <Grid>
                   {/* @ts-expect-error Prop 'component' não tipada. */}
                   <StyledButton component="div">
-                        <a 
+                        <a
                             href={GMAIL_COMPOSE_URL}
-                            target="_blank" 
+                            target="_blank"
                             rel="noopener noreferrer"
                             style={{
-                                textDecoration: 'none', 
-                                color: 'inherit', 
-                                display: 'flex', 
-                                alignItems: 'center', 
-                                gap: '8px', 
+                                textDecoration: 'none',
+                                color: 'inherit',
+                                display: 'flex',
+                                alignItems: 'center',
+                                gap: '8px',
                             }}
                         >
                             <MailOutlineIcon />
@@ -196,15 +208,15 @@ const Hero = () => {
                 <Grid>
                   {/* @ts-expect-error Prop 'component' não tipada.*/}
                   <StyledButton component="div">
-                    <a 
-                        href="https://www.linkedin.com/in/jhonherikgc/" 
-                        target="_blank" 
+                    <a
+                        href="https://www.linkedin.com/in/jhonherikgc/"
+                        target="_blank"
                         rel="noopener noreferrer"
                         style={{
-                            textDecoration: 'none', 
-                            color: 'inherit', 
-                            display: 'flex', 
-                            alignItems: 'center', 
+                            textDecoration: 'none',
+                            color: 'inherit',
+                            display: 'flex',
+                            alignItems: 'center',
                             gap: '8px',
                         }}
                     >
@@ -218,15 +230,15 @@ const Hero = () => {
                 <Grid>
                   {/* @ts-expect-error Prop 'component' não tipada. */}
                   <StyledButton component="div">
-                    <a 
-                        href="https://github.com/jhonherikgc" 
-                        target="_blank" 
+                    <a
+                        href="https://github.com/jhonherikgc"
+                        target="_blank"
                         rel="noopener noreferrer"
                         style={{
-                            textDecoration: 'none', 
-                            color: 'inherit', 
-                            display: 'flex', 
-                            alignItems: 'center', 
+                            textDecoration: 'none',
+                            color: 'inherit',
+                            display: 'flex',
+                            alignItems: 'center',
                             gap: '8px',
                         }}
                     >
