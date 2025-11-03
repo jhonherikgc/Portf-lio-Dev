@@ -80,8 +80,9 @@ const SkillsContainer = styled.div`
   width: 100%;
 
   @media (max-width: 768px) {
-    flex-direction: row;
+    flex-direction: column;
     align-items: center;
+    padding: 20px;
     gap: 20px;
   }
 `;
@@ -97,12 +98,10 @@ const ExperienceContainer = styled.div`
 
   @media (max-width: 768px) {
   text-align: center;
-  margin: 50px;
-  margin-left: 50px;
+  margin: 0 0 20px 0;
   font-family: Helvetica Neue;
   font-size: 20px;
-  margin-bottom: -80px;
-  width: 100%;
+  margin-bottom: -50%;
   }
 `;
 
@@ -123,11 +122,12 @@ const VerticalCarouselContainer = styled.div`
   scrollbar-width: none;
 
     @media (max-width: 768px) {
-  flex-direction: row;
-    overflow-y: scroll;
-    overflow-x: hidden;
-    margin-left: 0px;
-    width: 30%;
+    display: flex;
+    flex-direction: row;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    width: 90%;
+    height: 120px;
   }
 `;
 
@@ -147,6 +147,14 @@ const ImageWrapper = styled.div`
     width: 100%;
     height: 100%;
     object-fit: cover;
+  }
+
+  @media (max-width: 768px) {
+    margin-bottom: 0;
+    margin-right: 20px;
+    widht: 50px;
+    height: 50px;
+    margin-top: 50px;
   }
 `;
 //Text habilidades container
@@ -168,9 +176,9 @@ const TextContainer = styled.div`
   color: white;
   
   @media (max-width: 768px) {
-  margin-top:30px;
-    width: 330px;
-    height: 100%;
+    margin-bottom: 50%; /* Remove a margem inferior excessiva */
+    width: 70%;
+    height: auto; /* Altura automática para se ajustar ao conteúdo */
     font-size: 16px;
   }
 `;
@@ -194,15 +202,24 @@ const SkillsSection: React.FC = () => {
 
         const startAutoScroll = () => {
             scrollInterval = setInterval(() => {
-                const listHeight = carousel.scrollHeight / 2;
-                
-                // Se a rolagem chegar ao fim da primeira lista, volta pro topo
-                if (carousel.scrollTop >= listHeight) {
-                    carousel.scrollTop -= listHeight;
+                const isMobile = window.innerWidth <= 768;
+                if (isMobile) {
+                    const listWidth = carousel.scrollWidth / 2;
+                    // Se a rolagem chegar ao fim da primeira lista, volta pro topo
+                    if (carousel.scrollLeft >= listWidth) {
+                        carousel.scrollLeft -= listWidth;
+                    } else {
+                        carousel.scrollLeft += 1;
+                    }
                 } else {
-                    carousel.scrollTop += 1;
+                    const listHeight = carousel.scrollHeight / 2;
+                    if (carousel.scrollTop >= listHeight) {
+                        carousel.scrollTop -= listHeight;
+                    } else {
+                        carousel.scrollTop += 1;
+                    }
                 }
-            },30);
+            }, 30);
         };
 
         const stopAutoScroll = () => {
