@@ -5,7 +5,7 @@ import { styled, Typography } from "@mui/material";
 import "react-vertical-timeline-component/style.min.css";
 import { FaGraduationCap, FaLaptopCode } from "react-icons/fa";
 import FlightLandIcon from '@mui/icons-material/FlightLand';
-import { Fade, Slide } from "react-awesome-reveal";
+import { Fade} from "react-awesome-reveal";
 
 
 const StyledBody = styled("section")(({ theme }) => ({
@@ -50,13 +50,17 @@ const Timeline: React.FC = () => {
           icon={<FlightLandIcon />}
         >
         
-        <Slide direction="left">
+        <Fade 
+          delay={200}
+          duration={3000}
+          fraction={0.5}
+          >
           <h3 className="text-lg font-bold">Chegada à Portugal</h3>
           <h4 className="text-sm text-green-400">
             Adaptações, fuso horário, dificuldades
           </h4>
           <p>"O início de tudo pode parecer obscuro, mas é justamente no caos inicial que nasce a ordem." – Friedrich Nietzsche</p>
-          </Slide>
+        </Fade>
         </VerticalTimelineElement>
 
         {/* 1 ano no colegio */}
@@ -75,15 +79,19 @@ const Timeline: React.FC = () => {
           }}
           icon={<FaLaptopCode />}
         >
-            <Slide direction="right">
-          <h3 className="text-lg font-bold">1 Ano na Escola</h3>
+          <Fade 
+            delay={200}
+            duration={3000}
+            fraction={0.5}
+            >
+            <h3 className="text-lg font-bold">1 Ano na Escola</h3>
           <h4 className="text-sm text-green-400">Matriculado no Agrup. de Escolas Afonso de Albuquerque (LICEU)</h4>
           <p>
             Optei pelo curso de Tecnico de Informática e Gestão (TIG) 
             Onde finalmente tive minha primeira
             Introdução a Programação com a linguagem C++
           </p>
-          </Slide>
+          </Fade>
         </VerticalTimelineElement>
 
         {/* 2 ano no colegio */}
@@ -102,14 +110,18 @@ const Timeline: React.FC = () => {
           }}
           icon={<FaLaptopCode />}
         >
-          <Slide direction="right">
+          <Fade 
+          delay={200}
+          duration={3000}
+          fraction={0.5}
+          >
           <h3 className="text-lg font-bold">2 Ano na Escola</h3>
           <h4>Inicio à estudos de forma autônoma</h4>
           <p>
             Investi em cursos de programação me aprofundando mais sobre conteudos da área de programação.{" "}
             Comecei meus primeiros projetos.
           </p>
-          </Slide>
+          </Fade>
         </VerticalTimelineElement>
 
           <VerticalTimelineElement
@@ -127,7 +139,11 @@ const Timeline: React.FC = () => {
           }}
           icon={<FaLaptopCode />}
         >
-            <Slide direction="right">
+          <Fade 
+            delay={200}
+            duration={3000}
+            fraction={0.5}
+            >
           <h3 className="text-lg font-bold">Ferias de Verão</h3>
           <h4>Aproveitei o máximo das férias de verão para poder estudar mais.</h4>
           <p>
@@ -138,7 +154,7 @@ const Timeline: React.FC = () => {
             Python, 
             API's
           </p>
-          </Slide>
+          </Fade>
         </VerticalTimelineElement>
           {/* Formação FINALMENTE */}
         <VerticalTimelineElement
@@ -156,13 +172,17 @@ const Timeline: React.FC = () => {
           }}
           icon={<FaGraduationCap />}
         >
-          <Slide direction="left">
+          <Fade 
+            delay={200}
+            duration={3000}
+            fraction={0.5}
+          >
           <h3 className="text-lg font-bold">Formação do Curso</h3>
           <h4>
             Agrup. de Escolas Afonso de Albuquerque (LICEU)
           </h4>
           <p>Ensino médio completo, hoje sigo focado na área tech buscando sempre aprender com meus próprios erros como desenvolvedor.</p>
-        </Slide>
+        </Fade>
         </VerticalTimelineElement>
       </VerticalTimeline>
       </Fade>
