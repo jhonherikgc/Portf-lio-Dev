@@ -41,38 +41,10 @@ Este projeto foi construído utilizando as seguintes tecnologias:
 
 ---
 
-## ⚙️ Como Executar o Projeto
-
-Para rodar este projeto localmente, siga os passos abaixo:
-
-1.  **Clone o repositório:**
-    ```bash
-    git clone https://github.com/jhonherikgc/Portf-lio-Dev.git
-    ```
-
-2.  **Navegue até o diretório do projeto:**
-    ```bash
-    cd Portf-lio-Dev
-    ```
-
-3.  **Instale as dependências:**
-    ```bash
-    npm install
-    ```
-    *(ou `yarn install` / `pnpm install`)*
-
-4.  **Inicie o servidor de desenvolvimento:**
-    ```bash
-    npm run dev
-    ```
-
-5.  Abra seu navegador e acesse `http://localhost:5173` (ou a porta indicada no terminal).
-
----
-
 ## 📬 Contato
 
 **Jhon Herik**
 - GitHub: @jhonherikgc
+- Linkedin: @jhonherikgc
 
 Sinta-se à vontade para entrar em contato!
