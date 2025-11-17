@@ -37,7 +37,7 @@ const Timeline: React.FC = () => {
         
           className="vertical-timeline-element--education"
           contentStyle={{
-              background: "#0f172a",
+              background: "#0f172a71",
               color: "#fff",
               borderRadius: "1rem",
             }}
@@ -67,7 +67,7 @@ const Timeline: React.FC = () => {
         <VerticalTimelineElement
           className="vertical-timeline-element--education"
           contentStyle={{
-            background: "#0f172a",
+            background: "#0f172a71",
             color: "#fff",
             borderRadius: "1rem",
           }}
@@ -98,7 +98,7 @@ const Timeline: React.FC = () => {
         <VerticalTimelineElement
           className="vertical-timeline-element--education"
           contentStyle={{
-            background: "#0f172a",
+            background: "#0f172a71",
             color: "#fff",
             borderRadius: "1rem",
           }}
@@ -127,7 +127,7 @@ const Timeline: React.FC = () => {
           <VerticalTimelineElement
           className="vertical-timeline-element--education"
           contentStyle={{
-            background: "#0f172a",
+            background: "#0f172a71",
             color: "#fff",
             borderRadius: "1rem",
           }}
@@ -160,7 +160,7 @@ const Timeline: React.FC = () => {
         <VerticalTimelineElement
           className="vertical-timeline-element--education"
           contentStyle={{
-            background: "#0f172a",
+            background: "#0f172a71",
             color: "#fff",
             borderRadius: "1rem",
           }}

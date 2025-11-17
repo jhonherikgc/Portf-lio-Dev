@@ -164,7 +164,7 @@ const TextContainer = styled.div`
   height: 400px;
   padding: 20px;
   font-size: 30px;
-  background-color: #0f172a;
+  background-color: #0f172a71;
   margin-bottom: 400px;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);

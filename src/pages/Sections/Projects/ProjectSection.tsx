@@ -54,7 +54,7 @@ const ProjectRow: React.FC<ProjectRowProps> = ({
   const panelBase: React.CSSProperties = {
     flex: isMobile ? "1 1 100%" : "1 1 45%",
     minWidth: 280,
-    background: "#0f172a",
+    background: "#0f172a71",
     borderBottom: "3px solid white",
     borderRadius: 24,
     color: "#ffffff",
