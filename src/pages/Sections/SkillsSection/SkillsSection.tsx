@@ -1,8 +1,9 @@
 // src/components/SkillsSection.tsx
-import { Fade, Slide } from "react-awesome-reveal";
-import React, { useState, useRef, useEffect } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
+import { Fade } from "react-awesome-reveal";
 import { useTranslation } from "react-i18next";
+
 import htmlIcon from "../../../assets/images/HTML.svg";
 import cssIcon from "../../../assets/images/CSS.svg";
 import bootsIcon from "../../../assets/images/Bootstrap.svg";
@@ -22,292 +23,209 @@ import nodejsIcon from "../../../assets/images/NodeJS-Dark.svg";
 interface Skill {
   id: string;
   image: string;
-  translationKey: string;
+  key: string;
 }
 
-// Skills icons
-const skillsData: Skill[] = [
-  { id: "Html", image: htmlIcon, translationKey: "html" },
-  { id: "Css", image: cssIcon, translationKey: "css" },
-  { id: "Bootstrap", image: bootsIcon, translationKey: "bootstrap" },
-  { id: "Tailwind", image: tailwindIcon, translationKey: "tailwind" },
-  { id: "JavaScript", image: jsIcon, translationKey: "javascript" },
-  { id: "NodeJs", image: nodejsIcon, translationKey: "nodejs" },
-  { id: "TypeScript", image: tsIcon, translationKey: "typescript" },
-  { id: "ReactJs", image: reactIcon, translationKey: "react" },
-  { id: "vite", image: viteIcon, translationKey: "vite" },
-  { id: "python", image: pythonIcon, translationKey: "python" },
-  { id: "Flask", image: flaskIcon, translationKey: "flask" },
-  { id: "docker", image: dockerIcon, translationKey: "docker" },
-  { id: "Git", image: gitIcon, translationKey: "git" },
-  { id: "Github", image: githubIcon, translationKey: "github" },
-  { id: "linux", image: LinuxIcon, translationKey: "linux" },
+const skills: Skill[] = [
+  { id: "HTML", image: htmlIcon, key: "html" },
+  { id: "CSS", image: cssIcon, key: "css" },
+  { id: "Bootstrap", image: bootsIcon, key: "bootstrap" },
+  { id: "Tailwind", image: tailwindIcon, key: "tailwind" },
+  { id: "JavaScript", image: jsIcon, key: "javascript" },
+  { id: "Node.js", image: nodejsIcon, key: "nodejs" },
+  { id: "TypeScript", image: tsIcon, key: "typescript" },
+  { id: "React", image: reactIcon, key: "react" },
+  { id: "Vite", image: viteIcon, key: "vite" },
+  { id: "Python", image: pythonIcon, key: "python" },
+  { id: "Flask", image: flaskIcon, key: "flask" },
+  { id: "Docker", image: dockerIcon, key: "docker" },
+  { id: "Git", image: gitIcon, key: "git" },
+  { id: "GitHub", image: githubIcon, key: "github" },
+  { id: "Linux", image: LinuxIcon, key: "linux" },
 ];
 
-const loopSkillsData = [...skillsData, ...skillsData];
+const loopSkills = [...skills, ...skills];
 
-// Styled H1
-const StyledH1 = styled.h1`
-  color: white;
-  margin-top: 300px;
-  text-align: center;
+
+const Section = styled.section`
   width: 100%;
-
-  @media (max-width: 768px) {
-    margin-top: 100px;
-    margin-bottom: 20px;
-  }
+  background: linear-gradient(to right, #000, #2f0743);
+  padding: clamp(4rem, 8vw, 7rem) 0;
+  overflow-x: visible;
 `;
 
-// Section container
-const SkillsSectionWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  background: linear-gradient(to right, #000000, #2f0743);
-`;
-
-// Skills container
-
-const SkillsContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  gap: 40px;
-  padding: 50px;
+const Wrapper = styled.div`
   max-width: 1200px;
   margin: 0 auto;
-  width: 100%;
+  padding-inline: clamp(1rem, 4vw, 2rem);
+`;
+
+const Title = styled.h2`
+  color: #fff;
+  text-align: center;
+  font-size: clamp(2rem, 5vw, 3rem);
+  margin-bottom: 2.5rem;
+`;
+
+const Layout = styled.div`
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: clamp(1.5rem, 4vw, 3rem);
 
   @media (max-width: 768px) {
-    flex-direction: column;
-    align-items: center;
-    padding: 20px;
-    gap: 20px;
+    grid-template-columns: 1fr;
   }
 `;
 
-// Experience text container
-const ExperienceContainer = styled.div`
-  color: white;
-  text-align: left;
-  margin-left: -24rem;
-  margin-bottom: -30px;
-  font-family: Helvetica Neue;
-  font-size: 20px;
-
-  @media (max-width: 768px) {
-    text-align: center;
-    margin: 0 0 20px 0;
-    font-family: Helvetica Neue;
-    font-size: 20px;
-    margin-bottom: -50%;
-  }
-`;
-
-//Carroussel Icons
-
-const VerticalCarouselContainer = styled.div`
-  position: relative;
-  height: 400px;
-  width: 100px;
-  margin-left: -50px;
-  overflow-y: scroll;
-  overflow-x: hidden;
+const Carousel = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  height: 420px;
+  overflow-y: auto;
+  scrollbar-width: none;
 
   &::-webkit-scrollbar {
     display: none;
   }
-  -ms-overflow-style: none;
-  scrollbar-width: none;
 
   @media (max-width: 768px) {
-    display: flex;
     flex-direction: row;
-    overflow-x: scroll;
+    height: auto;
+    overflow-x: auto;
     overflow-y: hidden;
-    width: 90%;
-    height: 120px;
   }
 `;
 
-//Animated icons
-
-const ImageWrapper = styled.div`
-  flex-shrink: 0;
-  margin-bottom: 20px;
-  transition: transform 0.3s ease;
+const SkillButton = styled.button`
+  width: 72px;
+  height: 72px;
+  border-radius: 18px;
+  background: #0b0b0b;
+  border: none;
+  display: grid;
+  place-items: center;
   cursor: pointer;
+  transition: transform 0.25s ease;
+  flex-shrink: 0;
 
   &:hover {
-    transform: scale(1.1);
+    transform: scale(1.15);
   }
 
-  & > img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+  img {
+    width: 70%;
+    height: 70%;
+    object-fit: contain;
   }
 
+  /* MOBILE */
   @media (max-width: 768px) {
-    margin-bottom: 0;
-    margin-right: 20px;
-    widht: 50px;
-    height: 50px;
-    margin-top: 50px;
+    width: 56px;
+    height: 56px;
+    border-radius: 14px;
   }
 `;
 
-//Text habilidades container
-
-const TextContainer = styled.div`
-  width: 860px;
-  height: 400px;
-  padding: 20px;
-  font-size: 30px;
-  background-color: #0f172a71;
-  margin-bottom: 400px;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+const TextBox = styled.div`
+  background: rgba(15, 23, 42, 0.45);
+  border-radius: 18px;
+  padding: 2rem;
+  color: #fff;
+  font-size: 1.2rem;
   display: flex;
   align-items: center;
-  justify-content: left;
-  text-align: left;
-  white-space: pre-wrap;
-  color: white;
+  min-height: 180px;
 
   @media (max-width: 768px) {
-    margin-bottom: 50%; /* Remove a margem inferior excessiva */
-    width: 70%;
-    height: auto; /* Altura automática para se ajustar ao conteúdo */
-    font-size: 16px;
+    font-size: 1rem;
+    padding: 1.4rem;
+    min-height: 140px;
   }
 `;
 
-// Logicas
+const Experience = styled.p`
+  color: #cbd5f5;
+  font-size: 1rem;
+  margin-top: 1rem;
+
+  @media (max-width: 768px) {
+    font-size: 0.9rem;
+  }
+`;
+
 
 const SkillsSection: React.FC = () => {
   const { t } = useTranslation();
-  const defaultText =
+  const [text, setText] = useState(
     t("skills.defaultText") ||
-    "Passe o mouse ou clique em uma das habilidades para saber mais!";
-  const [displayText, setDisplayText] = useState<string>(defaultText);
-  const [isClicked, setIsClicked] = useState<boolean>(false);
-  const [displayExp, setDisplayExp] = useState<string>("");
+      "Passe o mouse ou toque em uma habilidade para saber mais.",
+  );
+  const [exp, setExp] = useState("");
 
   const carouselRef = useRef<HTMLDivElement>(null);
 
-  // Efeito para criar a rolagem automática
   useEffect(() => {
-    const carousel = carouselRef.current;
-    if (!carousel) return;
+    const el = carouselRef.current;
+    if (!el) return;
 
-    // Timer para rolagem automática definido
-    let scrollInterval: ReturnType<typeof setInterval>;
+    const speed = 0.5;
+    let frame: number;
 
-    const startAutoScroll = () => {
-      scrollInterval = setInterval(() => {
-        const isMobile = window.innerWidth <= 768;
-        if (isMobile) {
-          const listWidth = carousel.scrollWidth / 2;
-          // Se a rolagem chegar ao fim da primeira lista, volta pro topo
-          if (carousel.scrollLeft >= listWidth) {
-            carousel.scrollLeft -= listWidth;
-          } else {
-            carousel.scrollLeft += 1;
-          }
-        } else {
-          const listHeight = carousel.scrollHeight / 2;
-          if (carousel.scrollTop >= listHeight) {
-            carousel.scrollTop -= listHeight;
-          } else {
-            carousel.scrollTop += 1;
-          }
-        }
-      }, 30);
+    const animate = () => {
+      const mobile = window.innerWidth <= 768;
+
+      if (mobile) {
+        el.scrollLeft += speed;
+        if (el.scrollLeft >= el.scrollWidth / 2) el.scrollLeft = 0;
+      } else {
+        el.scrollTop += speed;
+        if (el.scrollTop >= el.scrollHeight / 2) el.scrollTop = 0;
+      }
+
+      frame = requestAnimationFrame(animate);
     };
 
-    const stopAutoScroll = () => {
-      clearInterval(scrollInterval);
-    };
-
-    // Inicia a rolagem automática
-    startAutoScroll();
-
-    // Pausa a rolagem no hover
-    carousel.addEventListener("mouseenter", stopAutoScroll);
-    carousel.addEventListener("mouseleave", startAutoScroll);
-
-    // Limpeza: remove os listeners e o timer quando o componente é desmontado
-    return () => {
-      stopAutoScroll();
-      carousel.removeEventListener("mouseenter", stopAutoScroll);
-      carousel.removeEventListener("mouseleave", startAutoScroll);
-    };
+    frame = requestAnimationFrame(animate);
+    return () => cancelAnimationFrame(frame);
   }, []);
 
-  const handleMouseEnter = (skill: Skill) => {
-    if (!isClicked) {
-      const hoverText = t(`skills.items.${skill.translationKey}.hover`);
-      const expText = t(`skills.items.${skill.translationKey}.experience`);
-      setDisplayExp(expText || "Tempo não informado.");
-      setDisplayText(hoverText);
-    }
+  const handleActivate = (skill: Skill) => {
+    setText(t(`skills.items.${skill.key}.hover`));
+    setExp(
+      t(`skills.items.${skill.key}.experience`) || "Tempo não informado",
+    );
   };
 
-  const handleMouseLeave = () => {
-    if (!isClicked) {
-      setDisplayText(
-        t("skills.defaultText") ||
-          "Passe o mouse ou clique em uma das habilidades para saber mais!",
-      );
-      setDisplayExp("");
-    }
-  };
-
-  const handleClick = (skill: Skill) => {
-    const clickText = t(`skills.items.${skill.translationKey}.click`);
-    const expText = t(`skills.items.${skill.translationKey}.experience`);
-    setDisplayText(clickText);
-    setDisplayExp(expText || "Tempo não informado.");
-    setIsClicked(true);
-    setTimeout(() => {
-      setIsClicked(false);
-    }, 0);
-  };
-  // <main>
   return (
-    <SkillsSectionWrapper>
-      <Fade delay={400}>
-        <Slide direction="up">
-          <StyledH1 id="skills">{t("skills.title")}</StyledH1>
-        </Slide>
+    <Section id="skills">
+      <Wrapper>
+        <Fade>
+          <Title>{t("skills.title")}</Title>
+        </Fade>
 
-        <ExperienceContainer>
-          {t("skills.experience")}: {displayExp}
-        </ExperienceContainer>
-
-        <SkillsContainer>
-          <VerticalCarouselContainer ref={carouselRef}>
-            {loopSkillsData.map((skill, index) => (
-              <ImageWrapper
-                key={`${skill.id}-${index}`}
-                onMouseEnter={() => handleMouseEnter(skill)}
-                onMouseLeave={handleMouseLeave}
-                onClick={() => handleClick(skill)}
+        <Layout>
+          <Carousel ref={carouselRef}>
+            {loopSkills.map((skill, i) => (
+              <SkillButton
+                key={`${skill.id}-${i}`}
+                onMouseEnter={() => handleActivate(skill)}
+                onClick={() => handleActivate(skill)}
               >
                 <img src={skill.image} alt={skill.id} />
-              </ImageWrapper>
+              </SkillButton>
             ))}
-          </VerticalCarouselContainer>
-          <TextContainer>
-            <p>{displayText}</p>
-          </TextContainer>
-        </SkillsContainer>
-      </Fade>
-    </SkillsSectionWrapper>
+          </Carousel>
+
+          <div>
+            <TextBox>{text}</TextBox>
+            <Experience>
+              {t("skills.experience")}: {exp}
+            </Experience>
+          </div>
+        </Layout>
+      </Wrapper>
+    </Section>
   );
 };
 
