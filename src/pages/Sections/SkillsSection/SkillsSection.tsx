@@ -118,7 +118,6 @@ const SkillButton = styled.button`
     object-fit: contain;
   }
 
-  /* MOBILE */
   @media (max-width: 768px) {
     width: 56px;
     height: 56px;
@@ -160,6 +159,7 @@ const SkillsSection: React.FC = () => {
       "Passe o mouse ou toque em uma habilidade para saber mais.",
   );
   const [exp, setExp] = useState("");
+  const [isPaused, setIsPaused] = useState(false);
 
   const carouselRef = useRef<HTMLDivElement>(null);
 
@@ -171,14 +171,17 @@ const SkillsSection: React.FC = () => {
     let frame: number;
 
     const animate = () => {
-      const mobile = window.innerWidth <= 768;
+      // Movimenta apenas se isPaused for falso
+      if (!isPaused) {
+        const mobile = window.innerWidth <= 768;
 
-      if (mobile) {
-        el.scrollLeft += speed;
-        if (el.scrollLeft >= el.scrollWidth / 2) el.scrollLeft = 0;
-      } else {
-        el.scrollTop += speed;
-        if (el.scrollTop >= el.scrollHeight / 2) el.scrollTop = 0;
+        if (mobile) {
+          el.scrollLeft += speed;
+          if (el.scrollLeft >= el.scrollWidth / 2) el.scrollLeft = 0;
+        } else {
+          el.scrollTop += speed;
+          if (el.scrollTop >= el.scrollHeight / 2) el.scrollTop = 0;
+        }
       }
 
       frame = requestAnimationFrame(animate);
@@ -186,7 +189,7 @@ const SkillsSection: React.FC = () => {
 
     frame = requestAnimationFrame(animate);
     return () => cancelAnimationFrame(frame);
-  }, []);
+  }, [isPaused]);
 
   const handleActivate = (skill: Skill) => {
     setText(t(`skills.items.${skill.key}.hover`));
@@ -196,30 +199,35 @@ const SkillsSection: React.FC = () => {
   return (
     <Section id="skills">
       <Wrapper>
-        <Fade>
+        <Fade delay={400}>
           <Title>{t("skills.title")}</Title>
+
+          <Layout>
+            {/* Lógica de pausa ao entrar com o mouse e retomar ao sair */}
+            <Carousel
+              ref={carouselRef}
+              onMouseEnter={() => setIsPaused(true)}
+              onMouseLeave={() => setIsPaused(false)}
+            >
+              {loopSkills.map((skill, i) => (
+                <SkillButton
+                  key={`${skill.id}-${i}`}
+                  onMouseEnter={() => handleActivate(skill)}
+                  onClick={() => handleActivate(skill)}
+                >
+                  <img src={skill.image} alt={skill.id} />
+                </SkillButton>
+              ))}
+            </Carousel>
+
+            <div>
+              <Experience>
+                {t("skills.experience")}: {exp}
+              </Experience>
+              <TextBox>{text}</TextBox>
+            </div>
+          </Layout>
         </Fade>
-
-        <Layout>
-          <Carousel ref={carouselRef}>
-            {loopSkills.map((skill, i) => (
-              <SkillButton
-                key={`${skill.id}-${i}`}
-                onMouseEnter={() => handleActivate(skill)}
-                onClick={() => handleActivate(skill)}
-              >
-                <img src={skill.image} alt={skill.id} />
-              </SkillButton>
-            ))}
-          </Carousel>
-
-          <div>
-            <Experience>
-              {t("skills.experience")}: {exp}
-            </Experience>
-            <TextBox>{text}</TextBox>
-          </div>
-        </Layout>
       </Wrapper>
     </Section>
   );
