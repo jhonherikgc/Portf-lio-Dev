@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { Fade, Slide } from "react-awesome-reveal";
-import LinkIcon from "@mui/icons-material/Link";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import TiltedCard from "../../../components/TiltedCard/TiltedCard";
 import { useTranslation } from "react-i18next";
@@ -28,7 +27,6 @@ const ProjectRow: React.FC<ProjectRowProps> = ({
   imageAlt = "Imagem do projeto",
   description,
   githubUrl,
-  liveUrl,
   imageFirst = true,
 }) => {
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
@@ -40,7 +38,6 @@ const ProjectRow: React.FC<ProjectRowProps> = ({
   }, []);
 
   const rowStyle: React.CSSProperties = {
-    position: "relative",
     display: "flex",
     flexDirection: isMobile ? "column" : "row",
     gap: 24,
@@ -60,18 +57,9 @@ const ProjectRow: React.FC<ProjectRowProps> = ({
     justifyContent: "center",
     alignItems: "center",
     border: "2px solid rgba(255,255,255,0.25)",
-    width: "100%"
-  };
-
-  const imageWrapper: React.CSSProperties = {
     width: "100%",
-    height: "100%",
-    borderRadius: 18,
-    overflow: "hidden",
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    
+    position: "relative", // Necessário para o posicionamento do botão
+    minHeight: 250,
   };
 
   const textPanel: React.CSSProperties = {
@@ -80,22 +68,33 @@ const ProjectRow: React.FC<ProjectRowProps> = ({
     fontWeight: 700,
     lineHeight: 1.5,
     textAlign: "center",
+    paddingBottom: 60, // Espaço extra para o botão não sobrepor o texto
   };
 
   const iconsBox: React.CSSProperties = {
-    position: isMobile ? "relative" : "absolute",
-    bottom: isMobile ? "auto" : 20,
-    right: !isMobile && imageFirst ? 30 : undefined,
-    left: !isMobile && !imageFirst ? 30 : undefined,
-    marginTop: isMobile ? 12 : 0,
+    position: "absolute",
+    bottom: 20,
+    // Se imageFirst for true, o texto está à direita -> botão à direita.
+    // Se for false, o texto está à esquerda -> botão à esquerda.
+    right: imageFirst ? 25 : "auto",
+    left: !imageFirst ? 25 : "auto",
     display: "flex",
     gap: 14,
-    justifyContent: "center",
   };
 
   const ImagePanel = (
     <div style={panelBase}>
-      <div style={imageWrapper}>
+      <div
+        style={{
+          width: "100%",
+          height: "100%",
+          borderRadius: 18,
+          overflow: "hidden",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
         {imageSrc && (
           <TiltedCard
             imageSrc={imageSrc}
@@ -118,26 +117,43 @@ const ProjectRow: React.FC<ProjectRowProps> = ({
   const TextPanel = (
     <div style={textPanel}>
       <span>{description}</span>
+      <div style={iconsBox}>
+        {githubUrl && (
+          <a
+            href={githubUrl}
+            target="_blank"
+            rel="noreferrer"
+            style={{ color: "inherit", textDecoration: "none" }}
+          >
+            <GitHubIcon
+              sx={{
+                fontSize: 32,
+                transition: "0.3s",
+                "&:hover": {
+                  transform: "scale(1.3)",
+                  color: "#6e5494", // Cor clássica do GitHub no hover
+                },
+              }}
+            />
+          </a>
+        )}
+      </div>
     </div>
   );
 
   return (
     <div style={rowStyle}>
-      {imageFirst ? ImagePanel : TextPanel}
-      {imageFirst ? TextPanel : ImagePanel}
-
-      <div style={iconsBox}>
-        {githubUrl && (
-          <a href={githubUrl} target="_blank" rel="noreferrer">
-            <GitHubIcon />
-          </a>
-        )}
-        {liveUrl && (
-          <a href={liveUrl} target="_blank" rel="noreferrer">
-            <LinkIcon />
-          </a>
-        )}
-      </div>
+      {imageFirst ? (
+        <>
+          {" "}
+          {ImagePanel} {TextPanel}{" "}
+        </>
+      ) : (
+        <>
+          {" "}
+          {TextPanel} {ImagePanel}{" "}
+        </>
+      )}
     </div>
   );
 };
@@ -172,6 +188,7 @@ export default function Projects() {
           imageFirst
           imageSrc={siteCorinthians}
           description={t("projects.project1.description")}
+          githubUrl="https://github.com/jhonherikgc/site-corinthians"
         />
       </Slide>
 
@@ -180,6 +197,7 @@ export default function Projects() {
           imageFirst={false}
           imageSrc={aluraChat}
           description={t("projects.project2.description")}
+          githubUrl="https://github.com/jhonherikgc/Chat-bot-alura"
         />
       </Slide>
 
@@ -188,6 +206,7 @@ export default function Projects() {
           imageFirst
           imageSrc={toDoList}
           description={t("projects.project3.description")}
+          githubUrl="https://github.com/jhonherikgc/TO-DO-LIST"
         />
       </Slide>
 
@@ -196,6 +215,7 @@ export default function Projects() {
           imageFirst={false}
           imageSrc={Jafetech}
           description={t("projects.project4.description")}
+          githubUrl="https://github.com/jhonherikgc/JAFETECH"
         />
       </Slide>
 
@@ -204,6 +224,7 @@ export default function Projects() {
           imageFirst
           imageSrc={loginPage}
           description={t("projects.project5.description")}
+          githubUrl="https://github.com/jhonherikgc/Login-Page"
         />
       </Slide>
 
@@ -212,6 +233,7 @@ export default function Projects() {
           imageFirst={false}
           imageSrc={JohnnyBarbershop}
           description={t("projects.project6.description")}
+          githubUrl="https://github.com/jhonherikgc/Johnny-Barber-Shop"
         />
       </Slide>
 
@@ -220,6 +242,7 @@ export default function Projects() {
           imageFirst
           imageSrc={ERP}
           description={t("projects.project7.description")}
+          githubUrl="https://github.com/Vexwe/ERP"
         />
       </Slide>
 
@@ -228,6 +251,7 @@ export default function Projects() {
           imageFirst={false}
           imageSrc={honeepay}
           description={t("projects.project8.description")}
+          githubUrl="https://github.com/jhonherikgc"
         />
       </Slide>
     </main>
