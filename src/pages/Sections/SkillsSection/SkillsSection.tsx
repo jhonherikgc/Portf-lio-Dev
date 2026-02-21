@@ -46,7 +46,6 @@ const skills: Skill[] = [
 
 const loopSkills = [...skills, ...skills];
 
-
 const Section = styled.section`
   width: 100%;
   background: linear-gradient(to right, #000, #2f0743);
@@ -154,7 +153,6 @@ const Experience = styled.p`
   }
 `;
 
-
 const SkillsSection: React.FC = () => {
   const { t } = useTranslation();
   const [text, setText] = useState(
@@ -192,9 +190,7 @@ const SkillsSection: React.FC = () => {
 
   const handleActivate = (skill: Skill) => {
     setText(t(`skills.items.${skill.key}.hover`));
-    setExp(
-      t(`skills.items.${skill.key}.experience`) || "Tempo não informado",
-    );
+    setExp(t(`skills.items.${skill.key}.experience`) || "Tempo não informado");
   };
 
   return (
@@ -218,10 +214,10 @@ const SkillsSection: React.FC = () => {
           </Carousel>
 
           <div>
-            <TextBox>{text}</TextBox>
             <Experience>
               {t("skills.experience")}: {exp}
             </Experience>
+            <TextBox>{text}</TextBox>
           </div>
         </Layout>
       </Wrapper>

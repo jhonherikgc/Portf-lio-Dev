@@ -69,6 +69,12 @@ const StatCard = styled("div")(({ theme }) => ({
     borderColor: "#6809a7",
     boxShadow: "0px 10px 20px rgba(0, 163, 255, 0.1)",
   },
+
+  [theme.breakpoints.down("sm")]: {
+    width: "100%",
+    maxWidth: "400px",
+    margin: "0 auto",
+  },
   "& h2": {
     color: "#6809a7",
     fontSize: "2.5rem",
