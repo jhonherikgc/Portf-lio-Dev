@@ -96,8 +96,8 @@ const About = () => {
   }
   return (
     <StyledAbout id="about-me">
-      <Fade delay={400} triggerOnce>
-        <Slide direction="up" triggerOnce>
+      <Fade delay={400}>
+        <Slide direction="up">
           <Typography
             variant="h3"
             textAlign="left"
@@ -111,7 +111,7 @@ const About = () => {
 
       <StyledContentWrapper>
         {/* Texto da Biografia */}
-        <Slide direction="left" triggerOnce>
+        <Slide direction="left">
           <StyledContainer>
             <Typography variant="body1" lineHeight={1.8}>
               {t("about.bio")}
@@ -128,7 +128,7 @@ const About = () => {
         </Slide>
 
         {/* Dashboard de Estatísticas */}
-        <Slide direction="right" triggerOnce>
+        <Slide direction="right">
           <StatsGrid>
             {/* Cards */}
             <StatCard>
