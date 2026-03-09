@@ -94,13 +94,13 @@
   "projects": {
     "title": "Projetos",
     "project1": {
-      "description": "Projeto de 'Cópia' do Site do Corinthians. Desenvolvido atráves de estudos e prática após termino de um curso do Youtube! O projeto consiste em recriar o site do zero porém com suas ideias de forma simples."
+      "description": "Projeto de 'Cópia' do Site do Corinthians, desenvolvido atráves de estudos e prática após a conclusão de um curso do Youtube! O projeto consiste em recriar o site do zero porém apresentando as ideias de forma simples."
     },
     "project2": {
       "description": "Chat-Bot Imersão Alura 2025 - Desenvolvido em Python durante imersão gratuita da Alura."
     },
     "project3": {
-      "description": "TO-DO List - Projeto realizado durante estágio na Câmara Municipal, focando em design e lógica de programação."
+      "description": "TO-DO List - Projeto realizado durante o estágio na Câmara Municipal, focando em design e lógica de programação."
     },
     "project4": {
       "description": "Jafetech - Sistema de Licitação - Plataforma de Gestão de Licitações."
@@ -112,7 +112,7 @@
       "description": "Johnny Barbershop - Projeto de site para barbearia, com foco em design e experiência do usuário."
     },
     "project7": {
-      "description": "ERP - Sistema de Planejamento de Recursos Empresariais, desenvolvido para otimizar processos internos e gestão de recursos."
+      "description": "ERP - Sistema de Planeamento de Recursos Empresariais, desenvolvido para otimizar processos internos e gestão de recursos."
     },
     "project8": {
       "description": "HoneePay - Sistema de Pagamento Online, projetado para facilitar transações financeiras de forma segura e eficiente."
@@ -123,33 +123,33 @@
     "events": {
       "arrival": {
         "date": "2023",
-        "title": "Chegada à Portugal",
+        "title": "Chegada a Portugal",
         "subtitle": "Adaptações, fuso horário, dificuldades",
         "description": "\"O início de tudo pode parecer obscuro, mas é justamente no caos inicial que nasce a ordem.\" – Friedrich Nietzsche"
       },
       "firstYear": {
         "date": "2023-2024",
-        "title": "1 Ano na Escola",
+        "title": "1 Ano",
         "subtitle": "Matriculado no Agrup. de Escolas Afonso de Albuquerque (LICEU)",
-        "description": "Optei pelo curso de Tecnico de Informática e Gestão (TIG) Onde finalmente tive minha primeira Introdução a Programação com a linguagem C++"
+        "description": "Optei pelo curso de Tecnico de Informática e Gestão (TIG) Onde finalmente tive a primeira Introdução a Programação com a linguagem C++"
       },
       "secondYear": {
         "date": "2024-2025",
-        "title": "2 Ano na Escola",
-        "subtitle": "Inicio à estudos de forma autônoma",
-        "description": "Investi em cursos de programação me aprofundando mais sobre conteudos da área de programação. Comecei meus primeiros projetos."
+        "title": "2 Ano",
+        "subtitle": "Inicio os estudos de forma autônoma",
+        "description": "Investi em cursos de programação, aprofundando os conteudos desta área. Comecei os meus primeiros projetos."
       },
       "summer": {
         "date": "2025",
-        "title": "Ferias de Verão",
+        "title": "Férias de Verão",
         "subtitle": "Aproveitei o máximo das férias de verão para poder estudar mais.",
-        "description": "Introdução a LLM'S (Inteligencia Artificial), Docker, React, TypeScript, Python, API's"
+        "description": "Dediquei-me a introdução a LLM'S (Inteligencia Artificial), Docker, React, TypeScript, Python, API's"
       },
       "graduation": {
         "date": "2025/2026",
         "title": "Formação do Curso",
         "subtitle": "Agrup. de Escolas Afonso de Albuquerque (LICEU)",
-        "description": "Ensino médio completo, hoje sigo focado na área tech buscando sempre aprender com meus próprios erros como desenvolvedor."
+        "description": "Curso Profissional completo, hoje sigo focado na área tech buscando sempre aprender com meus próprios erros como desenvolvedor."
       }
     }
   },

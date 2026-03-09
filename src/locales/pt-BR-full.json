@@ -94,28 +94,28 @@
   "projects": {
     "title": "Projetos",
     "project1": {
-      "description": "Projeto de 'Cópia' do Site do Corinthians. Desenvolvido atráves de estudos e prática após termino de um curso do Youtube! O projeto consiste em recriar o site do zero porém com suas ideias de forma simples."
+      "description": "Projeto de 'Cópia' do Site do Corinthians, desenvolvido atráves de estudos e prática após a conclusão de um curso do Youtube! O projeto consiste em recriar o site do zero porém apresentando as ideias de forma simples."
     },
     "project2": {
       "description": "Chat-Bot Imersão Alura 2025 - Desenvolvido em Python durante imersão gratuita da Alura."
     },
     "project3": {
-      "description": "TO-DO List - Projeto realizado durante estágio na Câmara Municipal, focando em design e lógica de programação."
+      "description": "TO-DO List - Projeto realizado durante o estágio na Câmara Municipal, focando em design e lógica de programação."
     },
     "project4": {
       "description": "Jafetech - Sistema de Licitação - Plataforma de Gestão de Licitações."
     },
     "project5": {
-      "description": "Login Page - Projeto de página de login, focado em design e responsividade, utilizando ReactJS e Tailwind CSS."
+      "description": "Login Page - Projeto de página de login, focando em design e usabilidade."
     },
     "project6": {
-      "description": "Johnny Barbershop - Projeto de site para barbearia, com foco em design e responsividade, marcações + cadastros utilizando EJS, Nodejs e MongoDB."
+      "description": "Johnny Barbershop - Projeto de site para barbearia, com foco em design e experiência do usuário."
     },
     "project7": {
-      "description": "ERP - Projeto de sistema de gestão empresarial, com foco em funcionalidades e integração, utilizando NodeJS e ReactJS."
+      "description": "ERP - Sistema de Planeamento de Recursos Empresariais, desenvolvido para otimizar processos internos e gestão de recursos."
     },
     "project8": {
-      "description": "HoneePay - Projeto de sistema de pagamento, com foco em segurança e usabilidade. Desenvolvido em equipe, utilizando EJS, NodeJS e MongoDB."
+      "description": "HoneePay - Sistema de Pagamento Online, projetado para facilitar transações financeiras de forma segura e eficiente."
     }
   },
   "navbar": {
