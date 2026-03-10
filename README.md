@@ -9,7 +9,7 @@ Este é o repositório do meu portfólio pessoal, desenvolvido para apresentar m
 
 ---
 
-## 🔮 Visão Geral
+## Visão Geral
 
 O projeto está dividido em seções principais para contar minha história como desenvolvedor:
 
@@ -17,7 +17,7 @@ O projeto está dividido em seções principais para contar minha história como
 - **Habilidades e Ferramentas:** Uma apresentação interativa das tecnologias que domino.
 - **Projetos:** Uma vitrine dos trabalhos que desenvolvi.
 
-## ✨ Funcionalidades Principais
+## Funcionalidades Principais
 
 - **Design Responsivo:** Totalmente adaptável para uma ótima experiência em desktops, tablets e celulares.
 - **Animações Modernas:** Utilização da biblioteca `react-awesome-reveal` para animações de entrada que tornam a navegação mais fluida.
@@ -27,7 +27,7 @@ O projeto está dividido em seções principais para contar minha história como
 
 ---
 
-## 🚀 Tecnologias Utilizadas
+## Tecnologias Utilizadas
 
 Este projeto foi construído utilizando as seguintes tecnologias:
 
