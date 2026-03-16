@@ -21,8 +21,11 @@ const Button = styled("button")(({ theme }) => ({
   justifyContent: "center",
   gap: "10px",
   cursor: "pointer",
+  transition: "transform 0.3s ease",
   "&:hover": {
-    backgroundColor: "#2F0743",
+    transform: "translateY(-8px)",
+    borderColor: "#6809a7",
+    boxShadow: "0px 10px 20px rgba(0, 163, 255, 0.1)",
   },
 }));
 
