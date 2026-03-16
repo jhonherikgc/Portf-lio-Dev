@@ -114,16 +114,18 @@ const ProjectRow: React.FC<ProjectRowProps> = ({
                   color: "#fff",
                   display: "flex",
                   alignItems: "center",
-                  transition: "0.3s",
-                  cursor: "help",
+                  transition: "all 0.3s ease", // Transição suave para todos os estados
+                  cursor: "pointer",
                 }}
                 onMouseEnter={(e) => {
-                  e.currentTarget.style.transform = "scale(1.2)";
+                  e.currentTarget.style.transform = "translateY(-8px) scale(1.2)";
                   e.currentTarget.style.color = "#6e5494";
+                  e.currentTarget.style.filter = "drop-shadow(0px 10px 20px rgba(0, 163, 255, 0.3))";
                 }}
                 onMouseLeave={(e) => {
-                  e.currentTarget.style.transform = "scale(1)";
+                  e.currentTarget.style.transform = "translateY(0) scale(1)";
                   e.currentTarget.style.color = "#fff";
+                  e.currentTarget.style.filter = "none";
                 }}
               >
                 {tech.icon}
@@ -137,14 +139,18 @@ const ProjectRow: React.FC<ProjectRowProps> = ({
             href={githubUrl}
             target="_blank"
             rel="noreferrer"
-            style={{ color: "inherit", textDecoration: "none" }}
+            style={{ color: "inherit", textDecoration: "none", display: "flex" }}
           >
             <GitHubIcon
               sx={{
                 fontSize: 32,
                 color: "#fff",
-                transition: "0.3s",
-                "&:hover": { transform: "scale(1.2)", color: "#6e5494" },
+                transition: "all 0.3s ease",
+                "&:hover": { 
+                  transform: "translateY(-8px) scale(1.2)", 
+                  color: "#6e5494",
+                  filter: "drop-shadow(0px 10px 20px rgba(0, 163, 255, 0.4))"
+                },
               }}
             />
           </a>
@@ -168,17 +174,7 @@ const ProjectRow: React.FC<ProjectRowProps> = ({
       {imageFirst ? (
         <>
           <div style={panelBase}>
-            <div
-              style={{
-                width: "100%",
-                height: "100%",
-                borderRadius: 18,
-                overflow: "hidden",
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-              }}
-            >
+            <div style={{ width: "100%", height: "100%", borderRadius: 18, overflow: "hidden", display: "flex", justifyContent: "center", alignItems: "center" }}>
               {imageSrc && (
                 <TiltedCard
                   imageSrc={imageSrc}
@@ -202,17 +198,7 @@ const ProjectRow: React.FC<ProjectRowProps> = ({
         <>
           {TextPanel}
           <div style={panelBase}>
-            <div
-              style={{
-                width: "100%",
-                height: "100%",
-                borderRadius: 18,
-                overflow: "hidden",
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-              }}
-            >
+            <div style={{ width: "100%", height: "100%", borderRadius: 18, overflow: "hidden", display: "flex", justifyContent: "center", alignItems: "center" }}>
               {imageSrc && (
                 <TiltedCard
                   imageSrc={imageSrc}
@@ -248,20 +234,11 @@ export default function Projects() {
       }}
     >
       <Fade>
-        <h1
-          id="projects"
-          style={{
-            color: "#fff",
-            textAlign: "center",
-            fontWeight: 800,
-            marginBottom: 40,
-          }}
-        >
+        <h1 id="projects" style={{ color: "#fff", textAlign: "center", fontWeight: 800, marginBottom: 40 }}>
           {t("projects.title")}
         </h1>
       </Fade>
 
-      {/* 1. Corinthians */}
       <Slide direction="right">
         <ProjectRow
           imageFirst
@@ -277,7 +254,6 @@ export default function Projects() {
         />
       </Slide>
 
-      {/* 2. Alura Chat */}
       <Slide direction="left">
         <ProjectRow
           imageFirst={false}
@@ -292,7 +268,6 @@ export default function Projects() {
         />
       </Slide>
 
-      {/* 3. To Do List */}
       <Slide direction="right">
         <ProjectRow
           imageFirst
@@ -308,7 +283,6 @@ export default function Projects() {
         />
       </Slide>
 
-      {/* 4. Jafetech */}
       <Slide direction="left">
         <ProjectRow
           imageFirst={false}
@@ -324,7 +298,6 @@ export default function Projects() {
         />
       </Slide>
 
-      {/* 5. Login Page */}
       <Slide direction="right">
         <ProjectRow
           imageFirst
@@ -340,7 +313,6 @@ export default function Projects() {
         />
       </Slide>
 
-      {/* 6. Johnny Barbershop */}
       <Slide direction="left">
         <ProjectRow
           imageFirst={false}
@@ -356,7 +328,6 @@ export default function Projects() {
         />
       </Slide>
 
-      {/* 7. ERP */}
       <Slide direction="right">
         <ProjectRow
           imageFirst
@@ -372,7 +343,6 @@ export default function Projects() {
         />
       </Slide>
 
-      {/* 8. Honeepay */}
       <Slide direction="left">
         <ProjectRow
           imageFirst={false}
