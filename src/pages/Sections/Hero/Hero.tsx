@@ -1,6 +1,6 @@
 import { useCallback } from "react";
 import { useTranslation } from "react-i18next";
-import cvFile from "../../../assets/images/jhon_castro.pdf";
+import cvFile from "../../../assets/images/jhon_cv.pdf";
 import { Box, Container, Grid, Typography, styled } from "@mui/material";
 
 import ScrollDown from "../../../components/KeyboardArrowDown/ArrowDown";
@@ -78,7 +78,7 @@ const Hero = () => {
   const handleDownloadCv = useCallback(() => {
     const link = document.createElement("a");
     link.href = cvFile;
-    link.download = "jhon_castro.pdf";
+    link.download = "jhon_cv.pdf";
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
