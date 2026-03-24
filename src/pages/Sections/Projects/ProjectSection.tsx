@@ -87,7 +87,6 @@ const ProjectRow: React.FC<ProjectRowProps> = ({
                   cursor: "pointer",
                   transform: hoveredTech === index ? "translateY(-8px)" : "translateY(0)",
                   color: hoveredTech === index ? "#6809a7" : "#fff",
-                  boxShadow: hoveredTech === index ? "0px 10px 20px rgba(0, 163, 255, 0.1)" : "none",
                   transition: "transform 0.3s ease, color 0.3s ease, box-shadow 0.3s ease",
                 }}
               >
@@ -108,7 +107,6 @@ const ProjectRow: React.FC<ProjectRowProps> = ({
               color: isGithubHovered ? "#6809a7" : "#fff",
               textDecoration: "none",
               transform: isGithubHovered ? "translateY(-8px)" : "translateY(0)",
-              boxShadow: isGithubHovered ? "0px 10px 20px rgba(0, 163, 255, 0.1)" : "none",
               transition: "transform 0.3s ease, color 0.3s ease, box-shadow 0.3s ease",
             }}
           >
