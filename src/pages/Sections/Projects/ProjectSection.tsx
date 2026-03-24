@@ -36,6 +36,8 @@ const ProjectRow: React.FC<ProjectRowProps> = ({
   imageSrc, imageAlt = "Imagem do projeto", description, githubUrl, imageFirst = true, techs = [],
 }) => {
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+  const [hoveredTech, setHoveredTech] = useState<number | null>(null);
+  const [isGithubHovered, setIsGithubHovered] = useState(false);
 
   useEffect(() => {
     const resize = () => setIsMobile(window.innerWidth <= 768);
@@ -57,6 +59,17 @@ const ProjectRow: React.FC<ProjectRowProps> = ({
     position: "absolute", bottom: 20, left: 25, right: 25, display: "flex", justifyContent: "space-between", alignItems: "center",
   };
 
+  const actionButtonBase: React.CSSProperties = {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    width: 48,
+    height: 48,
+    borderRadius: 14,
+    background: "transparent",
+    color: "#fff",
+  };
+
   const TextPanel = (
     <div style={textPanel}>
       <span>{description}</span>
@@ -64,15 +77,42 @@ const ProjectRow: React.FC<ProjectRowProps> = ({
         <div style={{ display: "flex", gap: 14 }}>
           {techs.map((tech, index) => (
             <Fade key={index} delay={index * 100} triggerOnce>
-              <div title={tech.name} style={{ fontSize: 28, color: "#fff", display: "flex", alignItems: "center", transition: "all 0.3s ease", cursor: "pointer" }}>
+              <div
+                title={tech.name}
+                onMouseEnter={() => setHoveredTech(index)}
+                onMouseLeave={() => setHoveredTech(null)}
+                style={{
+                  ...actionButtonBase,
+                  fontSize: 28,
+                  cursor: "pointer",
+                  transform: hoveredTech === index ? "translateY(-8px)" : "translateY(0)",
+                  color: hoveredTech === index ? "#6809a7" : "#fff",
+                  boxShadow: hoveredTech === index ? "0px 10px 20px rgba(0, 163, 255, 0.1)" : "none",
+                  transition: "transform 0.3s ease, color 0.3s ease, box-shadow 0.3s ease",
+                }}
+              >
                 {tech.icon}
               </div>
             </Fade>
           ))}
         </div>
         {githubUrl && (
-          <a href={githubUrl} target="_blank" rel="noreferrer" style={{ color: "inherit", textDecoration: "none", display: "flex" }}>
-            <GitHubIcon sx={{ fontSize: 32, color: "#fff", transition: "all 0.3s ease", "&:hover": { transform: "translateY(-8px) scale(1.2)", color: "#6e5494" } }} />
+          <a
+            href={githubUrl}
+            target="_blank"
+            rel="noreferrer"
+            onMouseEnter={() => setIsGithubHovered(true)}
+            onMouseLeave={() => setIsGithubHovered(false)}
+            style={{
+              ...actionButtonBase,
+              color: isGithubHovered ? "#6809a7" : "#fff",
+              textDecoration: "none",
+              transform: isGithubHovered ? "translateY(-8px)" : "translateY(0)",
+              boxShadow: isGithubHovered ? "0px 10px 20px rgba(0, 163, 255, 0.1)" : "none",
+              transition: "transform 0.3s ease, color 0.3s ease, box-shadow 0.3s ease",
+            }}
+          >
+            <GitHubIcon sx={{ fontSize: 32, color: "inherit" }} />
           </a>
         )}
       </div>
@@ -92,7 +132,7 @@ const ProjectRow: React.FC<ProjectRowProps> = ({
             imageHeight="100%"
             rotateAmplitude={isMobile ? 0 : 12}
             scaleOnHover={isMobile ? 1 : 1.05}
-            showMobileWarning={false} // REMOVE O AVISO DE MOBILE
+            showMobileWarning={false}
             showTooltip={!isMobile}
             displayOverlayContent={false}
           />
@@ -163,7 +203,7 @@ export default function Projects() {
         </>
       )}
 
-      {/* BOTÃO DE CONTROLE */}
+      {/* mostrar mais projetos */}
       <div style={{ display: "flex", justifyContent: "center", margin: "40px 0" }}>
         <button
           onClick={() => setMostrarTudo(!mostrarTudo)}
