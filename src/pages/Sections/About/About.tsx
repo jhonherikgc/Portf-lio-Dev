@@ -110,7 +110,7 @@ const About = () => {
       </Fade>
 
       <StyledContentWrapper>
-        {/* Texto da Biografia */}
+        {/* Texto Biografia */}
         <Slide direction="left">
           <StyledContainer>
             <Typography variant="body1" lineHeight={1.8}>
