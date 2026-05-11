@@ -32,6 +32,7 @@ import ERP from "../../../assets/images/ERP.png";
 import honeepay from "../../../assets/images/honeepay.png";
 import JohnnyBarbershop from "../../../assets/images/JohnnyBarbershop.png";
 import loginPage from "../../../assets/images/LoginPage.png";
+import aceleraDev from "../../../assets/images/acelera.png";
 
 type TechIcon = { icon: React.ReactNode; name: string };
 
@@ -369,6 +370,21 @@ export default function Projects() {
                 { icon: <SiEjs />, name: "EJS" },
                 { icon: <SiReact />, name: "React" },
                 { icon: <SiMongodb />, name: "MongoDB" },
+                { icon: <SiVite />, name: "Vite" },
+              ]}
+            />
+          </Slide>
+          {/* Projeto Acelera Dev */}
+          <Slide direction="right">
+            <ProjectRow
+              imageFirst={false}
+              imageSrc={aceleraDev}
+              description={t("projects.project9.description")}
+              githubUrl="https://acelera-dev.vercel.app/"
+              techs={[
+                { icon: <SiTypescript />, name: "TypeScript" },
+                { icon: <SiReact />, name: "React" },
+                { icon: <SiCss3 />, name: "CSS" },
                 { icon: <SiVite />, name: "Vite" },
               ]}
             />
