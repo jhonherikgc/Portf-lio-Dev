@@ -34,12 +34,10 @@ const Section = styled.section`
   position: relative;
   overflow: hidden;
   min-height: 100vh;
-  background:
-    radial-gradient(circle at 84% 16%, rgba(34, 197, 94, 0.14), transparent 25rem),
-    radial-gradient(circle at 16% 30%, rgba(104, 9, 167, 0.24), transparent 28rem),
-    linear-gradient(135deg, #030303 0%, #0d0612 48%, #180820 100%);
+  background: linear-gradient(to right, #000000 0%, #170222 48%, #2f0743 100%);
   color: #fff;
-  padding: clamp(5rem, 9vw, 8rem) clamp(1rem, 4vw, 2rem);
+  padding: clamp(5rem, 9vw, 8rem) clamp(1rem, 4vw, 2rem)
+    clamp(2.5rem, 5vw, 4rem);
 `;
 
 const Header = styled.header`
@@ -48,7 +46,7 @@ const Header = styled.header`
 `;
 
 const Eyebrow = styled.p`
-  color: #22c55e;
+  color: #b026ff;
   font-size: 0.85rem;
   font-weight: 800;
   letter-spacing: 0;
@@ -89,8 +87,8 @@ const TimelineList = styled.ol`
     background: linear-gradient(
       180deg,
       transparent,
-      rgba(34, 197, 94, 0.72),
-      rgba(168, 85, 247, 0.5),
+      rgba(176, 38, 255, 0.78),
+      rgba(104, 9, 167, 0.58),
       transparent
     );
   }
@@ -130,7 +128,7 @@ const DesktopDate = styled.time`
 
 const MobileDate = styled.time`
   display: none;
-  color: #22c55e;
+  color: #b026ff;
   font-family: "Courier New", monospace;
   font-size: 0.85rem;
   font-weight: 800;
@@ -147,7 +145,7 @@ const Marker = styled.div`
   place-items: center;
   width: 52px;
   height: 52px;
-  border: 1px solid rgba(34, 197, 94, 0.35);
+  border: 1px solid rgba(176, 38, 255, 0.44);
   border-radius: 50%;
   background: linear-gradient(135deg, #17131e, #2f0743);
   box-shadow:
@@ -185,7 +183,7 @@ const Card = styled.article`
 
   &:hover {
     transform: translateY(-4px);
-    border-color: rgba(34, 197, 94, 0.38);
+    border-color: rgba(176, 38, 255, 0.5);
     background: rgba(13, 17, 28, 0.9);
   }
 `;
@@ -212,7 +210,7 @@ const EventTitle = styled.h3`
 `;
 
 const Subtitle = styled.p`
-  color: #22c55e;
+  color: #b026ff;
   font-size: 0.98rem;
   font-weight: 700;
   line-height: 1.5;
