@@ -93,6 +93,13 @@
   },
   "projects": {
     "title": "Projects",
+    "eyebrow": "Selected portfolio",
+    "intro": "A selected set of projects focused on interface work, product logic, and real delivery. Each card highlights the stack, context, and path to view the result.",
+    "featured": "Featured",
+    "sourceCode": "View code",
+    "viewProject": "Open project",
+    "showMore": "View more projects",
+    "showLess": "Show less",
     "project1": {
       "description": "Corinthians Website 'Copy' Project. Developed through studies and practice after completing a YouTube course! The project consists of recreating the website from scratch with simple ideas."
     },
@@ -123,6 +130,8 @@
   },
   "timeline": {
     "title": "Experience",
+    "eyebrow": "Journey",
+    "intro": "A clearer timeline of study, adaptation, and technical growth, connecting each phase to what I have been building as a developer.",
     "events": {
       "arrival": {
         "date": "2023",

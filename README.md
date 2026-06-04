@@ -23,7 +23,7 @@ O projeto está dividido em seções principais para contar minha história como
 - **Animações Modernas:** Utilização da biblioteca `react-awesome-reveal` para animações de entrada que tornam a navegação mais fluida.
 - **Seção de Habilidades Interativa:** Um carrossel vertical (horizontal em mobile) exibe as tecnologias. Ao interagir, o usuário vê descrições detalhadas sobre minha experiência com cada ferramenta.
 - **Seção de Projetos Detalhada:** Apresentação dos meus principais projetos com imagens, descrições e links diretos para o código-fonte no GitHub e para a aplicação ao vivo.
-- **Linha do Tempo Profissional:** Componente visual da biblioteca `react-vertical-timeline-component` que mostra minha evolução profissional e acadêmica.
+- **Linha do Tempo Profissional:** Componente próprio, responsivo e mais leve para mostrar minha evolução profissional e acadêmica.
 
 ---
 
@@ -37,7 +37,6 @@ Este projeto foi construído utilizando as seguintes tecnologias:
 - **Styled-components:** Para estilização dos componentes de forma isolada e dinâmica.
 - **Material-UI (MUI):** Utilizado para ícones e componentes de UI.
 - **React Awesome Reveal:** Para implementar animações de scroll.
-- **React Vertical Timeline Component:** Para a criação da seção de experiência.
 
 ---
 

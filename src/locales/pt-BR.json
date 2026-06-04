@@ -93,6 +93,13 @@
   },
   "projects": {
     "title": "Projetos",
+    "eyebrow": "Portfólio selecionado",
+    "intro": "Uma seleção de projetos com foco em interface, lógica de produto e entrega real. Cada card destaca decisões de stack, contexto e o caminho para ver o resultado.",
+    "featured": "Destaque",
+    "sourceCode": "Ver código",
+    "viewProject": "Abrir projeto",
+    "showMore": "Ver mais projetos",
+    "showLess": "Mostrar menos",
     "project1": {
       "description": "Projeto de 'Cópia' do Site do Corinthians, desenvolvido atráves de estudos e prática após a conclusão de um curso do Youtube! O projeto consiste em recriar o site do zero porém apresentando as ideias de forma simples."
     },
@@ -123,6 +130,8 @@
   },
   "timeline": {
     "title": "Experiência",
+    "eyebrow": "Trajetória",
+    "intro": "Uma linha do tempo mais objetiva sobre estudo, adaptação e evolução técnica, conectando cada fase ao que venho construindo como desenvolvedor.",
     "events": {
       "arrival": {
         "date": "2023",
