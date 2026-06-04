@@ -1,62 +1,204 @@
 import { useCallback } from "react";
 import { useTranslation } from "react-i18next";
-import cvFile from "../../../assets/images/jhon_cv.pdf";
-import { Box, Container, Grid, Typography, styled } from "@mui/material";
-
-import ScrollDown from "../../../components/KeyboardArrowDown/ArrowDown";
-import Avatar from "../../../assets/images/avatar.png.jpg";
+import { Box, Container, Typography, styled } from "@mui/material";
 import DownloadIcon from "@mui/icons-material/Download";
 import MailOutlineIcon from "@mui/icons-material/MailOutline";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import GitHubIcon from "@mui/icons-material/GitHub";
-import StyledButton from "../../../components/StyledButton/StyledButton";
+
+import ScrollDown from "../../../components/KeyboardArrowDown/ArrowDown";
 import { AnimatedBackground } from "../../../components/AnimatedBackground/AnimatedBackground";
-import { Fade, Slide } from "react-awesome-reveal";
 import TextType from "../../../components/Typing/TextType";
+import cvFile from "../../../assets/images/jhon_cv.pdf";
+import Avatar from "../../../assets/images/avatar.png.jpg";
 
-// Email constants
-export const RECIPIENT_EMAIL = "jhonherik006@gmail.com";
-export const EMAIL_SUBJECT = "Contato via Curriculo - Dúvidas - Projetos";
-export const EMAIL_BODY = "Olá, como podemos criar juntos?";
+const RECIPIENT_EMAIL = "jhonherik006@gmail.com";
+const EMAIL_BODY = "Olá, como podemos criar juntos?";
 
-// Styled Components
-const StyledHero = styled("div")(({ theme }) => ({
-  background: theme.palette.gradient.dark,
-  height: "100vh",
+const StyledHero = styled("section")(({ theme }) => ({
+  position: "relative",
+  minHeight: "100vh",
   display: "flex",
   alignItems: "center",
-  [theme.breakpoints.up("xs")]: {
-    paddingTop: "100px",
-  },
-  [theme.breakpoints.up("md")]: {
-    paddingTop: "60px",
-  },
-  [theme.breakpoints.up("lg")]: {
-    paddingTop: "25px",
+  overflow: "hidden",
+  background: theme.palette.gradient.dark,
+  padding: "clamp(6.25rem, 8vw, 7.25rem) 0 clamp(3.5rem, 5vw, 4.5rem)",
+}));
+
+const HeroLayout = styled("div")(({ theme }) => ({
+  display: "grid",
+  gridTemplateColumns: "minmax(240px, 0.85fr) minmax(0, 1fr)",
+  alignItems: "center",
+  gap: theme.spacing(5),
+  minHeight: "calc(100vh - 10.75rem)",
+
+  [theme.breakpoints.down("md")]: {
+    gridTemplateColumns: "1fr",
+    gap: theme.spacing(4),
+    minHeight: "auto",
+    textAlign: "center",
   },
 }));
 
-const StyledImg = styled("img")(({ theme }) => ({
-  width: "75%",
-  maxWidth: "400px",
+const VisualColumn = styled("div")(({ theme }) => ({
+  position: "relative",
+  display: "grid",
+  placeItems: "center",
+  minHeight: 360,
+
+  [theme.breakpoints.down("md")]: {
+    minHeight: 270,
+  },
+}));
+
+const BackgroundWrap = styled("div")(({ theme }) => ({
+  position: "absolute",
+  width: "min(480px, 82vw)",
+  inset: "50% auto auto 50%",
+  transform: "translate(-50%, -50%)",
+  opacity: 0.92,
+  pointerEvents: "none",
+
+  [theme.breakpoints.down("md")]: {
+    width: "min(360px, 86vw)",
+  },
+}));
+
+const PortraitFrame = styled("div")(({ theme }) => ({
+  position: "relative",
+  zIndex: 1,
+  width: "clamp(210px, 22vw, 290px)",
+  aspectRatio: "1",
   borderRadius: "50%",
-  border: `1px solid ${theme.palette.primary.contrastText}`,
-  [theme.breakpoints.up("md")]: {
-    paddingLeft: "-100px",
-    marginLeft: "-100px",
-    width: "100%",
-    marginTop: "-15px",
+  padding: 6,
+  border: "1px solid rgba(255, 255, 255, 0.45)",
+  background:
+    "linear-gradient(135deg, rgba(255,255,255,0.16), rgba(104,9,167,0.22))",
+  boxShadow:
+    "0 26px 80px rgba(0, 0, 0, 0.4), 0 0 70px rgba(104, 9, 167, 0.22)",
+
+  [theme.breakpoints.down("sm")]: {
+    width: "min(220px, 64vw)",
   },
 }));
 
-// Main Component
+const StyledImg = styled("img")({
+  width: "100%",
+  height: "100%",
+  display: "block",
+  objectFit: "cover",
+  borderRadius: "50%",
+});
+
+const ContentColumn = styled("div")(({ theme }) => ({
+  position: "relative",
+  zIndex: 1,
+  maxWidth: 640,
+
+  [theme.breakpoints.down("md")]: {
+    justifySelf: "center",
+  },
+}));
+
+const HeroTitle = styled(Typography)(({ theme }) => ({
+  color: theme.palette.primary.contrastText,
+  fontSize: "clamp(2.25rem, 4.2vw, 3.55rem)",
+  fontWeight: 800,
+  lineHeight: 1.04,
+  letterSpacing: 0,
+  marginBottom: theme.spacing(2),
+}));
+
+const RoleLine = styled(Typography)(({ theme }) => ({
+  color: theme.palette.primary.contrastText,
+  display: "flex",
+  flexWrap: "wrap",
+  alignItems: "baseline",
+  gap: "0.35rem",
+  fontSize: "clamp(1.05rem, 2vw, 1.55rem)",
+  lineHeight: 1.25,
+  minHeight: "2.35rem",
+
+  [theme.breakpoints.down("md")]: {
+    justifyContent: "center",
+  },
+}));
+
+const RoleText = styled("span")({
+  color: "#b026ff",
+  textShadow: "0 0 18px rgba(176, 38, 255, 0.28)",
+});
+
+const ActionRow = styled("div")(({ theme }) => ({
+  display: "flex",
+  flexWrap: "wrap",
+  gap: theme.spacing(1.5),
+  marginTop: theme.spacing(3),
+
+  [theme.breakpoints.down("md")]: {
+    justifyContent: "center",
+  },
+}));
+
+const ActionButton = styled("button")(({ theme }) => ({
+  minHeight: 44,
+  display: "inline-flex",
+  alignItems: "center",
+  justifyContent: "center",
+  gap: theme.spacing(1),
+  border: "1px solid rgba(255, 255, 255, 0.2)",
+  borderRadius: 6,
+  background: "#f7f7f7",
+  color: "#09090b",
+  cursor: "pointer",
+  fontSize: "0.95rem",
+  fontWeight: 800,
+  padding: "0.7rem 1rem",
+  transition: "transform 0.22s ease, box-shadow 0.22s ease, background 0.22s ease",
+
+  "&:hover": {
+    background: "#ffffff",
+    transform: "translateY(-3px)",
+    boxShadow: "0 16px 38px rgba(255, 255, 255, 0.08)",
+  },
+
+  "&:focus-visible": {
+    outline: "2px solid #b026ff",
+    outlineOffset: 3,
+  },
+}));
+
+const ActionLink = styled("a")(({ theme }) => ({
+  minHeight: 44,
+  display: "inline-flex",
+  alignItems: "center",
+  justifyContent: "center",
+  gap: theme.spacing(1),
+  border: "1px solid rgba(168, 85, 247, 0.45)",
+  borderRadius: 6,
+  background: "rgba(255, 255, 255, 0.045)",
+  color: theme.palette.primary.contrastText,
+  fontSize: "0.95rem",
+  fontWeight: 800,
+  padding: "0.7rem 1rem",
+  textDecoration: "none",
+  transition: "transform 0.22s ease, border-color 0.22s ease, background 0.22s ease",
+
+  "&:hover": {
+    background: "rgba(168, 85, 247, 0.14)",
+    borderColor: "rgba(176, 38, 255, 0.72)",
+    transform: "translateY(-3px)",
+  },
+
+  "&:focus-visible": {
+    outline: "2px solid #b026ff",
+    outlineOffset: 3,
+  },
+}));
+
 const Hero = () => {
   const { t } = useTranslation();
-
-  // Texto prefixo ("Eu sou" / "I am") vindo das traduções
   const prefixText = t("hero.prefix");
-
-  // Roles — garante que recebemos um array do i18n
   const roles = Array.isArray(t("hero.roles", { returnObjects: true }))
     ? (t("hero.roles", { returnObjects: true }) as string[])
     : [
@@ -65,15 +207,10 @@ const Hero = () => {
         "um Entusiasta da Tecnologia",
       ];
 
-  // Opções editáveis de typing
-  const typingSpeed = 40;
-  const deletingSpeed = 30;
-  const textColors = ["#6809a7ff"];
-
-  // LÓGICA DE EMAIL
-  const EMAIL_SUBJECT = t("hero.contact");
-  const EMAIL_BODY = "Olá, como podemos criar juntos?";
-  const GMAIL_COMPOSE_URL = `https://mail.google.com/mail/?view=cm&fs=1&to=${RECIPIENT_EMAIL}&su=${encodeURIComponent(EMAIL_SUBJECT)}&body=${encodeURIComponent(EMAIL_BODY)}`;
+  const emailSubject = t("hero.contact");
+  const gmailComposeUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${RECIPIENT_EMAIL}&su=${encodeURIComponent(
+    emailSubject,
+  )}&body=${encodeURIComponent(EMAIL_BODY)}`;
 
   const handleDownloadCv = useCallback(() => {
     const link = document.createElement("a");
@@ -87,211 +224,63 @@ const Hero = () => {
   return (
     <StyledHero>
       <Container maxWidth="lg">
-        <Grid container spacing={2}>
-          {/* ... Foto ... */}
-          <Grid>
-            <Slide direction="left">
-              <Box position="relative">
-                <Box position="absolute" width={"150%"} top={-100} right={0}>
-                  <AnimatedBackground />
-                </Box>
-                <Box position="relative" textAlign="center">
-                  <StyledImg src={Avatar} alt="Avatar" />
-                </Box>
-              </Box>
-            </Slide>
-          </Grid>
+        <HeroLayout>
+          <VisualColumn>
+            <BackgroundWrap>
+              <AnimatedBackground />
+            </BackgroundWrap>
+            <PortraitFrame>
+              <StyledImg src={Avatar} alt="Jhon Herik Gomes de Castro" />
+            </PortraitFrame>
+          </VisualColumn>
 
-          {/* Grid do Texto e Botões */}
-          <Grid size={{ xs: 12, md: 6 }}>
-            {/* Lógica de posicionamento de telas*/}
-            <Box
-              sx={{
-                position: { md: "absolute" },
-                top: { md: "50%" },
-                maxWidth: { xs: "100%", md: "100%" },
-                textAlign: "center",
-                left: { md: "60%", xl: "55%" },
-                transform: {
-                  md: "translate(-50%, -50%)",
-                  xl: "translate(-40%, -50%)",
-                },
-              }}
-            >
-              <Fade>
-                <Typography
-                  color="primary.contrastText"
-                  variant="h1"
-                  textAlign="center"
-                  pb={{ xs: 2, md: 0 }}
-                  sx={{
-                    whiteSpace: { xs: "normal", md: "nowrap" },
-                    fontSize: {
-                      xs: "1.9rem",
-                      sm: "3rem",
-                      md: "3.5rem",
-                      lg: "5rem",
-                    },
-                  }}
-                  mb={{ md: -2 }}
-                >
-                  {t("hero.greeting")}
-                </Typography>
-              </Fade>
-              <Fade delay={500}>
-                <Typography
-                  color="primary.contrastText"
-                  variant="h2"
-                  sx={{ whiteSpace: "nowrap" }}
-                >
-                  <Box
-                    component="span"
-                    sx={{
-                      marginLeft: "-10px",
-                      fontSize: {
-                        xs: "1.2rem",
-                        sm: "2.2rem",
-                        md: "2.5rem",
-                        lg: "3.2rem",
-                      },
-                    }}
-                  >
-                    {prefixText}&nbsp;
-                  </Box>
-                  <Box
-                    component="span"
-                    sx={{
-                      display: "inline-block",
-                      minWidth: {
-                        xs: "180px",
-                        sm: "400px",
-                        md: "500px",
-                        lg: "450px",
-                      },
-                      maxWidth: "90vw",
-                      textAlign: "left",
-                      lineHeight: 1.2,
-                      verticalAlign: "bottom",
-                      "& span": {
-                        textShadow: "0 0 12px rgba(104, 9, 167, 0.6)",
-                        fontSize: {
-                          xs: "1.2rem",
-                          sm: "2.2rem",
-                          md: "2.5rem",
-                          lg: "3.2rem",
-                        },
-                      },
-                    }}
-                  >
-                    {/* Logica do typing text com arrays de frases */}
-                    <TextType
-                      textColors={textColors}
-                      as="span"
-                      text={roles}
-                      typingSpeed={typingSpeed}
-                      deletingSpeed={deletingSpeed}
-                    />
-                  </Box>
-                </Typography>
-              </Fade>
-            </Box>
+          <ContentColumn>
+            <HeroTitle variant="h1">{t("hero.greeting")}</HeroTitle>
 
-            {/* Botões */}
-            <Fade delay={1000}>
-              <Grid
-                container
-                display="flex"
-                justifyContent="center"
-                spacing={3}
-                pt={3}
-                sx={{
-                  position: { md: "absolute" },
-                  bottom: { md: "30%", lg: "33%" },
-                  maxWidth: "100%",
-                  left: { md: "51%", xl: "46%" },
-                  transform: {
-                    md: "translate(-40%, 50%)",
-                    xl: "translate(-15%, -45%)",
-                  },
-                }}
+            <RoleLine variant="h2">
+              <Box component="span">{prefixText}</Box>
+              <RoleText>
+                <TextType
+                  as="span"
+                  text={roles}
+                  typingSpeed={40}
+                  deletingSpeed={30}
+                />
+              </RoleText>
+            </RoleLine>
+
+            <ActionRow>
+              <ActionButton type="button" onClick={handleDownloadCv}>
+                <DownloadIcon fontSize="small" />
+                {t("hero.downloadCV")}
+              </ActionButton>
+              <ActionLink
+                href={gmailComposeUrl}
+                target="_blank"
+                rel="noopener noreferrer"
               >
-                {/* Botão Download CV */}
-                <Grid>
-                  <StyledButton onClick={handleDownloadCv}>
-                    <DownloadIcon />
-                    <Typography>{t("hero.downloadCV")}</Typography>
-                  </StyledButton>
-                </Grid>
-
-                {/* Botão Contact me */}
-                <Grid>
-                  {/* @ts-expect-error Prop 'component' não tipada. */}
-                  <StyledButton component="div">
-                    <a
-                      href={GMAIL_COMPOSE_URL}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      style={{
-                        textDecoration: "none",
-                        color: "inherit",
-                        display: "flex",
-                        alignItems: "center",
-                        gap: "8px",
-                      }}
-                    >
-                      <MailOutlineIcon />
-                      <Typography>{t("hero.contact")}</Typography>
-                    </a>
-                  </StyledButton>
-                </Grid>
-
-                {/* Botão Linkedin*/}
-                <Grid>
-                  {/* @ts-expect-error Prop 'component' não tipada.*/}
-                  <StyledButton component="div">
-                    <a
-                      href="https://www.linkedin.com/in/jhonherikgc/"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      style={{
-                        textDecoration: "none",
-                        color: "inherit",
-                        display: "flex",
-                        alignItems: "center",
-                        gap: "8px",
-                      }}
-                    >
-                      <LinkedInIcon />
-                      <Typography>{t("hero.linkedin")}</Typography>
-                    </a>
-                  </StyledButton>
-                </Grid>
-
-                {/* Botão Github*/}
-                <Grid>
-                  {/* @ts-expect-error Prop 'component' não tipada. */}
-                  <StyledButton component="div">
-                    <a
-                      href="https://github.com/jhonherikgc"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      style={{
-                        textDecoration: "none",
-                        color: "inherit",
-                        display: "flex",
-                        alignItems: "center",
-                        gap: "8px",
-                      }}
-                    >
-                      <GitHubIcon />
-                      <Typography>{t("hero.github")}</Typography>
-                    </a>
-                  </StyledButton>
-                </Grid>
-              </Grid>
-            </Fade>
-          </Grid>
-        </Grid>
+                <MailOutlineIcon fontSize="small" />
+                {t("hero.contact")}
+              </ActionLink>
+              <ActionLink
+                href="https://www.linkedin.com/in/jhonherikgc/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <LinkedInIcon fontSize="small" />
+                {t("hero.linkedin")}
+              </ActionLink>
+              <ActionLink
+                href="https://github.com/jhonherikgc"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <GitHubIcon fontSize="small" />
+                {t("hero.github")}
+              </ActionLink>
+            </ActionRow>
+          </ContentColumn>
+        </HeroLayout>
       </Container>
       <ScrollDown targetId="#about-me" />
     </StyledHero>
