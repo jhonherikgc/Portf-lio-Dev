@@ -1,7 +1,5 @@
-// src/components/SkillsSection.tsx
-import React, { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import styled from "styled-components";
-import { Fade } from "react-awesome-reveal";
 import { useTranslation } from "react-i18next";
 
 import htmlIcon from "../../../assets/images/HTML.svg";
@@ -20,11 +18,28 @@ import flaskIcon from "../../../assets/images/Flask-Dark.svg";
 import tailwindIcon from "../../../assets/images/Tailwind.svg";
 import nodejsIcon from "../../../assets/images/NodeJS-Dark.svg";
 
-interface Skill {
+type SkillKey =
+  | "html"
+  | "css"
+  | "bootstrap"
+  | "tailwind"
+  | "javascript"
+  | "nodejs"
+  | "typescript"
+  | "react"
+  | "vite"
+  | "python"
+  | "flask"
+  | "docker"
+  | "git"
+  | "github"
+  | "linux";
+
+type Skill = {
   id: string;
   image: string;
-  key: string;
-}
+  key: SkillKey;
+};
 
 const skills: Skill[] = [
   { id: "HTML", image: htmlIcon, key: "html" },
@@ -44,190 +59,227 @@ const skills: Skill[] = [
   { id: "Linux", image: LinuxIcon, key: "linux" },
 ];
 
-const loopSkills = [...skills, ...skills];
-
 const Section = styled.section`
   width: 100%;
-  background: linear-gradient(to right, #000, #2f0743);
-  padding: clamp(4rem, 8vw, 7rem) 0;
-  overflow-x: visible;
+  background: linear-gradient(to right, #000000 0%, #170222 48%, #2f0743 100%);
+  color: #fff;
+  padding: clamp(5rem, 8vw, 7rem) clamp(1rem, 4vw, 2rem);
 `;
 
 const Wrapper = styled.div`
-  max-width: 1200px;
+  max-width: 1120px;
   margin: 0 auto;
-  padding-inline: clamp(1rem, 4vw, 2rem);
+`;
+
+const Header = styled.header`
+  max-width: 760px;
+  margin-bottom: clamp(2rem, 5vw, 3.5rem);
 `;
 
 const Title = styled.h2`
   color: #fff;
-  text-align: center;
-  font-size: clamp(2rem, 5vw, 3rem);
-  margin-bottom: 2.5rem;
+  font-size: clamp(2.2rem, 5vw, 3.8rem);
+  font-weight: 800;
+  line-height: 1;
+  margin: 0;
+`;
+
+const AccentLine = styled.span`
+  display: block;
+  width: 72px;
+  height: 3px;
+  border-radius: 99px;
+  margin-top: 1rem;
+  background: linear-gradient(90deg, #b026ff, rgba(176, 38, 255, 0));
 `;
 
 const Layout = styled.div`
   display: grid;
-  grid-template-columns: auto 1fr;
+  grid-template-columns: minmax(0, 1.08fr) minmax(320px, 0.92fr);
   gap: clamp(1.5rem, 4vw, 3rem);
+  align-items: start;
 
-  @media (max-width: 768px) {
+  @media (max-width: 900px) {
     grid-template-columns: 1fr;
   }
 `;
 
-const Carousel = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  height: 420px;
-  overflow-y: auto;
-  scrollbar-width: none;
+const SkillGrid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 0.85rem;
 
-  &::-webkit-scrollbar {
-    display: none;
-  }
-
-  @media (max-width: 768px) {
-    flex-direction: row;
-    height: auto;
-    overflow-x: auto;
-    overflow-y: hidden;
+  @media (max-width: 680px) {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 `;
 
-const SkillButton = styled.button`
-  width: 72px;
-  height: 72px;
-  border-radius: 18px;
-  background: #0b0b0b;
-  border: none;
-  display: grid;
-  place-items: center;
+const SkillButton = styled.button<{ $active: boolean }>`
+  min-height: 106px;
+  border: 1px solid
+    ${(props) =>
+      props.$active ? "rgba(176, 38, 255, 0.75)" : "rgba(255, 255, 255, 0.1)"};
+  border-radius: 8px;
+  background: ${(props) =>
+    props.$active ? "rgba(176, 38, 255, 0.14)" : "rgba(255, 255, 255, 0.045)"};
+  color: rgba(255, 255, 255, 0.78);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.7rem;
+  padding: 0.85rem 0.55rem;
   cursor: pointer;
-  transition: transform 0.25s ease;
-  flex-shrink: 0;
+  transition:
+    transform 0.2s ease,
+    border-color 0.2s ease,
+    background 0.2s ease,
+    color 0.2s ease;
 
-  &:hover {
-    transform: scale(1.15);
+  &:hover,
+  &:focus-visible {
+    transform: translateY(-3px);
+    border-color: rgba(176, 38, 255, 0.72);
+    background: rgba(176, 38, 255, 0.12);
+    color: #fff;
+    outline: none;
   }
 
   img {
-    width: 70%;
-    height: 70%;
+    width: 38px;
+    height: 38px;
     object-fit: contain;
   }
 
-  @media (max-width: 768px) {
-    width: 56px;
-    height: 56px;
-    border-radius: 14px;
+  span {
+    font-size: 0.82rem;
+    font-weight: 700;
+    line-height: 1.2;
+    text-align: center;
+  }
+
+  @media (max-width: 680px) {
+    min-height: 96px;
   }
 `;
 
-const TextBox = styled.div`
-  background: rgba(15, 23, 42, 0.45);
-  border-radius: 18px;
-  padding: 2rem;
-  color: #fff;
-  font-size: 1.2rem;
-  display: flex;
-  align-items: center;
-  min-height: 180px;
+const DetailPanel = styled.aside`
+  position: sticky;
+  top: 7rem;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 8px;
+  background: rgba(8, 10, 18, 0.66);
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.26);
+  overflow: hidden;
 
-  @media (max-width: 768px) {
-    font-size: 1rem;
-    padding: 1.4rem;
-    min-height: 140px;
+  &::before {
+    content: "";
+    display: block;
+    height: 3px;
+    background: linear-gradient(90deg, #b026ff, rgba(176, 38, 255, 0));
+  }
+
+  @media (max-width: 900px) {
+    position: static;
+  }
+`;
+
+const DetailContent = styled.div`
+  min-height: 260px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1.25rem;
+  padding: clamp(1.5rem, 4vw, 2.25rem);
+`;
+
+const SelectedSkill = styled.div`
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: #fff;
+  font-size: 1.15rem;
+  font-weight: 800;
+
+  img {
+    width: 34px;
+    height: 34px;
+    object-fit: contain;
   }
 `;
 
 const Experience = styled.p`
-  color: #cbd5f5;
-  font-size: 1rem;
-  margin-top: 1rem;
-
-  @media (max-width: 768px) {
-    font-size: 0.9rem;
-  }
+  color: #b026ff;
+  font-size: 0.95rem;
+  font-weight: 800;
+  margin: 0;
 `;
 
-const SkillsSection: React.FC = () => {
+const TextBox = styled.p`
+  color: rgba(255, 255, 255, 0.74);
+  font-size: 1.02rem;
+  line-height: 1.8;
+  margin: 0;
+`;
+
+const SkillsSection = () => {
   const { t } = useTranslation();
-  const [text, setText] = useState(
-    t("skills.defaultText") ||
-      "Passe o mouse ou toque em uma habilidade para saber mais.",
-  );
-  const [exp, setExp] = useState("");
-  const [isPaused, setIsPaused] = useState(false);
+  const [selectedSkill, setSelectedSkill] = useState<Skill | null>(null);
 
-  const carouselRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const el = carouselRef.current;
-    if (!el) return;
-
-    const speed = 0.5;
-    let frame: number;
-
-    const animate = () => {
-      // Movimenta apenas se isPaused for falso
-      if (!isPaused) {
-        const mobile = window.innerWidth <= 768;
-
-        if (mobile) {
-          el.scrollLeft += speed;
-          if (el.scrollLeft >= el.scrollWidth / 2) el.scrollLeft = 0;
-        } else {
-          el.scrollTop += speed;
-          if (el.scrollTop >= el.scrollHeight / 2) el.scrollTop = 0;
-        }
-      }
-
-      frame = requestAnimationFrame(animate);
-    };
-
-    frame = requestAnimationFrame(animate);
-    return () => cancelAnimationFrame(frame);
-  }, [isPaused]);
-
-  const handleActivate = (skill: Skill) => {
-    setText(t(`skills.items.${skill.key}.hover`));
-    setExp(t(`skills.items.${skill.key}.experience`) || "Tempo não informado");
-  };
+  const detailText = selectedSkill
+    ? t(`skills.items.${selectedSkill.key}.hover`)
+    : t("skills.defaultText");
+  const selectedExperience = selectedSkill
+    ? t(`skills.items.${selectedSkill.key}.experience`)
+    : "";
 
   return (
     <Section id="skills">
       <Wrapper>
-        <Fade delay={400}>
+        <Header>
           <Title>{t("skills.title")}</Title>
+          <AccentLine aria-hidden="true" />
+        </Header>
 
-          <Layout>
-            {/* Lógica de pausa ao entrar com o mouse e retomar ao sair */}
-            <Carousel
-              ref={carouselRef}
-              onMouseEnter={() => setIsPaused(true)}
-              onMouseLeave={() => setIsPaused(false)}
-            >
-              {loopSkills.map((skill, i) => (
+        <Layout>
+          <SkillGrid>
+            {skills.map((skill) => {
+              const isActive = selectedSkill?.key === skill.key;
+
+              return (
                 <SkillButton
-                  key={`${skill.id}-${i}`}
-                  onMouseEnter={() => handleActivate(skill)}
-                  onClick={() => handleActivate(skill)}
+                  key={skill.id}
+                  type="button"
+                  $active={isActive}
+                  aria-pressed={isActive}
+                  onMouseEnter={() => setSelectedSkill(skill)}
+                  onFocus={() => setSelectedSkill(skill)}
+                  onClick={() => setSelectedSkill(skill)}
                 >
-                  <img src={skill.image} alt={skill.id} />
+                  <img src={skill.image} alt="" aria-hidden="true" />
+                  <span>{skill.id}</span>
                 </SkillButton>
-              ))}
-            </Carousel>
+              );
+            })}
+          </SkillGrid>
 
-            <div>
-              <Experience>
-                {t("skills.experience")}: {exp}
-              </Experience>
-              <TextBox>{text}</TextBox>
-            </div>
-          </Layout>
-        </Fade>
+          <DetailPanel>
+            <DetailContent>
+              {selectedSkill && (
+                <SelectedSkill>
+                  <img src={selectedSkill.image} alt="" aria-hidden="true" />
+                  {selectedSkill.id}
+                </SelectedSkill>
+              )}
+              {selectedExperience && (
+                <Experience>
+                  {t("skills.experience")}: {selectedExperience}
+                </Experience>
+              )}
+              <TextBox>{detailText}</TextBox>
+            </DetailContent>
+          </DetailPanel>
+        </Layout>
       </Wrapper>
     </Section>
   );

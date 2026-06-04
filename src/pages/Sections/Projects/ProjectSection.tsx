@@ -182,11 +182,11 @@ const projects: Project[] = [
 const Section = styled.section`
   width: 100%;
   overflow: hidden;
-  background:
-    radial-gradient(circle at 18% 12%, rgba(104, 9, 167, 0.24), transparent 28rem),
-    linear-gradient(135deg, #020202 0%, #0f0516 52%, #1b0628 100%);
+  background: linear-gradient(to right, #000000 0%, #170222 48%, #2f0743 100%);
   color: #fff;
-  padding: clamp(5rem, 9vw, 8rem) clamp(1rem, 4vw, 2rem);
+  margin-top: -1px;
+  padding: clamp(3.5rem, 6vw, 5rem) clamp(1rem, 4vw, 2rem)
+    clamp(5rem, 9vw, 8rem);
 `;
 
 const Header = styled.header`
@@ -195,7 +195,7 @@ const Header = styled.header`
 `;
 
 const Eyebrow = styled.p`
-  color: #22c55e;
+  color: #b026ff;
   font-size: 0.85rem;
   font-weight: 700;
   letter-spacing: 0;
@@ -241,7 +241,7 @@ const ProjectCard = styled.article<{ $isReversed: boolean }>`
     position: absolute;
     inset: 0;
     pointer-events: none;
-    background: linear-gradient(120deg, rgba(34, 197, 94, 0.12), transparent 34%);
+    background: linear-gradient(120deg, rgba(176, 38, 255, 0.16), transparent 34%);
     opacity: 0;
     transition: opacity 0.25s ease;
   }
@@ -275,7 +275,7 @@ const ProjectMedia = styled.a`
   }
 
   &:focus-visible {
-    outline: 2px solid #22c55e;
+    outline: 2px solid #b026ff;
     outline-offset: -4px;
   }
 
@@ -317,14 +317,14 @@ const ProjectMeta = styled.div`
 `;
 
 const Index = styled.span`
-  color: #22c55e;
+  color: #b026ff;
   font-family: "Courier New", monospace;
   font-size: 0.9rem;
   font-weight: 700;
 `;
 
 const Badge = styled.span`
-  border: 1px solid rgba(34, 197, 94, 0.32);
+  border: 1px solid rgba(176, 38, 255, 0.4);
   border-radius: 4px;
   color: rgba(255, 255, 255, 0.74);
   font-size: 0.78rem;
@@ -368,7 +368,7 @@ const TechItem = styled.li`
   padding: 0.45rem 0.7rem;
 
   svg {
-    color: #a855f7;
+    color: #b026ff;
     font-size: 1.05rem;
     flex-shrink: 0;
   }
@@ -407,7 +407,7 @@ const ActionLink = styled.a`
   }
 
   &:focus-visible {
-    outline: 2px solid #22c55e;
+    outline: 2px solid #b026ff;
     outline-offset: 3px;
   }
 `;
@@ -440,12 +440,12 @@ const ToggleButton = styled.button`
 
   &:hover {
     background: rgba(168, 85, 247, 0.12);
-    border-color: rgba(34, 197, 94, 0.65);
+    border-color: rgba(176, 38, 255, 0.72);
     transform: translateY(-3px);
   }
 
   &:focus-visible {
-    outline: 2px solid #22c55e;
+    outline: 2px solid #b026ff;
     outline-offset: 3px;
   }
 `;
