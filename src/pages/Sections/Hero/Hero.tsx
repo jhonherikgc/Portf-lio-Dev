@@ -103,8 +103,7 @@ const Hero = () => {
           </Grid>
 
           {/* Grid do Texto e Botões */}
-          {/*@ts-ignore*/}
-          <Grid item xs={12} md={6}>
+          <Grid size={{ xs: 12, md: 6 }}>
             {/* Lógica de posicionamento de telas*/}
             <Box
               sx={{
