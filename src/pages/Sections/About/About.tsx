@@ -1,155 +1,174 @@
 import { styled, Typography } from "@mui/material";
-import { Fade, Slide } from "react-awesome-reveal";
 import { useTranslation } from "react-i18next";
-
-// --- Styled Components --- //
 
 const StyledAbout = styled("section")(({ theme }) => ({
   background: theme.palette.gradient?.dark || "#0d0d0d",
-  minHeight: "100vh",
-  display: "flex",
-  flexDirection: "column",
-  alignItems: "center",
-  justifyContent: "center",
-  padding: theme.spacing(8, 2),
   color: theme.palette.common.white,
+  padding: "clamp(5rem, 8vw, 7rem) clamp(1rem, 4vw, 2rem)",
 }));
 
-const StyledContentWrapper = styled("div")(({ theme }) => ({
-  display: "flex",
-  flexDirection: "row",
-  alignItems: "flex-start",
-  justifyContent: "center",
-  maxWidth: "1100px",
-  width: "100%",
+const Inner = styled("div")({
+  maxWidth: 1120,
+  margin: "0 auto",
+});
+
+const Header = styled("header")({
+  maxWidth: 760,
+  marginBottom: "clamp(2rem, 5vw, 3.5rem)",
+});
+
+const Title = styled("h2")({
+  fontSize: "clamp(2.2rem, 5vw, 3.8rem)",
+  fontWeight: 800,
+  lineHeight: 1,
+  letterSpacing: 0,
+  margin: 0,
+});
+
+const AccentLine = styled("span")({
+  display: "block",
+  width: 72,
+  height: 3,
+  borderRadius: 99,
+  marginTop: "1rem",
+  background: "linear-gradient(90deg, #b026ff, rgba(176, 38, 255, 0))",
+});
+
+const ContentGrid = styled("div")(({ theme }) => ({
+  display: "grid",
+  gridTemplateColumns: "minmax(0, 1.2fr) minmax(320px, 0.8fr)",
   gap: theme.spacing(4),
+  alignItems: "stretch",
+
   [theme.breakpoints.down("md")]: {
-    flexDirection: "column",
-    alignItems: "center",
-    textAlign: "center",
+    gridTemplateColumns: "1fr",
   },
 }));
 
-const StyledContainer = styled("div")(({ theme }) => ({
-  backgroundColor: "#1e293b71",
-  width: "80%",
-  padding: theme.spacing(2),
-  marginLeft: theme.spacing(3),
-  borderRadius: theme.shape.borderRadius,
-  boxShadow: theme.shadows[4],
-  flex: 1,
-}));
-
-// Grid para os Cards
-const StatsGrid = styled("div")(({ theme }) => ({
-  display: "grid",
-  maxWidth: "500px",
-  width: "100%",
-  gridTemplateColumns: "repeat(2, 1fr)",
-  gap: theme.spacing(3),
-  flex: 1,
-}));
-
-// Estilização do Card Individual
-const StatCard = styled("div")(({ theme }) => ({
-  backgroundColor: "#1e293b71",
+const BioPanel = styled("article")(({ theme }) => ({
+  position: "relative",
+  overflow: "hidden",
+  border: "1px solid rgba(255, 255, 255, 0.12)",
+  borderRadius: 8,
+  background: "rgba(8, 10, 18, 0.62)",
+  boxShadow: "0 24px 80px rgba(0, 0, 0, 0.26)",
   padding: theme.spacing(4),
-  borderRadius: "16px",
-  textAlign: "left",
-  width: "200px",
-  minHeight: "140px",
-  display: "flex",
-  flexDirection: "column",
-  justifyContent: "center",
-  boxShadow: theme.shadows[6],
-  border: "1px solid #222",
-  transition: "transform 0.3s ease",
-  "&:hover": {
-    transform: "translateY(-8px)",
-    borderColor: "#6809a7",
-    boxShadow: "0px 10px 20px rgba(0, 163, 255, 0.1)",
+
+  "&::before": {
+    content: '""',
+    position: "absolute",
+    inset: 0,
+    pointerEvents: "none",
+    background:
+      "linear-gradient(135deg, rgba(176, 38, 255, 0.12), transparent 42%)",
   },
 
   [theme.breakpoints.down("sm")]: {
-    width: "100%",
-    maxWidth: "400px",
-    margin: "0 auto",
-  },
-  "& h2": {
-    color: "#6809a7",
-    fontSize: "2.5rem",
-    margin: 0,
-  },
-  "& p": {
-    color: "#888",
-    margin: theme.spacing(1, 0, 0, 0),
-    fontSize: "1rem",
+    padding: theme.spacing(2.5),
   },
 }));
 
-// --- Main Component --- //
+const BioContent = styled("div")({
+  position: "relative",
+  display: "grid",
+  gap: "1.25rem",
+});
+
+const BioText = styled(Typography)({
+  color: "rgba(255, 255, 255, 0.76)",
+  fontSize: "1.02rem",
+  lineHeight: 1.85,
+});
+
+const Quote = styled("blockquote")({
+  margin: 0,
+  borderLeft: "3px solid #b026ff",
+  padding: "0.2rem 0 0.2rem 1rem",
+  color: "rgba(255, 255, 255, 0.64)",
+  fontStyle: "italic",
+  lineHeight: 1.7,
+});
+
+const StatsGrid = styled("div")(({ theme }) => ({
+  display: "grid",
+  gridTemplateColumns: "repeat(2, minmax(0, 1fr))",
+  gap: theme.spacing(2),
+
+  [theme.breakpoints.down("sm")]: {
+    gridTemplateColumns: "1fr",
+  },
+}));
+
+const StatCard = styled("article")(({ theme }) => ({
+  minHeight: 148,
+  display: "flex",
+  flexDirection: "column",
+  justifyContent: "space-between",
+  border: "1px solid rgba(255, 255, 255, 0.1)",
+  borderRadius: 8,
+  background: "rgba(255, 255, 255, 0.045)",
+  padding: theme.spacing(2.5),
+  transition:
+    "transform 0.22s ease, border-color 0.22s ease, background 0.22s ease",
+
+  "&:hover": {
+    transform: "translateY(-4px)",
+    borderColor: "rgba(176, 38, 255, 0.56)",
+    background: "rgba(176, 38, 255, 0.1)",
+  },
+
+  "& h3": {
+    margin: 0,
+    color: "#b026ff",
+    fontSize: "clamp(2.1rem, 4vw, 3rem)",
+    lineHeight: 1,
+  },
+
+  "& p": {
+    margin: 0,
+    color: "rgba(255, 255, 255, 0.68)",
+    fontSize: "0.95rem",
+    lineHeight: 1.45,
+  },
+}));
+
+const stats = [
+  { value: "10+", key: "projects" },
+  { value: "2+", key: "experience" },
+  { value: "5k+", key: "lines" },
+  { value: "∞", key: "coffee" },
+] as const;
 
 const About = () => {
   const { t } = useTranslation();
-  {
-    /* Secção Sobre*/
-  }
+
   return (
     <StyledAbout id="about-me">
-      <Fade delay={400}>
-        <Slide direction="up">
-          <Typography
-            variant="h3"
-            textAlign="left"
-            gutterBottom
-            marginBottom={6}
-          >
-            {t("about.title")}
-          </Typography>
-        </Slide>
-      </Fade>
+      <Inner>
+        <Header>
+          <Title>{t("about.title")}</Title>
+          <AccentLine aria-hidden="true" />
+        </Header>
 
-      <StyledContentWrapper>
-        {/* Texto Biografia */}
-        <Slide direction="left">
-          <StyledContainer>
-            <Typography variant="body1" lineHeight={1.8}>
-              {t("about.bio")}
-              <br />
-              <br />
-              {t("about.hobbies")}
-              <br />
-              <br />
-              <Typography component="i" variant="caption" color="gray">
-                {t("about.quote")}
-              </Typography>
-            </Typography>
-          </StyledContainer>
-        </Slide>
+        <ContentGrid>
+          <BioPanel>
+            <BioContent>
+              <BioText>{t("about.bio")}</BioText>
+              <BioText>{t("about.hobbies")}</BioText>
+              <Quote>{t("about.quote")}</Quote>
+            </BioContent>
+          </BioPanel>
 
-        {/* Dashboard de Estatísticas */}
-        <Slide direction="right">
           <StatsGrid>
-            {/* Cards */}
-            <StatCard>
-              <h2>10+</h2>
-              <p>{t("about.stats.projects")}</p>
-            </StatCard>
-            <StatCard>
-              <h2>2+</h2>
-              <p>{t("about.stats.experience")}</p>
-            </StatCard>
-            <StatCard>
-              <h2>5k+</h2>
-              <p>{t("about.stats.lines")}</p>
-            </StatCard>
-            <StatCard>
-              <h2 style={{ fontSize: "2.5rem" }}>∞</h2>
-              <p>{t("about.stats.coffee")}</p>
-            </StatCard>
+            {stats.map((stat) => (
+              <StatCard key={stat.key}>
+                <h3>{stat.value}</h3>
+                <p>{t(`about.stats.${stat.key}`)}</p>
+              </StatCard>
+            ))}
           </StatsGrid>
-        </Slide>
-      </StyledContentWrapper>
+        </ContentGrid>
+      </Inner>
     </StyledAbout>
   );
 };
