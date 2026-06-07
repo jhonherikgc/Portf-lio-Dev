@@ -24,15 +24,15 @@ import {
 } from "react-icons/si";
 import { DiNodejsSmall } from "react-icons/di";
 
-import siteCorinthians from "../../../assets/images/Proj_Corinthians_photo.png";
-import aluraChat from "../../../assets/images/alura-chat_project.png";
-import toDoList from "../../../assets/images/ToDo_list_project.png";
-import Jafetech from "../../../assets/images/jafetech_proj.png";
-import ERP from "../../../assets/images/ERP.png";
-import honeepay from "../../../assets/images/honeepay.png";
-import JohnnyBarbershop from "../../../assets/images/JohnnyBarbershop.png";
-import loginPage from "../../../assets/images/LoginPage.png";
-import aceleraDev from "../../../assets/images/acelera.png";
+import siteCorinthians from "../../../assets/images/Proj_Corinthians_photo.webp";
+import aluraChat from "../../../assets/images/alura-chat_project.webp";
+import toDoList from "../../../assets/images/ToDo_list_project.webp";
+import Jafetech from "../../../assets/images/jafetech_proj.webp";
+import ERP from "../../../assets/images/ERP.webp";
+import honeepay from "../../../assets/images/honeepay.webp";
+import JohnnyBarbershop from "../../../assets/images/JohnnyBarbershop.webp";
+import loginPage from "../../../assets/images/LoginPage.webp";
+import aceleraDev from "../../../assets/images/acelera.webp";
 
 type TechIcon = {
   icon: ReactNode;

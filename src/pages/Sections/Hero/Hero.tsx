@@ -1,6 +1,6 @@
-import { useCallback } from "react";
+import { useCallback, useMemo } from "react";
 import { useTranslation } from "react-i18next";
-import { Box, Container, Typography, styled } from "@mui/material";
+import { Container, styled } from "@mui/material";
 import DownloadIcon from "@mui/icons-material/Download";
 import MailOutlineIcon from "@mui/icons-material/MailOutline";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
@@ -10,10 +10,15 @@ import ScrollDown from "../../../components/KeyboardArrowDown/ArrowDown";
 import { AnimatedBackground } from "../../../components/AnimatedBackground/AnimatedBackground";
 import TextType from "../../../components/Typing/TextType";
 import cvFile from "../../../assets/images/jhon_cv.pdf";
-import Avatar from "../../../assets/images/avatar.png.jpg";
+import Avatar from "../../../assets/images/avatar.jpg";
 
 const RECIPIENT_EMAIL = "jhonherik006@gmail.com";
 const EMAIL_BODY = "Olá, como podemos criar juntos?";
+const FALLBACK_ROLES = [
+  "um Eng. de Software em formação",
+  "um Desenvolvedor Full Stack",
+  "um Entusiasta da Tecnologia",
+];
 
 const StyledHero = styled("section")(({ theme }) => ({
   position: "relative",
@@ -22,139 +27,122 @@ const StyledHero = styled("section")(({ theme }) => ({
   alignItems: "center",
   overflow: "hidden",
   background: theme.palette.gradient.dark,
-  padding: "clamp(6.25rem, 8vw, 7.25rem) 0 clamp(3.5rem, 5vw, 4.5rem)",
+  padding: "clamp(6.25rem, 9vw, 7.5rem) 0 clamp(3.75rem, 6vw, 5rem)",
 }));
 
 const HeroLayout = styled("div")(({ theme }) => ({
   display: "grid",
-  gridTemplateColumns: "minmax(240px, 0.85fr) minmax(0, 1fr)",
+  gridTemplateColumns: "minmax(0, 1.08fr) minmax(280px, 0.72fr)",
   alignItems: "center",
-  gap: theme.spacing(5),
-  minHeight: "calc(100vh - 10.75rem)",
+  gap: theme.spacing(7),
+  minHeight: "calc(100vh - 12rem)",
 
   [theme.breakpoints.down("md")]: {
     gridTemplateColumns: "1fr",
     gap: theme.spacing(4),
     minHeight: "auto",
-    textAlign: "center",
   },
 }));
-
-const VisualColumn = styled("div")(({ theme }) => ({
-  position: "relative",
-  display: "grid",
-  placeItems: "center",
-  minHeight: 360,
-
-  [theme.breakpoints.down("md")]: {
-    minHeight: 270,
-  },
-}));
-
-const BackgroundWrap = styled("div")(({ theme }) => ({
-  position: "absolute",
-  width: "min(480px, 82vw)",
-  inset: "50% auto auto 50%",
-  transform: "translate(-50%, -50%)",
-  opacity: 0.92,
-  pointerEvents: "none",
-
-  [theme.breakpoints.down("md")]: {
-    width: "min(360px, 86vw)",
-  },
-}));
-
-const PortraitFrame = styled("div")(({ theme }) => ({
-  position: "relative",
-  zIndex: 1,
-  width: "clamp(210px, 22vw, 290px)",
-  aspectRatio: "1",
-  borderRadius: "50%",
-  padding: 6,
-  border: "1px solid rgba(255, 255, 255, 0.45)",
-  background:
-    "linear-gradient(135deg, rgba(255,255,255,0.16), rgba(104,9,167,0.22))",
-  boxShadow:
-    "0 26px 80px rgba(0, 0, 0, 0.4), 0 0 70px rgba(104, 9, 167, 0.22)",
-
-  [theme.breakpoints.down("sm")]: {
-    width: "min(220px, 64vw)",
-  },
-}));
-
-const StyledImg = styled("img")({
-  width: "100%",
-  height: "100%",
-  display: "block",
-  objectFit: "cover",
-  borderRadius: "50%",
-});
 
 const ContentColumn = styled("div")(({ theme }) => ({
   position: "relative",
   zIndex: 1,
-  maxWidth: 640,
+  maxWidth: 680,
 
   [theme.breakpoints.down("md")]: {
+    order: 2,
+    textAlign: "center",
     justifySelf: "center",
   },
 }));
 
-const HeroTitle = styled(Typography)(({ theme }) => ({
+const HeroTitle = styled("h1")(({ theme }) => ({
   color: theme.palette.primary.contrastText,
-  fontSize: "clamp(2.25rem, 4.2vw, 3.55rem)",
-  fontWeight: 800,
-  lineHeight: 1.04,
+  fontFamily:
+    '"Inter", "Segoe UI", "Helvetica Neue", Arial, ui-sans-serif, sans-serif',
+  fontSize: "clamp(2.65rem, 5vw, 4.65rem)",
+  fontWeight: 850,
+  lineHeight: 1,
   letterSpacing: 0,
-  marginBottom: theme.spacing(2),
+  margin: 0,
+  textWrap: "balance",
+
+  [theme.breakpoints.down("sm")]: {
+    fontSize: "clamp(2.1rem, 10vw, 2.9rem)",
+  },
 }));
 
-const RoleLine = styled(Typography)(({ theme }) => ({
-  color: theme.palette.primary.contrastText,
+const RoleLine = styled("p")(({ theme }) => ({
   display: "flex",
   flexWrap: "wrap",
   alignItems: "baseline",
-  gap: "0.35rem",
-  fontSize: "clamp(1.05rem, 2vw, 1.55rem)",
+  gap: "0.45rem",
+  color: "rgba(255, 255, 255, 0.78)",
+  fontFamily:
+    '"Inter", "Segoe UI", "Helvetica Neue", Arial, ui-sans-serif, sans-serif',
+  fontSize: "clamp(1.25rem, 2.4vw, 2rem)",
+  fontWeight: 600,
   lineHeight: 1.25,
-  minHeight: "2.35rem",
+  margin: "1.15rem 0 0",
 
   [theme.breakpoints.down("md")]: {
     justifyContent: "center",
   },
+
+  [theme.breakpoints.down("sm")]: {
+    fontSize: "1.08rem",
+  },
 }));
 
-const RoleText = styled("span")({
+const RoleValue = styled("span")({
+  display: "inline-block",
   color: "#b026ff",
-  textShadow: "0 0 18px rgba(176, 38, 255, 0.28)",
+  fontWeight: 800,
+  minHeight: "1.2em",
+  minWidth: "min(100%, 28ch)",
+  textShadow: "0 0 22px rgba(176, 38, 255, 0.25)",
+
+  "& .hero-role-cursor": {
+    color: "#d68cff",
+    fontWeight: 600,
+    textShadow: "0 0 18px rgba(176, 38, 255, 0.45)",
+  },
 });
 
 const ActionRow = styled("div")(({ theme }) => ({
   display: "flex",
   flexWrap: "wrap",
-  gap: theme.spacing(1.5),
-  marginTop: theme.spacing(3),
+  gap: theme.spacing(1.25),
+  marginTop: theme.spacing(3.5),
 
   [theme.breakpoints.down("md")]: {
     justifyContent: "center",
   },
 }));
 
-const ActionButton = styled("button")(({ theme }) => ({
+const actionBase = {
   minHeight: 44,
   display: "inline-flex",
   alignItems: "center",
   justifyContent: "center",
-  gap: theme.spacing(1),
-  border: "1px solid rgba(255, 255, 255, 0.2)",
+  gap: "0.55rem",
   borderRadius: 6,
-  background: "#f7f7f7",
-  color: "#09090b",
   cursor: "pointer",
-  fontSize: "0.95rem",
+  fontFamily:
+    '"Inter", "Segoe UI", "Helvetica Neue", Arial, ui-sans-serif, sans-serif',
+  fontSize: "0.92rem",
   fontWeight: 800,
   padding: "0.7rem 1rem",
-  transition: "transform 0.22s ease, box-shadow 0.22s ease, background 0.22s ease",
+  textDecoration: "none",
+  transition:
+    "transform 0.22s ease, border-color 0.22s ease, background 0.22s ease, box-shadow 0.22s ease",
+};
+
+const ActionButton = styled("button")({
+  ...actionBase,
+  border: "1px solid rgba(255, 255, 255, 0.2)",
+  background: "#f7f7f7",
+  color: "#09090b",
 
   "&:hover": {
     background: "#ffffff",
@@ -166,26 +154,16 @@ const ActionButton = styled("button")(({ theme }) => ({
     outline: "2px solid #b026ff",
     outlineOffset: 3,
   },
-}));
+});
 
 const ActionLink = styled("a")(({ theme }) => ({
-  minHeight: 44,
-  display: "inline-flex",
-  alignItems: "center",
-  justifyContent: "center",
-  gap: theme.spacing(1),
+  ...actionBase,
   border: "1px solid rgba(168, 85, 247, 0.45)",
-  borderRadius: 6,
   background: "rgba(255, 255, 255, 0.045)",
   color: theme.palette.primary.contrastText,
-  fontSize: "0.95rem",
-  fontWeight: 800,
-  padding: "0.7rem 1rem",
-  textDecoration: "none",
-  transition: "transform 0.22s ease, border-color 0.22s ease, background 0.22s ease",
 
   "&:hover": {
-    background: "rgba(168, 85, 247, 0.14)",
+    background: "rgba(176, 38, 255, 0.14)",
     borderColor: "rgba(176, 38, 255, 0.72)",
     transform: "translateY(-3px)",
   },
@@ -196,16 +174,87 @@ const ActionLink = styled("a")(({ theme }) => ({
   },
 }));
 
+const VisualColumn = styled("div")(({ theme }) => ({
+  position: "relative",
+  zIndex: 1,
+  display: "grid",
+  placeItems: "center",
+  minHeight: 420,
+
+  [theme.breakpoints.down("md")]: {
+    order: 1,
+    minHeight: 300,
+  },
+}));
+
+const BackgroundWrap = styled("div")(({ theme }) => ({
+  position: "absolute",
+  width: "min(520px, 78vw)",
+  inset: "50% auto auto 50%",
+  transform: "translate(-50%, -50%)",
+  opacity: 0.65,
+  pointerEvents: "none",
+
+  [theme.breakpoints.down("md")]: {
+    width: "min(380px, 88vw)",
+  },
+}));
+
+const PortraitFrame = styled("div")(({ theme }) => ({
+  position: "relative",
+  width: "clamp(250px, 24vw, 350px)",
+  aspectRatio: "1 / 1",
+  border: "1px solid rgba(255, 255, 255, 0.2)",
+  borderRadius: "50%",
+  overflow: "hidden",
+  background: "rgba(255, 255, 255, 0.045)",
+  boxShadow:
+    "0 28px 90px rgba(0, 0, 0, 0.38), 0 0 70px rgba(176, 38, 255, 0.16)",
+
+  "&::before": {
+    content: '""',
+    position: "absolute",
+    inset: 8,
+    zIndex: 1,
+    border: "1px solid rgba(214, 140, 255, 0.34)",
+    borderRadius: "50%",
+    pointerEvents: "none",
+  },
+
+  "&::after": {
+    content: '""',
+    position: "absolute",
+    inset: 0,
+    zIndex: 2,
+    pointerEvents: "none",
+    background: "linear-gradient(180deg, transparent 58%, rgba(0, 0, 0, 0.22))",
+  },
+
+  [theme.breakpoints.down("sm")]: {
+    width: "min(235px, 64vw)",
+  },
+}));
+
+const StyledImg = styled("img")({
+  width: "100%",
+  height: "100%",
+  display: "block",
+  objectFit: "cover",
+  objectPosition: "50% 50%",
+  transform: "scale(2.05)",
+  transformOrigin: "50% 50%",
+});
+
 const Hero = () => {
   const { t } = useTranslation();
   const prefixText = t("hero.prefix");
-  const roles = Array.isArray(t("hero.roles", { returnObjects: true }))
-    ? (t("hero.roles", { returnObjects: true }) as string[])
-    : [
-        "um Eng. de Software em formação",
-        "um Desenvolvedor Full Stack",
-        "um Entusiasta da Tecnologia",
-      ];
+  const roles = useMemo(() => {
+    const translatedRoles = t("hero.roles", { returnObjects: true });
+
+    return Array.isArray(translatedRoles)
+      ? (translatedRoles as string[])
+      : FALLBACK_ROLES;
+  }, [t]);
 
   const emailSubject = t("hero.contact");
   const gmailComposeUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${RECIPIENT_EMAIL}&su=${encodeURIComponent(
@@ -225,28 +274,20 @@ const Hero = () => {
     <StyledHero>
       <Container maxWidth="lg">
         <HeroLayout>
-          <VisualColumn>
-            <BackgroundWrap>
-              <AnimatedBackground />
-            </BackgroundWrap>
-            <PortraitFrame>
-              <StyledImg src={Avatar} alt="Jhon Herik Gomes de Castro" />
-            </PortraitFrame>
-          </VisualColumn>
-
           <ContentColumn>
-            <HeroTitle variant="h1">{t("hero.greeting")}</HeroTitle>
-
-            <RoleLine variant="h2">
-              <Box component="span">{prefixText}</Box>
-              <RoleText>
+            <HeroTitle>{t("hero.greeting")}</HeroTitle>
+            <RoleLine>
+              <span>{prefixText}</span>
+              <RoleValue>
                 <TextType
-                  as="span"
+                  aria-label={roles.join(", ")}
+                  cursorClassName="hero-role-cursor"
+                  deletingSpeed={26}
+                  pauseDuration={1500}
                   text={roles}
-                  typingSpeed={40}
-                  deletingSpeed={30}
+                  typingSpeed={48}
                 />
-              </RoleText>
+              </RoleValue>
             </RoleLine>
 
             <ActionRow>
@@ -280,6 +321,15 @@ const Hero = () => {
               </ActionLink>
             </ActionRow>
           </ContentColumn>
+
+          <VisualColumn>
+            <BackgroundWrap>
+              <AnimatedBackground />
+            </BackgroundWrap>
+            <PortraitFrame>
+              <StyledImg src={Avatar} alt="Jhon Herik Gomes de Castro" />
+            </PortraitFrame>
+          </VisualColumn>
         </HeroLayout>
       </Container>
       <ScrollDown targetId="#about-me" />
